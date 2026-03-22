@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>偏差値一覧 - 福島県立高校入試対策</title>
     <style>
-        /* 共通スタイル */
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
         
         header { background: #000; color: #fff; padding: 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
@@ -21,15 +20,15 @@
 
         .container { padding: 25px 20px; }
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
-        h2 { border-left: 5px solid #d32f2f; padding-left: 10px; margin-top: 30px; font-size: 1.1em; background: #f0f0f0; padding: 8px 10px; border-bottom: 1px solid #ccc; }
+        h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 30px; font-size: 1.1em; background: #f0f0f0; padding: 8px 10px; border-bottom: 1px solid #ccc; }
         
-        table { width: 100%; border-collapse: collapse; border: 1px solid #ccc; margin-bottom: 30px; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        th, td { border: 1px solid #eee; padding: 12px 5px; text-align: center; font-size: 0.85em; }
-        th { background-color: #000; color: #fff; border: 1px solid #000; }
+        table { width: 100%; border-collapse: collapse; border: 1px solid #000; margin-bottom: 30px; background: #fff; }
+        th, td { border: 1px solid #000; padding: 12px 5px; text-align: center; font-size: 0.85em; color: #000; }
+        th { background-color: #000; color: #fff; }
         th:nth-child(1), td:nth-child(1) { width: 55%; text-align: left; padding-left: 15px; }
-        th:nth-child(2), td:nth-child(2) { width: 20%; font-weight: bold; color: #d32f2f; }
+        th:nth-child(2), td:nth-child(2) { width: 20%; }
         th:nth-child(3), td:nth-child(3) { width: 25%; }
-        tr:nth-child(even) { background-color: #fafafa; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
         
         .dept { font-size: 0.85em; color: #666; display: block; font-weight: normal; }
         .school-link { color: #000; text-decoration: underline; font-weight: bold; }
@@ -53,9 +52,6 @@
             <tr><td><a href="https://asakareimei-h.fcs.ed.jp/" class="school-link">安積黎明</a><span class="dept">普通科</span></td><td>64</td><td>195点</td></tr>
             <tr><td><a href="https://tachibana-h.fcs.ed.jp/" class="school-link">橘</a><span class="dept">普通科</span></td><td>64</td><td>195点</td></tr>
             <tr><td><a href="https://iwaki-h.fcs.ed.jp/" class="school-link">磐城</a><span class="dept">普通科</span></td><td>64</td><td>195点</td></tr>
-            <tr><td><a href="https://fukushimahigashi-h.fcs.ed.jp/" class="school-link">福島東</a><span class="dept">普通科</span></td><td>62</td><td>185点</td></tr>
-            <tr><td><a href="https://koriyama-h.fcs.ed.jp/" class="school-link">郡山</a><span class="dept">普通科</span></td><td>61</td><td>180点</td></tr>
-            <tr><td><a href="https://shirakawa-h.fcs.ed.jp/" class="school-link">白河</a><span class="dept">普通科</span></td><td>60</td><td>175点</td></tr>
         </tbody></table>
 
         <h2>偏差値 55 〜 59</h2>
@@ -63,15 +59,6 @@
             <tr><td><a href="https://koriyamahigashi-h.fcs.ed.jp/" class="school-link">郡山東</a><span class="dept">普通科</span></td><td>59</td><td>170点</td></tr>
             <tr><td><a href="https://iwakisakarigaoka-h.fcs.ed.jp/" class="school-link">磐城桜が丘</a><span class="dept">普通科</span></td><td>59</td><td>170点</td></tr>
             <tr><td><a href="https://aizugakuho-h.fcs.ed.jp/" class="school-link">会津学鳳</a><span class="dept">普通科</span></td><td>58</td><td>165点</td></tr>
-            <tr><td><a href="https://sukagawatoyo-h.fcs.ed.jp/" class="school-link">須賀川桐陽</a><span class="dept">普通科</span></td><td>55</td><td>155点</td></tr>
-        </tbody></table>
-
-        <h2>偏差値 50 〜 54</h2>
-        <table><thead><tr><th>高校名・学科</th><th>偏差値</th><th>目標点</th></tr></thead><tbody>
-            <tr><td><a href="https://fukushimanishi-h.fcs.ed.jp/" class="school-link">福島西</a><span class="dept">普通科</span></td><td>54</td><td>150点</td></tr>
-            <tr><td><a href="https://shirakawagaka-h.fcs.ed.jp/" class="school-link">白河旭</a><span class="dept">普通科</span></td><td>54</td><td>150点</td></tr>
-            <tr><td><a href="https://iwakikoyo-h.fcs.ed.jp/" class="school-link">いわき光洋</a><span class="dept">文理科</span></td><td>53</td><td>145点</td></tr>
-            <tr><td><a href="https://tamura-h.fcs.ed.jp/" class="school-link">田村</a><span class="dept">普通科</span></td><td>51</td><td>135点</td></tr>
         </tbody></table>
 
         <footer>
