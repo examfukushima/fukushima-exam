@@ -5,95 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>偏差値一覧 - 福島県高校入試対策</title>
     <style>
-        /* 全ページ共通の基本スタイル */
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fff; }
-        
-        /* ヘッダー固定設定（共通） */
-        header { background: #000; color: #fff; padding: 12px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 30px; }
-        
-        /* 左端：メニューボタン */
-        .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 24px; height: 18px; flex-shrink: 0; }
-        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
-
-        /* 中央：サイト名 */
-        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 0.95em; letter-spacing: 0.05em; }
-
-        /* 左から半分(60%)出るサイドメニュー */
+        header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
+        .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
+        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; }
+        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
         .nav-overlay { position: fixed; top: 0; left: -100%; width: 60%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
-        
-        /* メニュー背景の暗幕 */
         .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
         .menu-bg.active { display: block; }
-
         .container { padding: 25px 20px; }
-        h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.3em; margin-bottom: 30px; }
-        
-        /* 偏差値テーブルのスタイル */
+        h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
         .table-container { overflow-x: auto; margin-top: 20px; }
         table { width: 100%; border-collapse: collapse; border: 2px solid #000; }
         th, td { border: 1px solid #000; padding: 12px 5px; text-align: center; font-size: 0.9em; }
         th { background-color: #000; color: #fff; }
         tr:nth-child(even) { background-color: #f9f9f9; }
-        
         .school-link { color: #000; text-decoration: underline; font-weight: bold; }
-        
-        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.75em; color: #666; }
+        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; }
     </style>
 </head>
 <body>
-
     <header>
-        <button class="menu-btn" onclick="toggleMenu()" aria-label="メニュー">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
         <div class="header-title">福島県高校入試対策</div>
-        <div style="width: 24px;"></div> </header>
-
+        <div style="width: 28px;"></div>
+    </header>
     <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
-
     <nav class="nav-overlay" id="navOverlay">
         <a href="index.html" onclick="toggleMenu()">トップ・入試分析</a>
         <a href="kakomon.html" onclick="toggleMenu()">過去問ライブラリ</a>
         <a href="hensachi.html" onclick="toggleMenu()">偏差値一覧</a>
     </nav>
-
     <div class="container">
         <h1>県中地区 公立高校偏差値</h1>
-        
         <div class="table-container">
             <table>
-                <thead>
-                    <tr>
-                        <th>高校名（公式HP）</th>
-                        <th>偏差値</th>
-                        <th>目標点</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>高校名</th><th>偏差値</th><th>目標点</th></tr></thead>
                 <tbody>
-                    <tr><td><a href="https://asaka-h.fcs.ed.jp/" target="_blank" class="school-link">安積</a></td><td>67</td><td>215点</td></tr>
-                    <tr><td><a href="https://asakareimei-h.fcs.ed.jp/" target="_blank" class="school-link">安積黎明</a></td><td>64</td><td>195点</td></tr>
-                    <tr><td><a href="https://koriyama-h.fcs.ed.jp/" target="_blank" class="school-link">郡山</a></td><td>61</td><td>180点</td></tr>
-                    <tr><td><a href="https://koriyamahigashi-h.fcs.ed.jp/" target="_blank" class="school-link">郡山東</a></td><td>59</td><td>170点</td></tr>
-                    <tr><td><a href="https://sukagawatoyo-h.fcs.ed.jp/" target="_blank" class="school-link">須賀川桐陽</a></td><td>55</td><td>155点</td></tr>
-                    <tr><td><a href="https://sukagawa-h.fcs.ed.jp/" target="_blank" class="school-link">須賀川創英館</a></td><td>50</td><td>135点</td></tr>
-                    <tr><td><a href="https://asakagaka-h.fcs.ed.jp/" target="_blank" class="school-link">あさか開成</a></td><td>49</td><td>130点</td></tr>
-                    <tr><td><a href="https://tamura-h.fcs.ed.jp/" target="_blank" class="school-link">田村</a></td><td>47</td><td>120点</td></tr>
-                    <tr><td><a href="https://miharu-h.fcs.ed.jp/" target="_blank" class="school-link">船引</a></td><td>37</td><td>70点</td></tr>
+                    <tr><td><a href="https://asaka-h.fcs.ed.jp/" class="school-link">安積</a></td><td>67</td><td>215点</td></tr>
+                    <tr><td><a href="https://asakareimei-h.fcs.ed.jp/" class="school-link">安積黎明</a></td><td>64</td><td>195点</td></tr>
+                    <tr><td><a href="https://koriyama-h.fcs.ed.jp/" class="school-link">郡山</a></td><td>61</td><td>180点</td></tr>
+                    <tr><td><a href="https://koriyamahigashi-h.fcs.ed.jp/" class="school-link">郡山東</a></td><td>59</td><td>170点</td></tr>
+                    <tr><td><a href="https://sukagawatoyo-h.fcs.ed.jp/" class="school-link">須賀川桐陽</a></td><td>55</td><td>155点</td></tr>
+                    <tr><td><a href="https://sukagawa-h.fcs.ed.jp/" class="school-link">須賀川創英館</a></td><td>50</td><td>135点</td></tr>
                 </tbody>
             </table>
         </div>
-
-        <p style="font-size: 0.8em; margin-top: 20px; color: #666;">
-            ※偏差値は模試の結果や年度により変動します。あくまで目安としてご活用ください。
-        </p>
-
-        <footer>
-            <p>&copy; 2026 全国学習塾名鑑</p>
-        </footer>
+        <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
     </div>
-
     <script>
         function toggleMenu() {
             document.getElementById('navOverlay').classList.toggle('active');
