@@ -8,17 +8,24 @@
         /* 硬派なモノクロデザイン */
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.8; color: #000; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff; }
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
-        h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 40px; font-size: 1.1em; }
+        h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 40px; font-size: 1.1em; background: #f4f4f4; padding: 5px 10px; }
         
-        /* 入力エリアを縦に配置 */
+        /* シミュレーター */
         .box { border: 1px solid #000; padding: 25px; margin: 20px 0; background-color: #fff; }
         .input-group { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
         .input-group label { font-weight: bold; flex: 1; }
         .input-group input { width: 80px; padding: 10px; border: 1px solid #000; text-align: center; font-size: 1.1em; }
-        
         button { margin-top: 10px; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1em; }
         .result { font-weight: bold; font-size: 1.3em; margin-top: 20px; color: #000; text-align: center; border: 2px solid #000; padding: 15px; background-color: #f9f9f9; }
         
+        /* 偏差値一覧表 */
+        .table-container { overflow-x: auto; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; border: 2px solid #000; }
+        th, td { border: 1px solid #000; padding: 12px 8px; text-align: center; font-size: 0.9em; }
+        th { background-color: #000; color: #fff; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .rank-a { font-weight: bold; background-color: #eee; }
+
         footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #000; }
         ul { padding-left: 15px; list-style-type: square; }
         li { margin-bottom: 12px; }
@@ -30,37 +37,70 @@
 
     <div class="box">
         <h3 style="text-align: center; margin-top: 0;">内申点シミュレーター</h3>
-        <p style="font-size: 0.9em; margin-bottom: 20px;">各学年の9教科合計（45点満点）を入力してください。</p>
-        
-        <div class="input-group">
-            <label for="y1">中学1年 合計</label>
-            <input type="number" id="y1" min="9" max="45" value="45">
-        </div>
-        
-        <div class="input-group">
-            <label for="y2">中学2年 合計</label>
-            <input type="number" id="y2" min="9" max="45" value="45">
-        </div>
-        
-        <div class="input-group">
-            <label for="y3">中学3年 合計</label>
-            <input type="number" id="y3" min="9" max="45" value="45">
-        </div>
-        
+        <div class="input-group"><label for="y1">中学1年 合計</label><input type="number" id="y1" min="9" max="45" value="45"></div>
+        <div class="input-group"><label for="y2">中学2年 合計</label><input type="number" id="y2" min="9" max="45" value="45"></div>
+        <div class="input-group"><label for="y3">中学3年 合計</label><input type="number" id="y3" min="9" max="45" value="45"></div>
         <button onclick="calculate()">内申点を算出する</button>
-        
         <div id="res" class="result">ここに結果が表示されます</div>
-        
-        <p style="font-size: 0.8em; margin-top: 15px; color: #666;">
-            ※福島県の公立入試（前期選抜）では、中1〜中3の評定合計135点を満点として扱います。
-        </p>
     </div>
+
+    <h2>主要校 偏差値・目標点一覧（県中エリア）</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>高校名</th>
+                    <th>学科</th>
+                    <th>偏差値</th>
+                    <th>目標点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="rank-a">
+                    <td>安積</td>
+                    <td>普通</td>
+                    <td>66-68</td>
+                    <td>215点</td>
+                </tr>
+                <tr class="rank-a">
+                    <td>安積黎明</td>
+                    <td>普通</td>
+                    <td>63-65</td>
+                    <td>195点</td>
+                </tr>
+                <tr>
+                    <td>郡山</td>
+                    <td>普通</td>
+                    <td>60-62</td>
+                    <td>180点</td>
+                </tr>
+                <tr>
+                    <td>郡山東</td>
+                    <td>普通</td>
+                    <td>58-60</td>
+                    <td>170点</td>
+                </tr>
+                <tr>
+                    <td>須賀川桐陽</td>
+                    <td>普通</td>
+                    <td>54-56</td>
+                    <td>155点</td>
+                </tr>
+                <tr>
+                    <td>郡山商業</td>
+                    <td>流通</td>
+                    <td>52-54</td>
+                    <td>145点</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p style="font-size: 0.8em; margin-top: 10px;">※偏差値は新教研テスト、目標点は250点満点換算の目安です。</p>
 
     <h2>科目別入試対策</h2>
     <ul>
-        <li><strong>数学:</strong> 大問1・2の基礎を確実に。後半の記述問題は「条件」の読み落としに注意。</li>
-        <li><strong>英語:</strong> 放送を聴きながら要点をメモする練習。英作文は減点されない簡潔な表現で。</li>
-        <li><strong>理科・社会:</strong> 用語の暗記だけでなく、グラフの読み取りや実験の考察力を磨く。</li>
+        <li><strong>数学:</strong> 大問1・2を完璧に。放物線と図形の融合は必須項目。</li>
+        <li><strong>英語:</strong> リスニングのメモ取り、英作文の定型文ストックが鍵。</li>
     </ul>
 
     <footer>
