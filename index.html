@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>福島県高校入試対策室 - トップページ</title>
+    <title>福島県高校入試対策室</title>
     <style>
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
+        
+        /* 他のページと共通のヘッダーデザイン */
         header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
-        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.1em; letter-spacing: 0.05em; white-space: nowrap; }
-        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; }
+        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
+        
+        /* サイドメニュー */
+        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
         .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
         .menu-bg.active { display: block; }
         
         .container { padding: 20px; }
-        .main-visual { background: #000; color: #fff; padding: 40px 20px; text-align: center; margin-bottom: 30px; }
-        .main-visual h1 { margin: 0; font-size: 1.5em; letter-spacing: 0.1em; }
-        .main-visual p { margin: 10px 0 0; font-size: 0.9em; opacity: 0.8; }
 
         /* お知らせセクション */
-        .news-box { margin: 30px 0; border: 1px solid #000; padding: 20px; background-color: #fff; }
+        .news-box { margin: 20px 0 30px 0; border: 1px solid #000; padding: 20px; background-color: #fff; }
         .news-box h2 { margin-top: 0; font-size: 1.1em; border-bottom: 2px solid #000; padding-bottom: 8px; }
         .news-list { margin: 10px 0 0 0; padding-left: 20px; font-size: 0.9em; line-height: 1.8; }
 
-        /* シミュレーター共通 */
+        /* シミュレーター共通デザイン */
         .sim-card { margin: 30px 0; border-radius: 12px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 2px solid; }
         .sim-header { color: #fff; padding: 12px; text-align: center; font-weight: bold; }
         .sim-body { padding: 20px; }
@@ -54,11 +55,6 @@
         <a href="kakomon.html">過去問解説</a>
         <a href="hensachi.html">偏差値一覧</a>
     </nav>
-
-    <div class="main-visual">
-        <h1>福島県高校入試ガイド</h1>
-        <p>実力テスト・入試本番で勝つための情報サイト</p>
-    </div>
 
     <div class="container">
         <div class="news-box">
@@ -107,7 +103,7 @@
                 <div id="resultNaishinArea" class="result-area" style="border-color: #34a853; background-color: #eafaf1;">
                     <div style="font-size: 0.9em; margin-bottom: 5px;">福島県公立高校入試用 内申点</div>
                     <div id="resNaishinTotal" style="font-size: 1.6em; font-weight: bold; color: #1e8449;"></div>
-                    <div style="font-size: 0.8em; color: #666; margin-top: 5px;">(135点満点 / 195点換算は詳細ページへ)</div>
+                    <div style="font-size: 0.8em; color: #666; margin-top: 5px;">(135点満点)</div>
                 </div>
             </div>
         </div>
@@ -123,7 +119,6 @@
             document.getElementById('menuBg').classList.toggle('active');
         }
 
-        // 偏差値計算
         function calculateDev() {
             const s = [
                 parseFloat(document.getElementById('score_kokugo').value) || 0,
@@ -146,7 +141,6 @@
             document.getElementById('resultDevArea').style.display = 'none';
         }
 
-        // 内申点計算
         function calculateNaishin() {
             const n1 = parseFloat(document.getElementById('naishin_1').value) || 0;
             const n2 = parseFloat(document.getElementById('naishin_2').value) || 0;
