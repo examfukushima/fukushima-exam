@@ -7,30 +7,39 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
+        
+        /* ヘッダーデザイン（他ページと統一） */
         header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
         .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
+        
+        /* サイドメニュー（過去問ライブラリに修正） */
         .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
         .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
         .menu-bg.active { display: block; }
+        
         .container { padding: 20px; }
+
+        /* お知らせセクション */
         .news-box { margin: 20px 0 30px 0; border: 1px solid #000; padding: 20px; background-color: #fff; }
         .news-box h2 { margin-top: 0; font-size: 1.1em; border-bottom: 2px solid #000; padding-bottom: 8px; }
         .news-list { margin: 10px 0 0 0; padding-left: 20px; font-size: 0.9em; line-height: 1.8; }
+
+        /* シミュレーター共通デザイン */
         .sim-card { margin: 30px 0; border-radius: 12px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 2px solid; }
         .sim-header { color: #fff; padding: 12px; text-align: center; font-weight: bold; }
         .sim-body { padding: 20px; }
-        
-        /* 偏差値シミュレータ用：横並びグリッド */
+
+        /* 偏差値シミュレータ：入力欄横並び（グリッド） */
         .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 15px; }
         .input-item-small { text-align: center; }
-        .input-item-small label { font-size: 0.8em; font-weight: bold; display: block; margin-bottom: 4px; }
+        .input-item-small label { font-size: 0.8em; font-weight: bold; display: block; margin-bottom: 4px; color: #333; }
         .input-item-small input { width: 100%; padding: 10px 5px; border: 1px solid #ccc; border-radius: 6px; text-align: center; font-size: 16px; box-sizing: border-box; }
-        
-        /* 内申点用：従来通りの縦並び */
+
+        /* 内申点シミュレータ：縦並び */
         .input-group-vertical { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
         .input-item-vertical label { font-size: 0.85em; font-weight: bold; color: #333; }
         .input-item-vertical input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
@@ -38,6 +47,7 @@
         .btn-calc { width: 100%; color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1em; }
         .btn-clear { width: 100%; background: #fff; color: #666; border: 1px solid #ccc; padding: 10px; margin-top: 10px; border-radius: 6px; cursor: pointer; font-size: 0.9em; }
         .result-area { margin-top: 20px; display: none; padding: 15px; border-radius: 8px; text-align: center; border: 1px dashed; }
+
         footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
     </style>
 </head>
@@ -52,8 +62,7 @@
     <nav class="nav-overlay" id="navOverlay">
         <a href="index.html">トップページ</a>
         <a href="taisaku.html">入試分析・対策</a>
-        <a href="kakomon.html">過去問解説</a>
-        <a href="hensachi.html">偏差値一覧</a>
+        <a href="kakomon.html">過去問ライブラリ</a> <a href="hensachi.html">偏差値一覧</a>
     </nav>
 
     <div class="container">
@@ -61,7 +70,7 @@
             <h2>お知らせ</h2>
             <ul class="news-list">
                 <li>令和8年度 福島県立高校入試対策情報を更新しました。</li>
-                <li>「偏差値予想シミュレーター」を公開しました。自己採点にご活用ください。</li>
+                <li>「偏差値予想シミュレーター」を公開しました。</li>
             </ul>
         </div>
 
@@ -82,9 +91,11 @@
                 <div id="resultDevArea" class="result-area" style="border-color: #1a73e8; background-color: #f0f7ff;">
                     <div id="resTotal" style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;"></div>
                     <div id="resDev" style="font-size: 1.4em; font-weight: bold; color: #d32f2f; margin-bottom: 15px;"></div>
+                    
                     <div style="max-width: 300px; margin: 0 auto; background: #fff; border-radius: 8px; padding: 10px;">
                         <canvas id="radarChart"></canvas>
                     </div>
+
                     <a href="taisaku.html" style="display: inline-block; margin-top: 15px; font-size: 0.8em; color: #1a73e8;">→ 入試分析・平均点データを見る</a>
                 </div>
             </div>
