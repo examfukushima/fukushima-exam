@@ -8,7 +8,7 @@
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fff; }
         header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
-        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; }
+        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
         .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
         .nav-overlay { position: fixed; top: 0; left: -100%; width: 60%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         .nav-overlay.active { left: 0; }
@@ -18,13 +18,13 @@
         .container { padding: 25px 20px; }
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
         .table-container { overflow-x: auto; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; border: 2px solid #000; }
-        th, td { border: 1px solid #000; padding: 15px 5px; text-align: center; font-size: 0.85em; }
+        table { width: 100%; border-collapse: collapse; border: 2px solid #000; table-layout: fixed; }
+        th, td { border: 1px solid #000; padding: 15px 2px; text-align: center; font-size: 0.8em; }
         th { background-color: #000; color: #fff; }
-        .download-link { color: #000; text-decoration: none; font-weight: bold; display: inline-block; padding: 8px 12px; border: 1px solid #000; margin: 2px; background: #fff; font-size: 1em; }
+        .download-link { color: #000; text-decoration: none; font-weight: bold; display: inline-block; padding: 6px 8px; border: 1px solid #000; margin: 2px; background: #fff; font-size: 1em; }
         .q-tag { color: #d32f2f; }
         .a-tag { color: #1976d2; }
-        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; }
+        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
     </style>
 </head>
 <body>
@@ -33,38 +33,32 @@
         <div class="header-title">福島県高校入試対策</div>
         <div style="width: 28px;"></div>
     </header>
-    <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></
-        <nav class="nav-overlay" id="navOverlay">
-        <a href="index.html" onclick="toggleMenu()">トップ</a>
-        <a href="taisaku.html" onclick="toggleMenu()">入試分析・対策</a>
-        <a href="kakomon.html" onclick="toggleMenu()">過去問ライブラリ</a>
-        <a href="hensachi.html" onclick="toggleMenu()">偏差値一覧</a>
+    <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
+    <nav class="nav-overlay" id="navOverlay">
+        <a href="index.html">トップ</a>
+        <a href="taisaku.html">入試分析・対策</a>
+        <a href="kakomon.html">過去問ライブラリ</a>
+        <a href="hensachi.html">偏差値一覧</a>
     </nav>
-    
     <div class="container">
         <h1>過去問ライブラリ</h1>
         <div class="table-container">
             <table>
-                <thead><tr><th>年度</th><th>国語</th><th>数学</th><th>英語</th><th>理科</th><th>社会</th></tr></thead>
+                <thead><tr><th style="width:20%">年度</th><th>国語</th><th>数学</th><th>英語</th><th>理科</th><th>社会</th></tr></thead>
                 <tbody>
                     <tr>
                         <td><strong>2026</strong></td>
-                        <td><a href="mondai-kokugo2026.pdf" class="download-link"><span class="q-tag">問</span></a><a href="kaito-kokugo2026.pdf" class="download-link"><span class="a-tag">解</span></a></td>
-                        <td><a href="mondai-sugaku2026.pdf" class="download-link"><span class="q-tag">問</span></a><a href="kaito-sugaku2026.pdf" class="download-link"><span class="a-tag">解</span></a></td>
-                        <td><a href="mondai-eigo2026.pdf" class="download-link"><span class="q-tag">問</span></a><a href="kaito-eigo2026.pdf" class="download-link"><span class="a-tag">解</span></a></td>
-                        <td><a href="mondai-rika2026.pdf" class="download-link"><span class="q-tag">問</span></a><a href="kaito-rika2026.pdf" class="download-link"><span class="a-tag">解</span></a></td>
-                        <td><a href="mondai-shakai2026.pdf" class="download-link"><span class="q-tag">問</span></a><a href="kaito-shakai2026.pdf" class="download-link"><span class="a-tag">解</span></a></td>
+                        <td><a href="q_ko_26.pdf" class="download-link q-tag">問</a><a href="a_ko_26.pdf" class="download-link a-tag">解</a></td>
+                        <td><a href="q_ma_26.pdf" class="download-link q-tag">問</a><a href="a_ma_26.pdf" class="download-link a-tag">解</a></td>
+                        <td><a href="q_en_26.pdf" class="download-link q-tag">問</a><a href="a_en_26.pdf" class="download-link a-tag">解</a></td>
+                        <td><a href="q_sc_26.pdf" class="download-link q-tag">問</a><a href="a_sc_26.pdf" class="download-link a-tag">解</a></td>
+                        <td><a href="q_ss_26.pdf" class="download-link q-tag">問</a><a href="a_ss_26.pdf" class="download-link a-tag">解</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
     </div>
-    <script>
-        function toggleMenu() {
-            document.getElementById('navOverlay').classList.toggle('active');
-            document.getElementById('menuBg').classList.toggle('active');
-        }
-    </script>
+    <script>function toggleMenu() { document.getElementById('navOverlay').classList.toggle('active'); document.getElementById('menuBg').classList.toggle('active'); }</script>
 </body>
 </html>
