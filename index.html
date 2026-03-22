@@ -22,12 +22,14 @@
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
         h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 30px; font-size: 1.1em; background: #f4f4f4; padding: 8px 10px; border-bottom: 1px solid #ccc; }
         
+        .info-box { border: 2px solid #000; padding: 15px; margin-bottom: 25px; background: #fff; }
+        .info-box h3 { margin-top: 0; font-size: 1.1em; border-bottom: 1px solid #000; }
+        .schedule-list { list-style: none; padding: 0; }
+        .schedule-list li { border-bottom: 1px dashed #ccc; padding: 8px 0; display: flex; justify-content: space-between; }
+        .schedule-date { font-weight: bold; color: #d32f2f; }
+        
         .main-visual { background: #000; color: #fff; text-align: center; padding: 40px 20px; margin-bottom: 30px; }
         .main-visual h2 { background: none; border: none; font-size: 1.5em; margin: 0; padding: 0; }
-        
-        .card { border: 1px solid #000; padding: 20px; margin-bottom: 20px; background: #fff; }
-        .card h3 { margin-top: 0; border-bottom: 1px solid #000; padding-bottom: 5px; }
-        .btn { display: block; width: 100%; background: #000; color: #fff; text-decoration: none; text-align: center; padding: 12px 0; margin-top: 15px; font-weight: bold; }
         
         footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
     </style>
@@ -40,24 +42,30 @@
     </div>
 
     <div class="container">
-        <h1>トップページ</h1>
+        <h1>福島県立高校入試のしくみ</h1>
         
-        <div class="card">
-            <h3>入試分析・対策</h3>
-            <p>最新の出題傾向を科目別に解説。重点的に学習すべきポイントをまとめています。</p>
-            <a href="taisaku.html" class="btn">詳しく見る</a>
+        <div class="info-box">
+            <h3>入試スケジュール（2026年度見込）</h3>
+            <ul class="schedule-list">
+                <li><span>出願期間</span><span class="schedule-date">2月上旬</span></li>
+                <li><span>本試験（前期選抜）</span><span class="schedule-date">3月上旬</span></li>
+                <li><span>合格発表</span><span class="schedule-date">3月中旬</span></li>
+            </ul>
         </div>
 
-        <div class="card">
-            <h3>過去問ライブラリ</h3>
-            <p>直近3年分の過去問題を科目別に掲載。演習用の問題・解答PDFをダウンロード可能です。</p>
-            <a href="kakomon.html" class="btn">詳しく見る</a>
-        </div>
+        <h2>前期選抜の概要</h2>
+        <p>福島県の県立高校入試では、すべての受験生が受ける「前期選抜」が中心となります。学力検査（5教科各50点、計250点満点）と調査書（内申点）の比重は、各高校が独自に定めています。</p>
 
-        <div class="card">
-            <h3>偏差値一覧</h3>
-            <p>全県版の最新偏差値データと、合格に必要な目標点を一覧で確認できます。</p>
-            <a href="hensachi.html" class="btn">詳しく見る</a>
+        <h2>学力検査の配点と内容</h2>
+        <p>各教科50点満点、合計250点満点で実施されます。思考力・判断力を問う記述式の問題が増加傾向にあり、基礎知識だけでなく応用力が必要です。</p>
+
+        <div class="info-box" style="margin-top: 30px;">
+            <h3>合格へのポイント</h3>
+            <ul>
+                <li>内申点を意識した定期テスト対策</li>
+                <li>記述式・活用問題の徹底演習</li>
+                <li>志望校の偏差値・目標点の把握</li>
+            </ul>
         </div>
 
         <footer>
