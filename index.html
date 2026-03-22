@@ -2,41 +2,40 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>福島県高校入試対策 - トップページ</title>
     <style>
+        /* 基本スタイル */
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
         
-        header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
-        .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
+        /* ヘッダー */
+        header { background: #000; color: #fff; padding: 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
+        .menu-btn { cursor: pointer; background: none; border: none; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
-        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
+        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.2em; letter-spacing: 0.05em; }
         
-        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
+        /* ナビゲーション（質問掲示板なし） */
+        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
         .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
         .menu-bg.active { display: block; }
-        
+
+        /* メインコンテンツ */
         .container { padding: 20px; }
-
-        /* 入試のしくみセクション用スタイル */
-        .info-section { padding: 10px 0 40px; }
-        .flow-container { background: #fff; padding: 25px 20px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
-        .flow-step { text-align: center; margin: 10px 0; }
-        .step-box { display: inline-block; padding: 12px 20px; border: 2px solid #000; font-weight: bold; border-radius: 5px; background: #000; color: #fff; width: 85%; max-width: 320px; box-sizing: border-box; }
-        .step-desc { font-size: 0.85em; margin-top: 8px; color: #555; line-height: 1.4; }
+        .hero-card { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 25px; margin-bottom: 25px; text-align: center; }
         
-        .points-grid { display: grid; gap: 15px; margin-bottom: 30px; }
-        .point-item { background: #fff; border-left: 4px solid #000; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
-        .point-tag { background: #d32f2f; color: #fff; font-size: 0.7em; padding: 2px 6px; border-radius: 3px; font-weight: bold; vertical-align: middle; }
-        .point-item h3 { margin: 8px 0; font-size: 1.05em; display: inline-block; margin-left: 5px; vertical-align: middle; }
-        .point-item p { margin: 5px 0 0; font-size: 0.9em; color: #444; line-height: 1.6; }
+        /* 入試のしくみ（図解） */
+        .flow-container { background: #f9f9f9; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #eee; }
+        .step-box { display: block; margin: 0 auto; padding: 12px; border: 2px solid #000; font-weight: bold; border-radius: 5px; background: #000; color: #fff; width: 85%; }
+        .step-desc { font-size: 0.85em; margin: 8px 0 15px; color: #555; }
         
-        .btn-more { display: block; width: fit-content; margin: 0 auto; padding: 14px 35px; background: #000; color: #fff; text-decoration: none; border-radius: 30px; font-weight: bold; transition: 0.3s; font-size: 0.95em; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .btn-more:hover { opacity: 0.8; transform: translateY(-2px); }
+        /* 誘導ボタン */
+        .btn-main { display: block; width: 85%; margin: 15px auto; padding: 18px; background: #d32f2f; color: #fff; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 0 #b71c1c; transition: 0.2s; }
+        .btn-main:active { transform: translateY(2px); box-shadow: 0 2px 0 #b71c1c; }
+        .btn-sub { display: block; width: 85%; margin: 15px auto; padding: 15px; background: #fff; color: #000; text-decoration: none; border: 2px solid #000; border-radius: 5px; font-weight: bold; }
 
-        footer { margin-top: 40px; padding: 30px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
+        footer { margin-top: 50px; padding: 30px 0; border-top: 1px solid #eee; text-align: center; font-size: 0.8em; color: #888; }
     </style>
 </head>
 <body>
@@ -48,74 +47,38 @@
 
     <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
     <nav class="nav-overlay" id="navOverlay">
-    <a href="index.html">トップページ</a>
-    <a href="taisaku.html">入試分析・対策</a>
-    <a href="kakomon.html">過去問ライブラリ</a>
-    <a href="simulator.html">シミュレーター</a>
-    <a href="hensachi.html">偏差値一覧</a>
-</nav>
-
-<div class="container">
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="simulator.html" class="btn-link" style="background: #d32f2f; font-size: 1.1em;">偏差値を予想する</a>
-    </div>
-</div>
-
-
+        <a href="index.html">トップページ</a>
+        <a href="taisaku.html">入試分析・対策</a>
+        <a href="kakomon.html">過去問ライブラリ</a>
+        <a href="simulator.html">シミュレーター</a>
+        <a href="hensachi.html">偏差値一覧</a>
+    </nav>
 
     <div class="container">
-        <section class="info-section">
-            <h2 style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 25px; font-size: 1.3em;">福島県立高校入試のしくみ</h2>
+        <div class="hero-card">
+            <h2 style="font-size: 1.3em; margin-bottom: 15px;">福島県立高校入試のしくみ</h2>
             
             <div class="flow-container">
-                <div style="text-align: center; font-weight: bold; margin-bottom: 20px; color: #333; font-size: 0.9em;">【選抜の流れ】</div>
+                <div class="step-box">前期選抜（3月上旬）</div>
+                <div class="step-desc"><strong>一般選抜 ＋ 特色選抜</strong><br>学力検査（250点）＋ 調査書点（135点）</div>
                 
-                <div class="flow-step">
-                    <div class="step-box">前期選抜（3月上旬）</div>
-                    <div class="step-desc"><strong>一般選抜 ＋ 特色選抜</strong><br>ほぼすべての受験生が臨むメインの入試です。</div>
-                </div>
+                <div style="text-align: center; color: #aaa; margin-bottom: 10px;">▼ 不合格の場合</div>
                 
-                <div style="text-align: center; font-size: 1.2em; color: #bbb; margin: 5px 0;">▼</div>
-                
-                <div class="flow-step">
-                    <div class="step-box" style="background: #f8f8f8; color: #888; border-color: #ddd;">不合格の場合</div>
-                </div>
-                
-                <div style="text-align: center; font-size: 1.2em; color: #bbb; margin: 5px 0;">▼</div>
-                
-                <div class="flow-step">
-                    <div class="step-box" style="background: #fff; border-style: dashed; color: #000;">後期選抜（3月中旬）</div>
-                    <div class="step-desc"><strong>欠員補充の入試</strong><br>定員に満たなかった高校で実施（面接等）。</div>
-                </div>
+                <div class="step-box" style="background: #fff; color: #000; border-style: dashed;">後期選抜（3月中旬）</div>
+                <div class="step-desc">欠員補充の入試（面接・小論文など）</div>
             </div>
 
-            <div class="points-grid">
-                <div class="point-item">
-                    <span class="point-tag">ポイント1</span>
-                    <h3>「本番」と「内申」の両輪</h3>
-                    <p>当日の学力検査（250点満点）だけでなく、中1からの調査書点（135点満点）が合否に大きく影響します。</p>
-                </div>
-                <div class="point-item">
-                    <span class="point-tag">ポイント2</span>
-                    <h3>特色選抜の活用</h3>
-                    <p>スポーツや芸術、志望理由を重視する「特色選抜」も同日に実施。自分の強みを活かした受験が可能です。</p>
-                </div>
-            </div>
+            <a href="simulator.html" class="btn-main">偏差値を予想する</a>
+            <a href="taisaku.html" class="btn-sub">最新の教科別分析</a>
+        </div>
 
-            <div style="text-align: center;">
-                <a href="taisaku.html" class="btn-more">最新の教科別分析・対策へ</a>
-            </div>
-        </section>
-
-        <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0 40px;">
-
-        <section>
-            <h3 style="font-size: 1.1em; border-left: 4px solid #000; padding-left: 10px; margin-bottom: 15px;">更新情報</h3>
-            <ul style="font-size: 0.9em; padding-left: 20px;">
-                <li>2026/03/23：令和8年度 入試詳細分析を公開しました。</li>
-                <li>2026/03/15：過去問ライブラリに解説PDFを追加。</li>
+        <div style="background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 20px;">
+            <h3 style="font-size: 1em; margin-bottom: 10px; border-bottom: 1px solid #000; display: inline-block;">お知らせ</h3>
+            <ul style="padding-left: 20px; font-size: 0.9em; margin-top: 10px;">
+                <li>令和8年度入試に向けた分析データを更新しました。</li>
+                <li>シミュレーターを「偏差値予想」と「内申点計算」に分離しました。</li>
             </ul>
-        </section>
+        </div>
 
         <footer>
             <p>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策</p>
