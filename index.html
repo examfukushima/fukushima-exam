@@ -60,7 +60,7 @@
             <button onclick="calculate()">内申合計を算出</button>
             <div id="res" class="result">結果はこちら</div>
         </div>
-                <div style="margin: 40px 0; border: 2px solid #1a73e8; border-radius: 12px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <div style="margin: 40px 0; border: 2px solid #1a73e8; border-radius: 12px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
             <div style="background: #1a73e8; color: #fff; padding: 12px; text-align: center; font-weight: bold;">
                 合格可能性判定シミュレーター
             </div>
@@ -82,6 +82,10 @@
                 
                 <button onclick="calculateRankTop()" style="width: 100%; background: #1a73e8; color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1em; transition: 0.2s;">
                     判定を実行する
+                </button>
+
+                <button onclick="clearFormTop()" style="width: 100%; background: #fff; color: #666; border: 1px solid #ccc; padding: 10px; margin-top: 10px; border-radius: 6px; font-weight: normal; cursor: pointer; font-size: 0.9em;">
+                    入力内容をリセット
                 </button>
                 
                 <div id="resultAreaTop" style="margin-top: 20px; display: none; padding: 15px; border-radius: 8px; text-align: center; border: 1px dashed #1a73e8;">
@@ -107,7 +111,6 @@
                     return;
                 }
 
-                // 簡易偏差値計算（当日点ベース）
                 const deviation = Math.round(((t - 128) / 40 * 10 + 50) * 10) / 10;
                 
                 resArea.style.display = 'block';
@@ -115,21 +118,20 @@
                 resDev.innerHTML = "予想偏差値: <span style='font-size: 1.4em; color: #d32f2f;'>" + deviation + "</span>";
                 
                 let msg = "";
-                if (deviation >= 65) {
-                    msg = "【安積・福島】合格圏内。圧倒的な実力です！";
-                } else if (deviation >= 60) {
-                    msg = "【安積黎明・橘・郡山・磐城】合格のチャンス大。";
-                } else if (deviation >= 55) {
-                    msg = "【郡山東・須賀川桐陽・会津学鳳】手堅い実力です。";
-                } else if (deviation >= 50) {
-                    msg = "【福島西・白河旭・いわき光洋】平均以上の力があります。";
-                } else {
-                    msg = "まずは基礎の徹底を。伸びしろは十分にあります！";
-                }
+                if (deviation >= 65) { msg = "【安積・福島】合格圏内。圧倒的な実力です！"; }
+                else if (deviation >= 60) { msg = "【安積黎明・橘・郡山・磐城】合格のチャンス大。"; }
+                else if (deviation >= 55) { msg = "【郡山東・須賀川桐陽・会津学鳳】手堅い実力です。"; }
+                else if (deviation >= 50) { msg = "【福島西・白河旭・いわき光洋】平均以上の力があります。"; }
+                else { msg = "まずは基礎の徹底を。伸びしろは十分にあります！"; }
                 resMsg.innerText = msg;
-                
-                // 判定後に結果位置までスムーズにスクロール
                 resArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // クリア機能のスクリプト（追加箇所）
+            function clearFormTop() {
+                document.getElementById('naishin_top').value = "";
+                document.getElementById('toujitsu_top').value = "";
+                document.getElementById('resultAreaTop').style.display = "none";
             }
         </script>
 
