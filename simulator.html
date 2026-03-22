@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合格判定シミュレーター - 福島県高校入試対策</title>
+    <style>
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
+        header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
+        .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
+        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
+        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
+        
+        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; }
+        .nav-overlay.active { left: 0; }
+        .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
+        .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
+        .menu-bg.active { display: block; }
+
+        .container { padding: 20px; }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        
+        h2 { font-size: 1.3em; border-left: 5px solid #000; padding-left: 10px; margin-bottom: 20px; }
+        label { display: block; font-weight: bold; font-size: 0.9em; margin-bottom: 8px; }
+        input { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; box-sizing: border-box; }
+        
+        .calc-btn { width: 100%; padding: 18px; background: #d32f2f; color: #fff; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1em; cursor: pointer; transition: 0.3s; }
+        .calc-btn:hover { background: #b71c1c; }
+
+        #result-display { display: none; margin-top: 30px; padding: 20px; background: #f0f0f0; border-radius: 8px; text-align: center; border: 2px solid #000; }
+        .rank-badge { font-size: 3em; font-weight: bold; color: #d32f2f; line-height: 1; margin-bottom: 10px; }
+        .advice-text { font-size: 0.95em; text-align: left; background: #fff; padding: 15px; border-radius: 5px; margin-top: 15px; border: 1px dashed #aaa; }
+
+        footer { margin-top: 40px; padding: 30px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        <div class="header-title">福島県高校入試対策</div>
+        <div style="width: 28px;"></div>
+    </header>
+
+    <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
+    <nav class="nav-overlay" id="navOverlay">
+        <a href="index.html">トップページ</a>
+        <a href="taisaku.html">入試分析・対策</a>
+        <a href="kakomon.html">過去問ライブラリ</a>
+        <a href="simulator.html">合格判定シミュレーター</a>
+        <a href="hensachi.html">偏差値一覧</a>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>合格判定シミュレーター</h2>
+            <p style="font-size: 0.85em; color: #666; margin-bottom: 20px;">
+                福島県立高校入試の「調査書（135点満点）」と「学力検査（250点満点）」の比重を考慮して判定します。
+            </p>
+
+            <label>1. 内申点（135点満点）</label>
+            <input type="number" id="naishin" placeholder="中1〜中3の評定合計を入力" min="0" max="135">
+
+            <label>2. 模試の偏差値 または 目標点</label>
+            <input type="number" id="hensachi" placeholder="現在の偏差値を入力（例: 55）" min="0" max="80">
+
+            <button class="calc-btn" onclick="runSimulation()">判定を実行する</button>
+
+            <div id="result-display">
+                <div style="font-size: 0.9em; font-weight: bold; margin-bottom: 5px;">判定結果</div>
+                <div class="rank-badge" id="rank-out">--</div>
+                <div id="status-out" style="font-weight: bold; font-size: 1.1em; margin-bottom: 15px;"></div>
+                <div class="advice-text" id="advice-out"></div>
+            </div>
+        </div>
+
+        <div style="background: #eef; padding: 15px; border-radius: 5px; font-size: 0.85em;">
+            <strong>※判定の目安について</strong><br>
+            このシミュレーターは、福島県の選抜基準（相関図）を基にした独自の算出式を使用しています。実際の合否を保証するものではありませんが、志望校選びの指針としてご活用ください。
+        </div>
+
+        <footer>
+            <p>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navOverlay').classList.toggle('active');
+            document.getElementById('menuBg').classList.toggle('active');
+        }
+
+        function runSimulation() {
+            const n = parseFloat(document.getElementById('naishin').value);
+            const h = parseFloat(document.getElementById('hensachi').value);
+            const display = document.getElementById('result-display');
+            
+            if (isNaN(n) || isNaN(h)) {
+                alert("内申点と偏差値を入力してください。");
+                return;
+            }
+
+            display.style.display = 'block';
+            
+            // 簡易計算ロジック（偏差値と内申の重み付け）
+            const score = (n * 0.6) + (h * 2.5);
+            let rank = "";
+            let status = "";
+            let advice = "";
+
+            if (score >= 210) {
+                rank = "A";
+                status = "合格圏内（安全圏）";
+                advice = "非常に安定しています。本番でのミスを防ぐため、理科の蒸散計算や数学の最終問題など、配点の高い応用問題の演習を継続しましょう。";
+            } else if (score >= 185) {
+                rank = "B";
+                status = "合格可能圏";
+                advice = "合格の可能性が高いですが、油断は禁物です。英語の自由英作文や社会の記述問題など、部分点をもぎ取る力を養えばさらに確実になります。";
+            } else if (score >= 160) {
+                rank = "C";
+                status = "ボーダーライン";
+                advice = "五分五分の状態です。まずは数学の第1問・第2問、国語の漢字・語彙などの基礎を完璧にし、取りこぼしをゼロにすることから始めましょう。";
+            } else {
+                rank = "D";
+                status = "努力が必要";
+                advice = "基礎力の底上げが急務です。特に内申点が不足している場合は、当日点で取り返す必要があります。過去問演習を繰り返し、出題パターンを体に叩き込みましょう。";
+            }
+
+            document.getElementById('rank-out').innerText = rank;
+            document.getElementById('status-out').innerText = status;
+            document.getElementById('advice-out').innerText = advice;
+            
+            // スムーズに結果へスクロール
+            window.scrollTo({ top: display.offsetTop + 100, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
