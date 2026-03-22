@@ -6,7 +6,8 @@
     <title>福島県立高校入試対策</title>
     <style>
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fff; }
-        /* 過去問ページと全く同じCSS */
+        
+        /* 過去問ページと完全に一致させたメニュー用CSS */
         header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
@@ -19,15 +20,49 @@
 
         .container { padding: 25px 20px; }
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
+        h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 30px; font-size: 1.1em; background: #f4f4f4; padding: 8px 10px; border-bottom: 1px solid #ccc; }
+        
+        .main-visual { background: #000; color: #fff; text-align: center; padding: 40px 20px; margin-bottom: 30px; }
+        .main-visual h2 { background: none; border: none; font-size: 1.5em; margin: 0; padding: 0; }
+        
+        .card { border: 1px solid #000; padding: 20px; margin-bottom: 20px; background: #fff; }
+        .card h3 { margin-top: 0; border-bottom: 1px solid #000; padding-bottom: 5px; }
+        .btn { display: block; width: 100%; background: #000; color: #fff; text-decoration: none; text-align: center; padding: 12px 0; margin-top: 15px; font-weight: bold; }
+        
         footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
     </style>
     <script src="menu.js"></script>
 </head>
 <body>
+    <div class="main-visual">
+        <h2>福島県立高校入試対策</h2>
+        <p>合格を勝ち取るための徹底分析と演習</p>
+    </div>
+
     <div class="container">
-        <h1>福島県立高校入試対策</h1>
-        <p>最新の入試分析に基づいた対策情報を掲載しています。</p>
-        <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
+        <h1>トップページ</h1>
+        
+        <div class="card">
+            <h3>入試分析・対策</h3>
+            <p>最新の出題傾向を科目別に解説。重点的に学習すべきポイントをまとめています。</p>
+            <a href="taisaku.html" class="btn">詳しく見る</a>
+        </div>
+
+        <div class="card">
+            <h3>過去問ライブラリ</h3>
+            <p>直近3年分の過去問題を科目別に掲載。演習用の問題・解答PDFをダウンロード可能です。</p>
+            <a href="kakomon.html" class="btn">詳しく見る</a>
+        </div>
+
+        <div class="card">
+            <h3>偏差値一覧</h3>
+            <p>全県版の最新偏差値データと、合格に必要な目標点を一覧で確認できます。</p>
+            <a href="hensachi.html" class="btn">詳しく見る</a>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 全国学習塾名鑑</p>
+        </footer>
     </div>
 </body>
 </html>
