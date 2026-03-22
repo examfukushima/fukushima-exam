@@ -13,15 +13,25 @@
         .nav-overlay { position: fixed; top: 0; left: -100%; width: 60%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
-        .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
-        .menu-bg.active { display: block; }
+        .menu-bg { position: fixed; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(0,0,0,0.6); transition: 0.4s; z-index: 1500; }
+        .menu-bg.active { left: 0; }
+
         .container { padding: 25px 20px; }
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
-        h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 40px; font-size: 1.1em; background: #f4f4f4; padding: 8px 10px; }
-        .analysis-container { margin-top: 10px; border: 1px solid #000; padding: 15px; background: #fdfdfd; }
-        .subject-block { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .subject-name { background: #000; color: #fff; padding: 2px 10px; font-weight: bold; margin-right: 10px; font-size: 0.9em; }
-        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; }
+        
+        /* 教科別セクションのスタイル */
+        .subject-section { margin-bottom: 50px; border: 2px solid #000; padding: 20px; position: relative; }
+        .subject-label { position: absolute; top: -15px; left: 20px; background: #000; color: #fff; padding: 2px 15px; font-weight: bold; font-size: 0.9em; }
+        .subject-title { font-size: 1.2em; font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 5px; display: block; }
+        
+        .analysis-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 0.85em; }
+        .analysis-table th, .analysis-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .analysis-table th { background: #f9f9f9; width: 80px; text-align: center; }
+        
+        .advice-box { background: #f4f4f4; padding: 10px 15px; font-size: 0.85em; border-left: 4px solid #000; }
+        .advice-box strong { display: block; margin-bottom: 5px; }
+
+        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
     </style>
 </head>
 <body>
@@ -37,20 +47,98 @@
         <a href="kakomon.html">過去問ライブラリ</a>
         <a href="hensachi.html">偏差値一覧</a>
     </nav>
+
     <div class="container">
-        <h1>2026年度 教科別分析と対策</h1>
-        <div class="analysis-container">
-            <div class="subject-block">
-                <div class="subject-header"><span class="subject-name">数学</span><strong>関数と図形の融合</strong></div>
-                <p style="font-size: 0.85em;">福島県独特の証明問題は配点が高いです。記述の型を覚えましょう。</p>
-            </div>
-            <div class="subject-block">
-                <div class="subject-header"><span class="subject-name">英語</span><strong>リスニング対策</strong></div>
-                <p style="font-size: 0.85em;">聞き取りながらメモを取る練習を。傾向は例年安定しています。</p>
+        <h1>2026年度入試：教科別詳細分析</h1>
+
+        <div class="subject-section">
+            <span class="subject-label">数学</span>
+            <span class="subject-title">基礎の徹底と「思考力」の融合</span>
+            <table class="analysis-table">
+                <tr><th>大問1</th><td>計算・方程式・基本性質など10問（全問正解必須）</td></tr>
+                <tr><th>大問2</th><td>作図・資料の活用・整数の性質（論理的説明）</td></tr>
+                <tr><th>大問3</th><td>方程式の応用（特産品販売の個数と代金計算）</td></tr>
+                <tr><th>大問4</th><td>関数（放物線と直線の融合、面積の二等分）</td></tr>
+                <tr><th>大問5</th><td>平面図形（円周角・相似の証明、線分比）</td></tr>
+                <tr><th>大問6</th><td>規則性（タイルの並べ方、nを用いた立式）</td></tr>
+            </table>
+            <div class="advice-box">
+                <strong>学習のポイント：</strong>
+                大問1〜2で35点を確実に確保。後半の記述は部分点を狙い、まずは「わかっていること」を書き出す癖を。
             </div>
         </div>
+
+        <div class="subject-section">
+            <span class="subject-label">英語</span>
+            <span class="subject-title">読解力と記述力のバランス</span>
+            <table class="analysis-table">
+                <tr><th>第1問</th><td>リスニング（メモ取り必須の対話文・スピーチ）</td></tr>
+                <tr><th>第2問</th><td>対話文（図表の読み取り、語彙の適語補充）</td></tr>
+                <tr><th>第3問</th><td>長文読解（地域の活動、心情理解、要約記述）</td></tr>
+                <tr><th>第4問</th><td>英作文（自分の考えを30語程度で述べる）</td></tr>
+            </table>
+            <div class="advice-box">
+                <strong>学習のポイント：</strong>
+                リスニングは後半の放送で答えを予測する練習を。英作文は難しい構文を使わず、正確な文法で書くことが失点を防ぎます。
+            </div>
+        </div>
+
+        <div class="subject-section">
+            <span class="subject-label">国語</span>
+            <span class="subject-title">速読と「型」に沿った記述</span>
+            <table class="analysis-table">
+                <tr><th>一</th><td>漢字・知識事項（正確な書き取り・四字熟語）</td></tr>
+                <tr><th>二</th><td>文学的文章（心情の変化を本文から抽出）</td></tr>
+                <tr><th>三</th><td>説明的文章（接続詞の理解、20〜40字の記述）</td></tr>
+                <tr><th>四</th><td>古典（古文の要旨、会話文の主語特定）</td></tr>
+                <tr><th>五</th><td>作文（グラフ読み取り、150〜200字の条件作文）</td></tr>
+            </table>
+            <div class="advice-box">
+                <strong>学習のポイント：</strong>
+                作文は「条件」を一つでも漏らすと大幅減点。まず構成を決め、制限時間の10分前には書き終えるスピード感が重要。
+            </div>
+        </div>
+
+        <div class="subject-section">
+            <span class="subject-label">理科</span>
+            <span class="subject-title">実験データの分析と記述説明</span>
+            <table class="analysis-table">
+                <tr><th>第1問</th><td>小問集合（各分野の基本語句・計算）</td></tr>
+                <tr><th>第2問</th><td>地学（天体の動き、気象の観測）</td></tr>
+                <tr><th>第3問</th><td>生物（植物の分類、光合成と蒸散）</td></tr>
+                <tr><th>第4問</th><td>化学（中和反応、イオンの移動）</td></tr>
+                <tr><th>第5問</th><td>物理（電流と磁界、力と運動）</td></tr>
+            </table>
+            <div class="advice-box">
+                <strong>学習のポイント：</strong>
+                「なぜそうなるのか」を問う理由記述が頻出。用語を暗記するだけでなく、図解して説明できるまで理解を深めること。
+            </div>
+        </div>
+
+        <div class="subject-section" style="margin-bottom: 20px;">
+            <span class="subject-label">社会</span>
+            <span class="subject-title">地理・歴史・公民の総合知識</span>
+            <table class="analysis-table">
+                <tr><th>第1問</th><td>地理（世界の諸地域、地形図の読み取り）</td></tr>
+                <tr><th>第2問</th><td>地理（日本の諸地域、福島県の産業）</td></tr>
+                <tr><th>第3問</th><td>歴史（原始〜近世、外交史の変遷）</td></tr>
+                <tr><th>第4問</th><td>歴史（近現代、戦後の国際関係）</td></tr>
+                <tr><th>第5問</th><td>公民（政治、憲法、経済、国際社会）</td></tr>
+            </table>
+            <div class="advice-box">
+                <strong>学習のポイント：</strong>
+                歴史は年代の並び替え問題、地理は雨温図と特産品の関係が重要。公民は時事問題に近い設問も出るため、ニュースにも関心を。
+            </div>
+        </div>
+
         <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
     </div>
-    <script>function toggleMenu() { document.getElementById('navOverlay').classList.toggle('active'); document.getElementById('menuBg').classList.toggle('active'); }</script>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navOverlay').classList.toggle('active');
+            document.getElementById('menuBg').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
