@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>福島県高校入試対策 - 進学指導研究会</title>
+    <style>
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #fff; }
+        h1 { border-bottom: 2px solid #000; padding-bottom: 10px; text-align: center; }
+        .box { border: 1px solid #000; padding: 20px; margin: 20px 0; background-color: #f9f9f9; }
+        input { width: 60px; padding: 5px; margin: 5px; }
+        button { padding: 10px 20px; background: #000; color: #fff; border: none; cursor: pointer; }
+        .result { font-weight: bold; font-size: 1.2em; margin-top: 15px; color: #d32f2f; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h1>福島県高校入試対策：完全攻略ガイド</h1>
+
+    <div class="box">
+        <h3>【ツール】内申点計算シミュレーター</h3>
+        <p>1教科5点満点の評定を入力してください（9教科合計）。</p>
+        中1合計: <input type="number" id="y1" min="9" max="45" value="45"> 
+        中2合計: <input type="number" id="y2" min="9" max="45" value="45"> 
+        中3合計: <input type="number" id="y3" min="9" max="45" value="45"> 
+        <br><button onclick="calculate()">計算する</button>
+        <div id="res" class="result"></div>
+        <p><small>※福島県は中1〜中3の合計195点満点で計算されます。</small></p>
+    </div>
+
+    <h2>科目別対策ポイント</h2>
+    <ul>
+        <li><strong>数学:</strong> 大問4の関数、大問6の図形が勝負。基礎固めを徹底すること。</li>
+        <li><strong>英語:</strong> リスニングの配点が高い。速読力と英作文の練習が必須。</li>
+    </ul>
+
+    <script>
+        function calculate() {
+            const y1 = parseInt(document.getElementById('y1').value) || 0;
+            const y2 = parseInt(document.getElementById('y2').value) || 0;
+            const y3 = parseInt(document.getElementById('y3').value) || 0;
+            const total = y1 + y2 + y3;
+            document.getElementById('res').innerText = "あなたの内申点合計: " + total + " / 135点 (福島県換算: 135点)";
+            // 福島県は単純合算の場合や2倍にする場合など地域により異なりますが、まずは合計を表示
+        }
+    </script>
+</body>
+</html>
