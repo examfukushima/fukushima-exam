@@ -3,155 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>福島県高校入試対策サイト</title>
+    <title>福島県高校入試対策室 - トップページ</title>
     <style>
-        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fff; }
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
         header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
-        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
-        .nav-overlay { position: fixed; top: 0; left: -100%; width: 60%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
+        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.1em; letter-spacing: 0.05em; white-space: nowrap; }
+        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
         .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
         .menu-bg.active { display: block; }
-        .container { padding: 25px 20px; }
-        h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
-        h2 { border-left: 5px solid #000; padding-left: 10px; margin: 40px 0 15px 0; font-size: 1.1em; background: #f4f4f4; padding: 8px 10px; }
-        .news-container { border: 1px solid #000; padding: 0; margin-bottom: 30px; background: #fff; }
-        .news-item { display: flex; border-bottom: 1px solid #eee; padding: 12px 15px; text-decoration: none; color: #000; font-size: 0.85em; }
-        .news-item:last-child { border-bottom: none; }
-        .news-date { color: #666; width: 90px; flex-shrink: 0; }
-        .news-tag { background: #000; color: #fff; padding: 0px 8px; font-size: 0.75em; margin-right: 10px; height: 1.8em; line-height: 1.8em; }
-        .news-text { flex-grow: 1; }
-        .box { border: 2px solid #000; padding: 25px; margin: 20px 0; background: #fff; }
-        .input-group { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
-        .input-group input { width: 70px; padding: 8px; border: 1px solid #000; text-align: center; font-size: 1.1em; }
-        button { padding: 15px; background: #000; color: #fff; border: none; width: 100%; font-weight: bold; cursor: pointer; font-size: 1.1em; }
-        .result { font-weight: bold; text-align: center; border: 2px solid #000; padding: 15px; margin-top: 20px; background: #f9f9f9; font-size: 1.2em; }
-        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
+        
+        .container { padding: 20px; }
+        .main-visual { background: #000; color: #fff; padding: 40px 20px; text-align: center; margin-bottom: 30px; }
+        .main-visual h1 { margin: 0; font-size: 1.5em; letter-spacing: 0.1em; }
+        .main-visual p { margin: 10px 0 0; font-size: 0.9em; opacity: 0.8; }
+
+        /* お知らせセクション */
+        .news-box { margin: 30px 0; border: 1px solid #000; padding: 20px; background-color: #fff; }
+        .news-box h2 { margin-top: 0; font-size: 1.1em; border-bottom: 2px solid #000; padding-bottom: 8px; }
+        .news-list { margin: 10px 0 0 0; padding-left: 20px; font-size: 0.9em; line-height: 1.8; }
+
+        /* シミュレーター共通 */
+        .sim-card { margin: 30px 0; border-radius: 12px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 2px solid; }
+        .sim-header { color: #fff; padding: 12px; text-align: center; font-weight: bold; }
+        .sim-body { padding: 20px; }
+        .input-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
+        .input-item label { font-size: 0.85em; font-weight: bold; color: #333; }
+        .input-item input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        .btn-calc { width: 100%; color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1em; }
+        .btn-clear { width: 100%; background: #fff; color: #666; border: 1px solid #ccc; padding: 10px; margin-top: 10px; border-radius: 6px; cursor: pointer; font-size: 0.9em; }
+        .result-area { margin-top: 20px; display: none; padding: 15px; border-radius: 8px; text-align: center; border: 1px dashed; }
+
+        footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
     </style>
 </head>
 <body>
     <header>
         <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-        <div class="header-title">福島県高校入試対策</div>
+        <div class="header-title">福島県高校入試対策室</div>
         <div style="width: 28px;"></div>
     </header>
+
     <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
     <nav class="nav-overlay" id="navOverlay">
-        <a href="index.html">トップ</a>
+        <a href="index.html">トップページ</a>
         <a href="taisaku.html">入試分析・対策</a>
-        <a href="kakomon.html">過去問ライブラリ</a>
+        <a href="kakomon.html">過去問解説</a>
         <a href="hensachi.html">偏差値一覧</a>
     </nav>
-    <div class="container">
-        <h1>福島県高校入試対策サイト</h1>
-        <h2>最新のお知らせ</h2>
-        <div class="news-container">
-            <div class="news-item"><span class="news-date">2026.03.22</span><span class="news-tag">更新</span><span class="news-text">偏差値一覧を全県版に更新しました。</span></div>
-            <div class="news-item"><span class="news-date">2026.03.15</span><span class="news-tag">重要</span><span class="news-text">2026年度過去問解説を公開しました。</span></div>
-        </div>
-        <h2>内申点シミュレーター</h2>
-        <div class="box">
-            <div class="input-group"><label>1年評定</label><input type="number" id="y1" max="45"></div>
-            <div class="input-group"><label>2年評定</label><input type="number" id="y2" max="45"></div>
-            <div class="input-group"><label>3年評定</label><input type="number" id="y3" max="45"></div>
-            <button onclick="calculate()">内申合計を算出</button>
-            <div id="res" class="result">結果はこちら</div>
- 
-        <div style="margin: 40px 0; border: 2px solid #1a73e8; border-radius: 12px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            <div style="background: #1a73e8; color: #fff; padding: 12px; text-align: center; font-weight: bold;">
-                偏差値予想シミュレーター
-            </div>
-            
-            <div style="padding: 20px;">
-                <p style="font-size: 0.85em; color: #666; margin-bottom: 20px; text-align: center;">
-                    各教科の得点（50点満点）を入力してください。
-                </p>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
-                    <div>
-                        <label style="font-size: 0.8em; font-weight: bold;">国語</label>
-                        <input type="number" id="score_kokugo" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-                    </div>
-                    <div>
-                        <label style="font-size: 0.8em; font-weight: bold;">数学</label>
-                        <input type="number" id="score_sugaku" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-                    </div>
-                    <div>
-                        <label style="font-size: 0.8em; font-weight: bold;">英語</label>
-                        <input type="number" id="score_eigo" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-                    </div>
-                    <div>
-                        <label style="font-size: 0.8em; font-weight: bold;">理科</label>
-                        <input type="number" id="score_rika" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-                    </div>
-                    <div style="grid-column: span 2;">
-                        <label style="font-size: 0.8em; font-weight: bold;">社会</label>
-                        <input type="number" id="score_shakai" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-                    </div>
-                </div>
-                
-                <button onclick="calculateDevTop()" style="width: 100%; background: #1a73e8; color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1em;">
-                    判定を実行する
-                </button>
 
-                <button onclick="clearDevTop()" style="width: 100%; background: #fff; color: #666; border: 1px solid #ccc; padding: 10px; margin-top: 10px; border-radius: 6px; font-weight: normal; cursor: pointer; font-size: 0.9em;">
-                    入力をクリア
-                </button>
-                
-                <div id="resultAreaTop" style="margin-top: 20px; display: none; padding: 15px; border-radius: 8px; text-align: center; border: 1px dashed #1a73e8; background-color: #f0f7ff;">
-                    <div id="resultTotalTop" style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;"></div>
-                    <div id="resultDevTop" style="font-size: 1.2em; font-weight: bold; color: #d32f2f;"></div>
-                    <a href="taisaku.html" style="display: inline-block; margin-top: 12px; font-size: 0.8em; color: #1a73e8; text-decoration: none;">
-                        → 入試分析・平均点推移を見る
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            function calculateDevTop() {
-                const s1 = parseFloat(document.getElementById('score_kokugo').value) || 0;
-                const s2 = parseFloat(document.getElementById('score_sugaku').value) || 0;
-                const s3 = parseFloat(document.getElementById('score_eigo').value) || 0;
-                const s4 = parseFloat(document.getElementById('score_rika').value) || 0;
-                const s5 = parseFloat(document.getElementById('score_shakai').value) || 0;
-                
-                const total = s1 + s2 + s3 + s4 + s5;
-                // 過去5年平均128、標準偏差40を想定した簡易計算
-                const deviation = Math.round(((total - 128) / 40 * 10 + 50) * 10) / 10;
-                
-                const resArea = document.getElementById('resultAreaTop');
-                resArea.style.display = 'block';
-                document.getElementById('resultTotalTop').innerText = "5教科合計: " + total + " 点";
-                document.getElementById('resultDevTop').innerText = "予想偏差値: " + deviation;
-                
-                resArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-
-            function clearDevTop() {
-                document.getElementById('score_kokugo').value = "";
-                document.getElementById('score_sugaku').value = "";
-                document.getElementById('score_eigo').value = "";
-                document.getElementById('score_rika').value = "";
-                document.getElementById('score_shakai').value = "";
-                document.getElementById('resultAreaTop').style.display = "none";
-            }
-        </script>
-
-
-        <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
+    <div class="main-visual">
+        <h1>福島県高校入試ガイド</h1>
+        <p>実力テスト・入試本番で勝つための情報サイト</p>
     </div>
+
+    <div class="container">
+        <div class="news-box">
+            <h2>お知らせ</h2>
+            <ul class="news-list">
+                <li>令和8年度 福島県立高校入試対策情報を更新しました。</li>
+                <li>「偏差値予想シミュレーター」を公開しました。自己採点にご活用ください。</li>
+                <li>【塾生の方へ】3月模擬試験の範囲表を配布中です。</li>
+            </ul>
+        </div>
+
+        <div class="sim-card" style="border-color: #1a73e8;">
+            <div class="sim-header" style="background: #1a73e8;">偏差値予想シミュレーター</div>
+            <div class="sim-body">
+                <p style="font-size: 0.8em; color: #666; margin-bottom: 20px; text-align: center;">各教科の得点（50点満点）を入力してください。</p>
+                <div class="input-group">
+                    <div class="input-item"><label>国語</label><input type="number" id="score_kokugo" placeholder="0" min="0" max="50"></div>
+                    <div class="input-item"><label>数学</label><input type="number" id="score_sugaku" placeholder="0" min="0" max="50"></div>
+                    <div class="input-item"><label>英語</label><input type="number" id="score_eigo" placeholder="0" min="0" max="50"></div>
+                    <div class="input-item"><label>理科</label><input type="number" id="score_rika" placeholder="0" min="0" max="50"></div>
+                    <div class="input-item"><label>社会</label><input type="number" id="score_shakai" placeholder="0" min="0" max="50"></div>
+                </div>
+                <button onclick="calculateDev()" class="btn-calc" style="background: #1a73e8;">判定を実行する</button>
+                <button onclick="clearDev()" class="btn-clear">入力をクリア</button>
+                
+                <div id="resultDevArea" class="result-area" style="border-color: #1a73e8; background-color: #f0f7ff;">
+                    <div id="resTotal" style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;"></div>
+                    <div id="resDev" style="font-size: 1.4em; font-weight: bold; color: #d32f2f;"></div>
+                    <a href="taisaku.html" style="display: inline-block; margin-top: 10px; font-size: 0.8em; color: #1a73e8;">→ 入試分析・平均点データを見る</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sim-card" style="border-color: #34a853;">
+            <div class="sim-header" style="background: #34a853;">内申点シミュレーター</div>
+            <div class="sim-body">
+                <p style="font-size: 0.8em; color: #666; margin-bottom: 20px; text-align: center;">各学年の通知表合計（45点満点）を入力してください。</p>
+                <div class="input-group">
+                    <div class="input-item"><label>中1 評定合計</label><input type="number" id="naishin_1" placeholder="例: 36" min="9" max="45"></div>
+                    <div class="input-item"><label>中2 評定合計</label><input type="number" id="naishin_2" placeholder="例: 36" min="9" max="45"></div>
+                    <div class="input-item"><label>中3 評定合計</label><input type="number" id="naishin_3" placeholder="例: 36" min="9" max="45"></div>
+                </div>
+                <button onclick="calculateNaishin()" class="btn-calc" style="background: #34a853;">内申点を計算する</button>
+                <button onclick="clearNaishin()" class="btn-clear">入力をクリア</button>
+                
+                <div id="resultNaishinArea" class="result-area" style="border-color: #34a853; background-color: #eafaf1;">
+                    <div style="font-size: 0.9em; margin-bottom: 5px;">福島県公立高校入試用 内申点</div>
+                    <div id="resNaishinTotal" style="font-size: 1.6em; font-weight: bold; color: #1e8449;"></div>
+                    <div style="font-size: 0.8em; color: #666; margin-top: 5px;">(135点満点 / 195点換算は詳細ページへ)</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策室</p>
+        </footer>
+    </div>
+
     <script>
-        function toggleMenu() { document.getElementById('navOverlay').classList.toggle('active'); document.getElementById('menuBg').classList.toggle('active'); }
-        function calculate() {
-            const v1 = document.getElementById('y1').value;
-            const v2 = document.getElementById('y2').value;
-            const v3 = document.getElementById('y3').value;
-            if(!v1 || !v2 || !v3) return;
-            document.getElementById('res').innerHTML = "内申点合計: " + (parseInt(v1) + parseInt(v2) + parseInt(v3)) + " / 135";
+        function toggleMenu() {
+            document.getElementById('navOverlay').classList.toggle('active');
+            document.getElementById('menuBg').classList.toggle('active');
+        }
+
+        // 偏差値計算
+        function calculateDev() {
+            const s = [
+                parseFloat(document.getElementById('score_kokugo').value) || 0,
+                parseFloat(document.getElementById('score_sugaku').value) || 0,
+                parseFloat(document.getElementById('score_eigo').value) || 0,
+                parseFloat(document.getElementById('score_rika').value) || 0,
+                parseFloat(document.getElementById('score_shakai').value) || 0
+            ];
+            const total = s.reduce((a, b) => a + b, 0);
+            const dev = Math.round(((total - 128) / 40 * 10 + 50) * 10) / 10;
+            
+            document.getElementById('resultDevArea').style.display = 'block';
+            document.getElementById('resTotal').innerText = "5教科合計: " + total + " 点";
+            document.getElementById('resDev').innerText = "予想偏差値: " + dev;
+            document.getElementById('resultDevArea').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function clearDev() {
+            ['score_kokugo','score_sugaku','score_eigo','score_rika','score_shakai'].forEach(id => document.getElementById(id).value = "");
+            document.getElementById('resultDevArea').style.display = 'none';
+        }
+
+        // 内申点計算
+        function calculateNaishin() {
+            const n1 = parseFloat(document.getElementById('naishin_1').value) || 0;
+            const n2 = parseFloat(document.getElementById('naishin_2').value) || 0;
+            const n3 = parseFloat(document.getElementById('naishin_3').value) || 0;
+            const total = n1 + n2 + n3;
+            
+            document.getElementById('resultNaishinArea').style.display = 'block';
+            document.getElementById('resNaishinTotal').innerText = total + " / 135";
+            document.getElementById('resultNaishinArea').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function clearNaishin() {
+            ['naishin_1','naishin_2','naishin_3'].forEach(id => document.getElementById(id).value = "");
+            document.getElementById('resultNaishinArea').style.display = 'none';
         }
     </script>
 </body>
