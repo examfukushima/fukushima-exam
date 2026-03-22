@@ -6,8 +6,6 @@
     <title>福島県立高校入試対策</title>
     <style>
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fff; }
-        
-        /* 過去問ページと完全に一致させたメニュー用CSS */
         header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
@@ -22,51 +20,37 @@
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
         h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 30px; font-size: 1.1em; background: #f4f4f4; padding: 8px 10px; border-bottom: 1px solid #ccc; }
         
-        .info-box { border: 2px solid #000; padding: 15px; margin-bottom: 25px; background: #fff; }
-        .info-box h3 { margin-top: 0; font-size: 1.1em; border-bottom: 1px solid #000; }
-        .schedule-list { list-style: none; padding: 0; }
-        .schedule-list li { border-bottom: 1px dashed #ccc; padding: 8px 0; display: flex; justify-content: space-between; }
-        .schedule-date { font-weight: bold; color: #d32f2f; }
-        
-        .main-visual { background: #000; color: #fff; text-align: center; padding: 40px 20px; margin-bottom: 30px; }
-        .main-visual h2 { background: none; border: none; font-size: 1.5em; margin: 0; padding: 0; }
-        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #000; padding: 10px; text-align: left; font-size: 0.9em; }
+        th { background: #f4f4f4; width: 30%; }
+
         footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
     </style>
     <script src="menu.js"></script>
 </head>
 <body>
-    <div class="main-visual">
-        <h2>福島県立高校入試対策</h2>
-        <p>合格を勝ち取るための徹底分析と演習</p>
-    </div>
-
     <div class="container">
         <h1>福島県立高校入試のしくみ</h1>
         
-        <div class="info-box">
-            <h3>入試スケジュール（2026年度見込）</h3>
-            <ul class="schedule-list">
-                <li><span>出願期間</span><span class="schedule-date">2月上旬</span></li>
-                <li><span>本試験（前期選抜）</span><span class="schedule-date">3月上旬</span></li>
-                <li><span>合格発表</span><span class="schedule-date">3月中旬</span></li>
-            </ul>
-        </div>
+        <p>福島県の公立高校入試は、例年3月上旬に実施される「前期選抜」が中心となります。合否は「学力検査の成績」と「調査書（内申点）」、および「面接や実技」の結果を総合して判定されます。</p>
 
-        <h2>前期選抜の概要</h2>
-        <p>福島県の県立高校入試では、すべての受験生が受ける「前期選抜」が中心となります。学力検査（5教科各50点、計250点満点）と調査書（内申点）の比重は、各高校が独自に定めています。</p>
+        <h2>選抜の種類と内容</h2>
+        
+        <h3>1. 特色選抜</h3>
+        <p>部活動や特定の分野で優れた実績を持つ生徒を対象とした選抜です。学力検査に加え、小論文や実技試験、面接などが課されます。</p>
 
-        <h2>学力検査の配点と内容</h2>
-        <p>各教科50点満点、合計250点満点で実施されます。思考力・判断力を問う記述式の問題が増加傾向にあり、基礎知識だけでなく応用力が必要です。</p>
+        <h3>2. 一般選抜</h3>
+        <p>最も多くの受験生が対象となる選抜です。5教科（国・数・英・理・社）の学力検査（各50点、計250点満点）の結果と、中学校3年間の評定（調査書）を基に選抜されます。</p>
 
-        <div class="info-box" style="margin-top: 30px;">
-            <h3>合格へのポイント</h3>
-            <ul>
-                <li>内申点を意識した定期テスト対策</li>
-                <li>記述式・活用問題の徹底演習</li>
-                <li>志望校の偏差値・目標点の把握</li>
-            </ul>
-        </div>
+        <h2>学力検査の配点</h2>
+        <table>
+            <tr><th>国語</th><td>50点</td></tr>
+            <tr><th>数学</th><td>50点</td></tr>
+            <tr><th>英語</th><td>50点</td></tr>
+            <tr><th>理科</th><td>50点</td></tr>
+            <tr><th>社会</th><td>50点</td></tr>
+            <tr><th>合計</th><td><strong>250点満点</strong></td></tr>
+        </table>
 
         <footer>
             <p>&copy; 2026 全国学習塾名鑑</p>
