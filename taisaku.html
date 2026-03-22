@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>入試分析・対策 - 福島県立高校入試対策</title>
+    <title>入試分析・対策 - 福島県高校入試対策</title>
     <style>
-        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fff; }
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
         header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
-        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; }
+        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
         .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
-        .nav-overlay { position: fixed; top: 0; left: -100%; width: 60%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
+        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
-        .menu-bg { position: fixed; top: 0; left: -100%; width: 100%; height: 100%; background: rgba(0,0,0,0.6); transition: 0.4s; z-index: 1500; }
-        .menu-bg.active { left: 0; }
+        .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
+        .menu-bg.active { display: block; }
+        .container { padding: 20px; }
 
-        .container { padding: 25px 20px; }
-        h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
+        /* 分析カード共通 */
+        .analysis-card { background: #fff; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 5px solid #000; }
+        .analysis-card h2 { margin-top: 0; font-size: 1.3em; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
+        .analysis-card h3 { font-size: 1.1em; margin-bottom: 10px; display: flex; align-items: center; }
+        .tag { color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-right: 10px; font-weight: bold; }
         
-        .subject-section { margin-bottom: 50px; border: 2px solid #000; padding: 20px; position: relative; }
-        .subject-label { position: absolute; top: -15px; left: 20px; background: #000; color: #fff; padding: 2px 15px; font-weight: bold; font-size: 0.9em; }
-        .subject-title { font-size: 1.1em; font-weight: bold; margin-bottom: 15px; display: block; background: #eee; padding: 5px 10px; }
-        
-        .analysis-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 0.85em; }
-        .analysis-table th, .analysis-table td { border-bottom: 1px solid #ddd; padding: 10px 5px; text-align: left; }
-        .analysis-table th { width: 60px; font-weight: bold; color: #333; vertical-align: top; }
-        
-        .advice-box { background: #fdfdfd; padding: 12px; font-size: 0.85em; border-left: 5px solid #000; box-shadow: 2px 2px 5px rgba(0,0,0,0.05); }
-        .advice-box strong { display: block; margin-bottom: 5px; color: #d32f2f; }
+        /* テーブルスタイル */
+        table { width: 100%; border-collapse: collapse; font-size: 0.85em; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background: #f9f9f9; }
 
-        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
+        .point-box { background: #fdfdfd; padding: 15px; border-radius: 6px; border: 1px solid #eee; margin-top: 15px; }
+        .point-box h4 { margin-top: 0; font-size: 0.95em; color: #333; }
+        .point-box ul { font-size: 0.85em; padding-left: 20px; margin-bottom: 0; }
+
+        footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
     </style>
 </head>
 <body>
@@ -39,130 +41,82 @@
         <div class="header-title">福島県高校入試対策</div>
         <div style="width: 28px;"></div>
     </header>
+
     <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
     <nav class="nav-overlay" id="navOverlay">
-        <a href="index.html">トップ</a>
+        <a href="index.html">トップページ</a>
         <a href="taisaku.html">入試分析・対策</a>
         <a href="kakomon.html">過去問ライブラリ</a>
         <a href="hensachi.html">偏差値一覧</a>
+        <a href="keijiban.html">質問掲示板</a>
     </nav>
 
     <div class="container">
-        <h1>2026年度：教科別詳細分析</h1>
+        <div class="analysis-card" style="border-left-color: #1a73e8;">
+            <h2><span class="tag" style="background: #1a73e8;">英語</span>入試分析</h2>
+            <p style="font-size: 0.9em;">長文読解の配点が非常に高く、速読力と内容把握能力が求められます。リスニングは配点の約25%を占めるため、日々の積み重ねが重要です。</p>
+        </div>
 
-        <div class="subject-section">
-            <span class="subject-label">数学</span>
-            <span class="subject-title">大問7構成：計算から空間図形まで</span>
-            <table class="analysis-table">
-                <tr><th>大問1</th><td>計算・数と式の基本（正負、文字式、根号、絶対値）</td></tr>
-                <tr><th>大問2</th><td>小問集合（3けたの数、一次関数、二次方程式、角度、相対度数）</td></tr>
-                <tr><th>大問3</th><td>確率・規則性（3つの箱の確率、カードの並びと文字による説明）</td></tr>
-                <tr><th>大問4</th><td>方程式の応用（3種類の商品に関する連立方程式の記述立式）</td></tr>
-                <tr><th>大問5</th><td>図形の性質と証明（円周角と相似の記述証明、合同条件）</td></tr>
-                <tr><th>大問6</th><td>関数 y=ax²（2つの放物線と直線、座標と長方形の周の長さ）</td></tr>
-                <tr><th>大問7</th><td>空間図形（正四角錐、線分の長さの和、面積、体積の算出）</td></tr>
+        <div class="analysis-card" style="border-left-color: #d32f2f;">
+            <h2><span class="tag" style="background: #d32f2f;">数学</span>入試分析</h2>
+            <p style="font-size: 0.9em;">大問1の計算問題を確実に全問正解することが合格への第一歩です。後半の関数や図形の証明問題は、記述形式での解答練習が必須となります。</p>
+        </div>
+
+        <div class="analysis-card" style="border-left-color: #34a853;">
+            <h2><span class="tag" style="background: #34a853;">理科</span>入試分析と対策</h2>
+            <div style="margin-bottom: 20px;">
+                <h4 style="border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 1em;">【全体の傾向】</h4>
+                <p style="font-size: 0.9em;">
+                    大問5構成で、第1問が小問集合、第2〜5問が物理・化学・生物・地学の各分野から出題されます。
+                    単なる用語暗記ではなく、<strong>「なぜそうなるのか」というプロセスや実験結果の考察</strong>を問う記述問題が合否を分けます。
+                </p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>分野</th>
+                        <th>頻出単元・具体例</th>
+                        <th>対策ポイント</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: bold; width: 60px;">物理</td>
+                        <td>電流と磁界、力と運動、光・レンズ、仕事</td>
+                        <td>「オームの法則」や「仕事の原理」の計算練習を徹底。単位の変換ミス（$g$と$kg$など）に注意。</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">化学</td>
+                        <td>化学変化と質量、イオン、水溶液、中和</td>
+                        <td>化学反応式は必須。質量保存の法則に基づく「比の計算」は、図や表から数値を正しく抽出する練習を。</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">生物</td>
+                        <td>植物の生活、人体（循環・消化）、生殖、遺伝</td>
+                        <td>実験の目的（対照実験）を説明する記述力を磨く。「〜を一定にするため」などの定型表現を覚えること。</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">地学</td>
+                        <td>天気の変化（湿度）、地震の伝わり方、天体</td>
+                        <td>湿度の計算や震源距離の計算など、地学は計算ミスが命取り。天体の見え方は図を自分で書く練習が有効。</td>
+                    </tr>
+                </tbody>
             </table>
-            <div class="advice-box">
-                <strong>合格へのポイント：</strong>
-                大問1〜2で20点を確実に確保。大問3・4の記述、大問5の証明で部分点をどこまで積み上げられるかが鍵となります。
+
+            <div class="point-box" style="background: #f0f9f1; border-color: #cde7d0;">
+                <h4 style="color: #1e8449;">💡 理科攻略の3つのコツ</h4>
+                <ul>
+                    <li><strong>記述問題の「型」を作る：</strong>理由を問われたら「〜だから」「〜のため」と文末まで正しく書く練習を。</li>
+                    <li><strong>大問1（20点分）を死守：</strong>各分野の基本用語だけで構成される小問集合で、取りこぼしをゼロにする。</li>
+                    <li><strong>図表・グラフの読み込み：</strong>初見の実験データでも、縦軸と横軸が何を示しているかを瞬時に判断する癖をつける。</li>
+                </ul>
             </div>
         </div>
 
-        <div class="subject-section">
-            <span class="subject-label">英語</span>
-            <span class="subject-title">リスニングと長文読解が中心</span>
-            <table class="analysis-table">
-                <tr><th>第1問</th><td>リスニング（対話文・スピーチの聞き取りとメモ取り）</td></tr>
-                <tr><th>第2問</th><td>対話文・図表（資料を読み取って答える実戦形式）</td></tr>
-                <tr><th>第3問</th><td>長文読解（ストーリーの把握、内容一致、日本語記述）</td></tr>
-                <tr><th>第4問</th><td>英作文（特定のテーマに対し自分の意見を書く自由英作文）</td></tr>
-            </table>
-            <div class="advice-box">
-                <strong>合格へのポイント：</strong>
-                後半の長文に時間を残すため、第2問までをいかに速く正確に解くかが重要です。英作文はスペルミスをゼロに。
-            </div>
-        </div>
-
-        <div class="subject-section">
-            <span class="subject-label">国語</span>
-            <span class="subject-title">記述量が多く、時間配分が生命線</span>
-            <table class="analysis-table">
-                <tr><th>一</th><td>国語知識（漢字の読み書き、文法、語彙）</td></tr>
-                <tr><th>二</th><td>文学的文章（小説の心情理解と場面把握）</td></tr>
-                <tr><th>三</th><td>説明的文章（論説文の要旨把握、接続詞、記述解答）</td></tr>
-                <tr><th>四</th><td>古典（古文・漢文の読み取り、歴史的仮名遣い）</td></tr>
-                <tr><th>五</th><td>条件作文（資料に基づいた150字〜200字程度の作文）</td></tr>
-            </table>
-            <div class="advice-box">
-                <strong>合格へのポイント：</strong>
-                作文（配点大）に最低10分は確保しましょう。抜き出し問題は語句の末尾まで正確に写す注意力を。
-            </div>
-        </div>
-
-        <div class="subject-section">
-            <span class="subject-label">理科</span>
-            <span class="subject-title">全分野から満遍なく出題</span>
-            <table class="analysis-table">
-                <tr><th>第1問</th><td>小問集合（地学・生物・化学・物理の各基本）</td></tr>
-                <tr><th>第2問</th><td>地学分野（天体、気象、地震などから1単元）</td></tr>
-                <tr><th>第3問</th><td>生物分野（植物、人体、遺伝などから1単元）</td></tr>
-                <tr><th>第4問</th><td>化学分野（水溶液、化学変化、イオンなどから1単元）</td></tr>
-                <tr><th>第5問</th><td>物理分野（電流、力、光・音などから1単元）</td></tr>
-            </table>
-            <div class="advice-box">
-                <strong>合格へのポイント：</strong>
-                「実験の結果からわかること」を説明する記述問題が頻出です。現象の理由を自分の言葉で説明できるように。
-            </div>
-        </div>
-
-        <div class="subject-section">
-            <span class="subject-label">社会</span>
-            <span class="subject-title">資料活用と記述が合格を分ける</span>
-            <table class="analysis-table">
-                <tr><th>第1問</th><td>世界地理（諸地域の自然・文化・産業）</td></tr>
-                <tr><th>第2問</th><td>日本地理（各地方の特徴、地形図の読み取り）</td></tr>
-                <tr><th>第3問</th><td>歴史（原始〜近世：時代の流れと文化）</td></tr>
-                <tr><th>第4問</th><td>歴史（近現代：政治外交史、戦後の変化）</td></tr>
-                <tr><th>第5問</th><td>公民（現代社会、憲法、政治、経済、国際連合）</td></tr>
-            </table>
-            <div class="advice-box">
-                <strong>合格へのポイント：</strong>
-                雨温図、統計グラフ、年表を用いた複合問題に慣れておきましょう。公民は時事的なキーワードもチェック。
-            </div>
-        </div>
-        <div class="subject-section" style="border-color: #d32f2f;">
-            <span class="subject-label" style="background: #d32f2f;">データ分析</span>
-            <span class="subject-title">過去5年間：科目別・合計平均点推移</span>
-            <p style="font-size: 0.75em; color: #666; margin-bottom: 10px;">※福島県教育委員会発表データ参照</p>
-            <div style="overflow-x: auto;">
-                <table class="analysis-table" style="min-width: 500px;">
-                    <thead>
-                        <tr style="background: #f4f4f4;">
-                            <th>年度</th>
-                            <th>国語</th>
-                            <th>数学</th>
-                            <th>英語</th>
-                            <th>理科</th>
-                            <th>社会</th>
-                            <th style="background: #ffebee; font-weight: bold;">合計</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><th>R7(2025)</th><td>29.8</td><td>22.4</td><td>24.5</td><td>26.2</td><td>27.1</td><td style="font-weight: bold;">130.0</td></tr>
-                        <tr><th>R6(2024)</th><td>31.2</td><td>21.8</td><td>25.1</td><td>24.8</td><td>26.5</td><td style="font-weight: bold;">129.4</td></tr>
-                        <tr><th>R5(2023)</th><td>30.5</td><td>23.1</td><td>23.8</td><td>25.5</td><td>28.2</td><td style="font-weight: bold;">131.1</td></tr>
-                        <tr><th>R4(2022)</th><td>28.9</td><td>20.5</td><td>24.2</td><td>23.1</td><td>25.8</td><td style="font-weight: bold;">122.5</td></tr>
-                        <tr><th>R3(2021)</th><td>32.4</td><td>22.1</td><td>23.5</td><td>24.2</td><td>27.5</td><td style="font-weight: bold;">129.7</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="advice-box" style="border-left-color: #d32f2f;">
-                <strong>平均点から見る傾向：</strong>
-                合計平均点は例年125点〜130点前後で推移しています。数学は例年最も平均点が低く、20点〜23点台が定位置です。数学で「平均＋5点（27点以上）」を安定して取れるようになると、上位校合格がぐっと近づきます。
-            </div>
-        </div>
-
-        <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
+        <footer>
+            <p>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策</p>
+        </footer>
     </div>
 
     <script>
