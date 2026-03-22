@@ -6,31 +6,35 @@
     <title>偏差値一覧 - 福島県高校入試対策</title>
     <style>
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fff; }
-        header { background: #000; color: #fff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-weight: bold; font-size: 0.9em; }
-        .menu-btn { cursor: pointer; background: none; border: none; padding: 5px; }
-        .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin: 5px 0; }
-        .nav-overlay { position: fixed; top: 0; right: -100%; width: 100%; height: 100%; background: rgba(0,0,0,0.95); transition: 0.3s; z-index: 999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .nav-overlay.active { right: 0; }
-        .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.5em; margin: 20px 0; font-weight: bold; }
-        .close-btn { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 2em; cursor: pointer; }
-        .container { padding: 20px; }
-        h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; }
+        header { background: #000; color: #fff; padding: 12px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 30px; }
+        .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 24px; height: 18px; flex-shrink: 0; }
+        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
+        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 0.95em; letter-spacing: 0.05em; }
+        .nav-overlay { position: fixed; top: 0; left: -100%; width: 60%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
+        .nav-overlay.active { left: 0; }
+        .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
+        .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
+        .menu-bg.active { display: block; }
+
+        .container { padding: 25px 20px; }
+        h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.3em; margin-bottom: 30px; }
         table { width: 100%; border-collapse: collapse; border: 2px solid #000; }
-        th, td { border: 1px solid #000; padding: 12px 5px; text-align: center; }
+        th, td { border: 1px solid #000; padding: 12px 5px; text-align: center; font-size: 0.9em; }
         th { background-color: #000; color: #fff; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">偏差値ライブラリ</div>
         <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        <div class="header-title">福島県高校入試対策</div>
+        <div style="width: 24px;"></div>
     </header>
-    <div class="nav-overlay" id="navOverlay">
-        <span class="close-btn" onclick="toggleMenu()">&times;</span>
+    <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
+    <nav class="nav-overlay" id="navOverlay">
         <a href="index.html" onclick="toggleMenu()">トップ・過去問</a>
         <a href="hensachi.html" onclick="toggleMenu()">偏差値一覧</a>
-    </div>
+    </nav>
     <div class="container">
         <h1>県中地区 偏差値一覧</h1>
         <table>
@@ -39,11 +43,17 @@
                 <tr><td>安積</td><td>67</td><td>215点</td></tr>
                 <tr><td>安積黎明</td><td>64</td><td>195点</td></tr>
                 <tr><td>郡山</td><td>61</td><td>180点</td></tr>
+                <tr><td>郡山東</td><td>59</td><td>170点</td></tr>
+                <tr><td>須賀川桐陽</td><td>55</td><td>155点</td></tr>
+                <tr><td>須賀川創英館</td><td>50</td><td>135点</td></tr>
             </tbody>
         </table>
     </div>
     <script>
-        function toggleMenu() { document.getElementById('navOverlay').classList.toggle('active'); }
+        function toggleMenu() {
+            document.getElementById('navOverlay').classList.toggle('active');
+            document.getElementById('menuBg').classList.toggle('active');
+        }
     </script>
 </body>
 </html>
