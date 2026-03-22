@@ -5,11 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>福島県高校入試対策サイト</title>
     <style>
-        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 20px; background-color: #fff; }
-        h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
+        /* 全体設定 */
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0 0 20px 0; background-color: #fff; }
+        
+        /* メニューバー */
+        nav { background: #000; position: sticky; top: 0; z-index: 100; margin-bottom: 20px; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+        nav ul li { flex: 1; text-align: center; }
+        nav ul li a { display: block; padding: 15px 0; color: #fff; text-decoration: none; font-size: 0.85em; font-weight: bold; border-left: 1px solid #333; }
+        nav ul li:last-child a { border-right: 1px solid #333; }
+        nav ul li a:hover { background: #333; }
+
+        .container { padding: 0 20px; }
+        h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin: 20px 0 30px 0; }
         h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 40px; font-size: 1.1em; background: #f4f4f4; padding: 8px 10px; border-bottom: 1px solid #ccc; }
         
-        /* 過去問テーブル */
+        /* テーブル設定 */
         .table-container { overflow-x: auto; margin-top: 20px; }
         table { width: 100%; border-collapse: collapse; border: 2px solid #000; margin-bottom: 10px; }
         th, td { border: 1px solid #000; padding: 10px 5px; text-align: center; font-size: 0.85em; }
@@ -19,130 +30,84 @@
         .q-tag { color: #d32f2f; }
         .a-tag { color: #1976d2; }
 
-        /* 出題分析セクション */
+        /* 分析セクション */
         .analysis-container { margin-top: 20px; border: 1px solid #000; padding: 15px; background: #fdfdfd; }
         .subject-block { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
         .subject-header { display: flex; align-items: center; margin-bottom: 10px; }
         .subject-name { background: #000; color: #fff; padding: 3px 12px; font-weight: bold; margin-right: 10px; font-size: 0.95em; }
         .subject-time { font-size: 0.85em; color: #666; font-weight: bold; }
-        
-        .daimon-list { list-style: none; padding: 0; margin: 0; }
-        .daimon-item { margin-bottom: 12px; font-size: 0.9em; }
-        .daimon-title { font-weight: bold; display: block; color: #333; margin-bottom: 2px; }
-        .daimon-detail { display: block; padding-left: 1em; color: #444; line-height: 1.5; }
-        .diff-label { display: inline-block; font-size: 0.8em; padding: 1px 5px; border-radius: 3px; margin-left: 5px; vertical-align: middle; }
-        .diff-std { background: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32; }
-        .diff-hard { background: #fff3e0; color: #e65100; border: 1px solid #e65100; }
-
-        .overall-summary { background: #000; color: #fff; padding: 20px; margin-top: 30px; font-size: 0.95em; line-height: 1.8; }
-        .overall-summary b { color: #ffeb3b; }
-
-        /* 別ページへのリンクボタン */
-        .page-link-button { display: block; margin: 40px 0; padding: 20px; background: #000; color: #fff; text-decoration: none; font-weight: bold; text-align: center; border: 2px solid #000; font-size: 1.1em; transition: 0.2s; }
-        .page-link-button:hover { background: #fff; color: #000; }
+        .daimon-item { margin-bottom: 12px; font-size: 0.9em; list-style: none; }
+        .daimon-title { font-weight: bold; display: block; color: #333; }
+        .daimon-detail { display: block; padding-left: 1em; color: #444; font-size: 0.95em; }
+        .diff-label { display: inline-block; font-size: 0.8em; padding: 1px 5px; border-radius: 3px; margin-left: 5px; border: 1px solid #000; }
 
         /* シミュレーター */
         .box { border: 2px solid #000; padding: 25px; margin: 40px 0; background-color: #fff; }
         .input-group { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
-        .input-group label { font-weight: bold; flex: 1; }
         .input-group input { width: 80px; padding: 10px; border: 1px solid #000; text-align: center; font-size: 1.1em; }
-        button { margin-top: 10px; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1em; }
-        .result { font-weight: bold; font-size: 1.3em; margin-top: 20px; text-align: center; border: 2px solid #000; padding: 15px; background: #f9f9f9; }
+        button { padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1em; }
+        .result { font-weight: bold; font-size: 1.2em; margin-top: 20px; text-align: center; border: 2px solid #000; padding: 15px; background: #f9f9f9; }
         
         footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; }
     </style>
 </head>
 <body>
 
-    <h1>福島県高校入試対策サイト</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">トップ</a></li>
+            <li><a href="#kakomon">過去問</a></li>
+            <li><a href="#analysis">出題分析</a></li>
+            <li><a href="hensachi.html">偏差値</a></li>
+            <li><a href="#sim">内申計算</a></li>
+        </ul>
+    </nav>
 
-    <h2>福島県公立高校入試 過去問ライブラリ</h2>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>年度</th><th>国語</th><th>数学</th><th>英語</th><th>理科</th><th>社会</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>2026</strong></td>
-                    <td><a href="mondai-kokugo2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-kokugo2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
-                    <td><a href="mondai-sugaku2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-sugaku2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
-                    <td><a href="mondai-eigo2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-eigo2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
-                    <td><a href="mondai-rika2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-rika2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
-                    <td><a href="mondai-shakai2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-shakai2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="container">
+        <h1>福島県高校入試対策サイト</h1>
+
+        <h2 id="kakomon">福島県公立高校入試 過去問ライブラリ</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>年度</th><th>国語</th><th>数学</th><th>英語</th><th>理科</th><th>社会</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>2026</strong></td>
+                        <td><a href="mondai-kokugo2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-kokugo2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
+                        <td><a href="mondai-sugaku2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-sugaku2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
+                        <td><a href="mondai-eigo2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-eigo2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
+                        <td><a href="mondai-rika2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-rika2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
+                        <td><a href="mondai-shakai2026.pdf" target="_blank" class="download-link"><span class="q-tag">問</span></a><a href="kaito-shakai2026.pdf" target="_blank" class="download-link"><span class="a-tag">解</span></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="analysis">2026年度 出題分析レポート</h2>
+        <div class="analysis-container">
+            <div class="subject-block">
+                <div class="subject-header"><span class="subject-name">数学</span><span class="subject-time">10:10 〜 11:00</span></div>
+                <li class="daimon-item"><span class="daimon-title">大問3：確率・規則性<span class="diff-label">標準〜難</span></span><span class="daimon-detail">文字(n)を用いた論理的な記述力が試されます。</span></li>
+                <li class="daimon-item"><span class="daimon-title">大問5・6：平面図形と関数<span class="diff-label">やや難</span></span><span class="daimon-detail">証明の完答能力とグラフ把握の応用力が問われます。</span></li>
+            </div>
+            <p style="font-size: 0.85em; text-align: center;">（詳細は過去問PDFと照らし合わせてご確認ください）</p>
+        </div>
+
+        <h2 id="sim">内申点シミュレーター</h2>
+        <div class="box">
+            <div class="input-group"><label>1年評定(45満点)</label><input type="number" id="y1" min="9" max="45"></div>
+            <div class="input-group"><label>2年評定(45満点)</label><input type="number" id="y2" min="9" max="45"></div>
+            <div class="input-group"><label>3年評定(45満点)</label><input type="number" id="y3" min="9" max="45"></div>
+            <button onclick="calculate()">内申点を算出する</button>
+            <div id="res" class="result">結果はこちら</div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 全国学習塾名鑑</p>
+        </footer>
     </div>
-
-    <h2>2026年度 出題分析レポート</h2>
-    <div class="analysis-container">
-        <div class="subject-block">
-            <div class="subject-header"><span class="subject-name">国語</span><span class="subject-time">9:00 〜 9:50</span></div>
-            <ul class="daimon-list">
-                <li class="daimon-item"><span class="daimon-title">大問1：知識問題<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">漢字の書き取りや故事成語（漁夫の利等）。正確な記述が必須。</span></li>
-                <li class="daimon-item"><span class="daimon-title">大問2：詩の鑑賞<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">表現技法や内容理解。文章の流れから意図を読み取る力。</span></li>
-                <li class="daimon-item"><span class="daimon-title">大問3：古典<span class="diff-label diff-hard">やや難</span></span><span class="daimon-detail">和歌の本質に関する論考。注釈を活用した正確な読解力。</span></li>
-            </ul>
-        </div>
-
-        <div class="subject-block">
-            <div class="subject-header"><span class="subject-name">数学</span><span class="subject-time">10:10 〜 11:00</span></div>
-            <ul class="daimon-list">
-                <li class="daimon-item"><span class="daimon-title">大問1・2：小問集合<span class="diff-label diff-std">基礎〜標準</span></span><span class="daimon-detail">正負の数、根号、統計、2次方程式等。スピードが重要。</span></li>
-                <li class="daimon-item"><span class="daimon-title">大問3：確率・規則性<span class="diff-label diff-hard">標準〜難</span></span><span class="daimon-detail">文字(n)を用いた論理的な記述力が試されます。</span></li>
-                <li class="daimon-item"><span class="daimon-title">大問4：方程式の応用<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">連立方程式の立式能力が鍵。</span></li>
-                <li class="daimon-item"><span class="daimon-title">大問5・6：平面図形と関数<span class="diff-label diff-hard">やや難</span></span><span class="daimon-detail">証明の完答能力とグラフ把握の応用力。</span></li>
-            </ul>
-        </div>
-
-        <div class="subject-block">
-            <div class="subject-header"><span class="subject-name">英語</span><span class="subject-time">11:20 〜 12:10</span></div>
-            <ul class="daimon-list">
-                <li class="daimon-item"><span class="daimon-title">リスニング<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">AI等の現代的トピック。必要な情報を聞き取る語彙力。</span></li>
-                <li class="daimon-item"><span class="daimon-title">大問2：語彙・文法<span class="diff-label diff-std">基礎〜標準</span></span><span class="daimon-detail">不定詞・動名詞、代動詞(did)等。基本文法の定着。</span></li>
-                <li class="daimon-item"><span class="daimon-title">読解・英作文<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">イラストに基づく英作文。文脈に合う表現力。</span></li>
-            </ul>
-        </div>
-
-        <div class="subject-block">
-            <div class="subject-header"><span class="subject-name">理科</span><span class="subject-time">13:10 〜 14:00</span></div>
-            <ul class="daimon-list">
-                <li class="daimon-item"><span class="daimon-title">生物・地学<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">蒸散実験、炭素循環、天気図読解、天体観察。資料分析力が重要。</span></li>
-            </ul>
-        </div>
-
-        <div class="subject-block" style="border:none;">
-            <div class="subject-header"><span class="subject-name">社会</span><span class="subject-time">14:20 〜 15:10</span></div>
-            <ul class="daimon-list">
-                <li class="daimon-item"><span class="daimon-title">地理・公民<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">統計データからの推論、裁判員制度、立法過程。専門用語の正確な記述。</span></li>
-            </ul>
-        </div>
-
-        <div class="overall-summary">
-            【全体的な傾向】<br>
-            単なる知識の暗記だけでなく、<b>「資料の読み取り」と「根拠を説明する記述力」</b>が重視されています。
-        </div>
-    </div>
-
-    <a href="hensachi.html" class="page-link-button">
-        県中地区 高校偏差値一覧を見る
-    </a>
-
-    <div class="box">
-        <h3 style="text-align: center; border: none; margin-top: 0;">内申点シミュレーター</h3>
-        <div class="input-group"><label>中学1年</label><input type="number" id="y1" min="9" max="45"></div>
-        <div class="input-group"><label>中学2年</label><input type="number" id="y2" min="9" max="45"></div>
-        <div class="input-group"><label>中学3年</label><input type="number" id="y3" min="9" max="45"></div>
-        <button onclick="calculate()">内申点を算出する</button>
-        <div id="res" class="result">結果はこちらに表示されます</div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 全国学習塾名鑑</p>
-    </footer>
 
     <script>
         function calculate() {
@@ -151,7 +116,7 @@
             const v3 = document.getElementById('y3').value;
             if (v1 === "" || v2 === "" || v3 === "") { alert("値を入力してください"); return; }
             const total = parseInt(v1) + parseInt(v2) + parseInt(v3);
-            document.getElementById('res').innerHTML = "あなたの内申点合計<br>" + total + " / 135点";
+            document.getElementById('res').innerHTML = "内申点合計: " + total + " / 135点";
         }
     </script>
 </body>
