@@ -15,14 +15,20 @@
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
         .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
         .menu-bg.active { display: block; }
+
         .container { padding: 25px 20px; }
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
-        .table-container { overflow-x: auto; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; border: 2px solid #000; }
+        
+        /* 地区ごとの見出し */
+        h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 40px; font-size: 1.1em; background: #f4f4f4; padding: 8px 10px; border-bottom: 1px solid #ccc; }
+
+        .table-container { overflow-x: auto; margin-top: 15px; }
+        table { width: 100%; border-collapse: collapse; border: 2px solid #000; margin-bottom: 20px; }
         th, td { border: 1px solid #000; padding: 12px 5px; text-align: center; font-size: 0.9em; }
         th { background-color: #000; color: #fff; }
         tr:nth-child(even) { background-color: #f9f9f9; }
         .school-link { color: #000; text-decoration: underline; font-weight: bold; }
+        
         footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; }
     </style>
 </head>
@@ -32,14 +38,19 @@
         <div class="header-title">福島県高校入試対策</div>
         <div style="width: 28px;"></div>
     </header>
+
     <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
+
     <nav class="nav-overlay" id="navOverlay">
         <a href="index.html" onclick="toggleMenu()">トップ・入試分析</a>
         <a href="kakomon.html" onclick="toggleMenu()">過去問ライブラリ</a>
         <a href="hensachi.html" onclick="toggleMenu()">偏差値一覧</a>
     </nav>
+
     <div class="container">
-        <h1>県中地区 公立高校偏差値</h1>
+        <h1>福島県 公立高校偏差値一覧</h1>
+
+        <h2>県中地区（郡山・須賀川 他）</h2>
         <div class="table-container">
             <table>
                 <thead><tr><th>高校名</th><th>偏差値</th><th>目標点</th></tr></thead>
@@ -49,12 +60,54 @@
                     <tr><td><a href="https://koriyama-h.fcs.ed.jp/" class="school-link">郡山</a></td><td>61</td><td>180点</td></tr>
                     <tr><td><a href="https://koriyamahigashi-h.fcs.ed.jp/" class="school-link">郡山東</a></td><td>59</td><td>170点</td></tr>
                     <tr><td><a href="https://sukagawatoyo-h.fcs.ed.jp/" class="school-link">須賀川桐陽</a></td><td>55</td><td>155点</td></tr>
-                    <tr><td><a href="https://sukagawa-h.fcs.ed.jp/" class="school-link">須賀川創英館</a></td><td>50</td><td>135点</td></tr>
                 </tbody>
             </table>
         </div>
-        <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
+
+        <h2>県北地区（福島・二本松 他）</h2>
+        <div class="table-container">
+            <table>
+                <thead><tr><th>高校名</th><th>偏差値</th><th>目標点</th></tr></thead>
+                <tbody>
+                    <tr><td><a href="https://fukushima-h.fcs.ed.jp/" class="school-link">福島</a></td><td>67</td><td>215点</td></tr>
+                    <tr><td><a href="https://fukushimahigashi-h.fcs.ed.jp/" class="school-link">福島東</a></td><td>62</td><td>185点</td></tr>
+                    <tr><td><a href="https://fukushimaminami-h.fcs.ed.jp/" class="school-link">福島南（文理）</a></td><td>59</td><td>170点</td></tr>
+                    <tr><td><a href="https://fukushimanishi-h.fcs.ed.jp/" class="school-link">福島西</a></td><td>54</td><td>150点</td></tr>
+                    <tr><td><a href="https://nihonmatsu-h.fcs.ed.jp/" class="school-link">二本松実業</a></td><td>44</td><td>100点</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>いわき地区</h2>
+        <div class="table-container">
+            <table>
+                <thead><tr><th>高校名</th><th>偏差値</th><th>目標点</th></tr></thead>
+                <tbody>
+                    <tr><td><a href="https://iwaki-h.fcs.ed.jp/" class="school-link">いわき秀英</a></td><td>65</td><td>200点</td></tr>
+                    <tr><td><a href="https://iwaki-h.fcs.ed.jp/" class="school-link">磐城</a></td><td>64</td><td>195点</td></tr>
+                    <tr><td><a href="https://iwakisakarigaoka-h.fcs.ed.jp/" class="school-link">磐城桜が丘</a></td><td>59</td><td>170点</td></tr>
+                    <tr><td><a href="https://iwakikoyo-h.fcs.ed.jp/" class="school-link">いわき光洋</a></td><td>53</td><td>145点</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>会津地区</h2>
+        <div class="table-container">
+            <table>
+                <thead><tr><th>高校名</th><th>偏差値</th><th>目標点</th></tr></thead>
+                <tbody>
+                    <tr><td><a href="https://aizu-h.fcs.ed.jp/" class="school-link">会津</a></td><td>63</td><td>190点</td></tr>
+                    <tr><td><a href="https://aizugakuho-h.fcs.ed.jp/" class="school-link">会津学鳳</a></td><td>58</td><td>165点</td></tr>
+                    <tr><td><a href="https://aoi-h.fcs.ed.jp/" class="school-link">葵</a></td><td>55</td><td>155点</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 全国学習塾名鑑</p>
+        </footer>
     </div>
+
     <script>
         function toggleMenu() {
             document.getElementById('navOverlay').classList.toggle('active');
