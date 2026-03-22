@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>県中地区 高校偏差値一覧 - 福島県高校入試対策</title>
+    <style>
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 20px; background-color: #fff; }
+        h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
+        h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 40px; font-size: 1.1em; background: #f4f4f4; padding: 8px 10px; }
+        
+        .table-container { overflow-x: auto; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; border: 2px solid #000; margin-bottom: 10px; }
+        th, td { border: 1px solid #000; padding: 12px 5px; text-align: center; font-size: 0.9em; }
+        th { background-color: #000; color: #fff; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        
+        .school-link { color: #000; text-decoration: underline; font-weight: bold; }
+        .back-link { display: inline-block; margin-top: 30px; padding: 10px 20px; border: 1px solid #000; color: #000; text-decoration: none; font-weight: bold; }
+        .back-link:hover { background: #eee; }
+
+        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+
+    <h1>県中地区 公立高校偏差値一覧</h1>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>高校名（公式HP）</th>
+                    <th>偏差値</th>
+                    <th>目標点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><a href="https://asaka-h.fcs.ed.jp/" target="_blank" class="school-link">安積</a></td><td>67</td><td>215点</td></tr>
+                <tr><td><a href="https://asakareimei-h.fcs.ed.jp/" target="_blank" class="school-link">安積黎明</a></td><td>64</td><td>195点</td></tr>
+                <tr><td><a href="https://koriyama-h.fcs.ed.jp/" target="_blank" class="school-link">郡山</a></td><td>61</td><td>180点</td></tr>
+                <tr><td><a href="https://koriyamahigashi-h.fcs.ed.jp/" target="_blank" class="school-link">郡山東</a></td><td>59</td><td>170点</td></tr>
+                <tr><td><a href="https://sukagawatoyo-h.fcs.ed.jp/" target="_blank" class="school-link">須賀川桐陽</a></td><td>55</td><td>155点</td></tr>
+                <tr><td><a href="https://sukagawa-h.fcs.ed.jp/" target="_blank" class="school-link">須賀川創英館</a></td><td>50</td><td>135点</td></tr>
+                <tr><td><a href="https://asakagaka-h.fcs.ed.jp/" target="_blank" class="school-link">あさか開成</a></td><td>49</td><td>130点</td></tr>
+                <tr><td><a href="https://tamura-h.fcs.ed.jp/" target="_blank" class="school-link">田村</a></td><td>47</td><td>120点</td></tr>
+                <tr><td><a href="https://miharu-h.fcs.ed.jp/" target="_blank" class="school-link">船引</a></td><td>37</td><td>70点</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="index.html" class="back-link">← トップページに戻る</a>
+
+    <footer>
+        <p>&copy; 2026 全国学習塾名鑑</p>
+    </footer>
+
+</body>
+</html>
