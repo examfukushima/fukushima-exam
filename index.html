@@ -31,22 +31,22 @@
         .daimon-title { font-weight: bold; display: block; color: #333; margin-bottom: 2px; }
         .daimon-detail { display: block; padding-left: 1em; color: #444; line-height: 1.5; }
         .diff-label { display: inline-block; font-size: 0.8em; padding: 1px 5px; border-radius: 3px; margin-left: 5px; vertical-align: middle; }
-        .diff-std { background: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32; } /* 標準 */
-        .diff-hard { background: #fff3e0; color: #e65100; border: 1px solid #e65100; } /* やや難 */
+        .diff-std { background: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32; }
+        .diff-hard { background: #fff3e0; color: #e65100; border: 1px solid #e65100; }
 
         .overall-summary { background: #000; color: #fff; padding: 20px; margin-top: 30px; font-size: 0.95em; line-height: 1.8; }
         .overall-summary b { color: #ffeb3b; }
 
-        /* 偏差値表 */
-        .school-link { color: #000; text-decoration: underline; font-weight: bold; }
+        /* 別ページへのリンクボタン */
+        .page-link-button { display: block; margin: 40px 0; padding: 20px; background: #000; color: #fff; text-decoration: none; font-weight: bold; text-align: center; border: 2px solid #000; font-size: 1.1em; transition: 0.2s; }
+        .page-link-button:hover { background: #fff; color: #000; }
 
         /* シミュレーター */
         .box { border: 2px solid #000; padding: 25px; margin: 40px 0; background-color: #fff; }
         .input-group { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
         .input-group label { font-weight: bold; flex: 1; }
         .input-group input { width: 80px; padding: 10px; border: 1px solid #000; text-align: center; font-size: 1.1em; }
-        button { margin-top: 10px; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1em; transition: 0.2s; }
-        button:hover { opacity: 0.8; }
+        button { margin-top: 10px; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1em; }
         .result { font-weight: bold; font-size: 1.3em; margin-top: 20px; text-align: center; border: 2px solid #000; padding: 15px; background: #f9f9f9; }
         
         footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; }
@@ -79,141 +79,65 @@
 
     <h2>2026年度 出題分析レポート</h2>
     <div class="analysis-container">
-        
         <div class="subject-block">
-            <div class="subject-header">
-                <span class="subject-name">国語</span>
-                <span class="subject-time">9:00 〜 9:50</span>
-            </div>
+            <div class="subject-header"><span class="subject-name">国語</span><span class="subject-time">9:00 〜 9:50</span></div>
             <ul class="daimon-list">
-                <li class="daimon-item">
-                    <span class="daimon-title">大問1：知識問題（漢字・語句）<span class="diff-label diff-std">標準</span></span>
-                    <span class="daimon-detail">漢字の書き取り（「把握」「謙虚」等）や故事成語（「漁夫の利」等）が出題。正確な記述が求められます。</span>
-                </li>
-                <li class="daimon-item">
-                    <span class="daimon-title">大問2：詩の鑑賞<span class="diff-label diff-std">標準</span></span>
-                    <span class="daimon-detail">高田敏子の詩を題材に表現技法を問う。文章の流れから意図を読み取る力が必要です。</span>
-                </li>
-                <li class="daimon-item">
-                    <span class="daimon-title">大問3：古典（古文・漢文）<span class="diff-label diff-hard">やや難</span></span>
-                    <span class="daimon-detail">和歌の本質に関する論考。注釈をフル活用した正確な読解力が不可欠。</span>
-                </li>
+                <li class="daimon-item"><span class="daimon-title">大問1：知識問題<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">漢字の書き取りや故事成語（漁夫の利等）。正確な記述が必須。</span></li>
+                <li class="daimon-item"><span class="daimon-title">大問2：詩の鑑賞<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">表現技法や内容理解。文章の流れから意図を読み取る力。</span></li>
+                <li class="daimon-item"><span class="daimon-title">大問3：古典<span class="diff-label diff-hard">やや難</span></span><span class="daimon-detail">和歌の本質に関する論考。注釈を活用した正確な読解力。</span></li>
             </ul>
         </div>
 
         <div class="subject-block">
-            <div class="subject-header">
-                <span class="subject-name">数学</span>
-                <span class="subject-time">10:10 〜 11:00</span>
-            </div>
+            <div class="subject-header"><span class="subject-name">数学</span><span class="subject-time">10:10 〜 11:00</span></div>
             <ul class="daimon-list">
-                <li class="daimon-item">
-                    <span class="daimon-title">大問1・2：小問集合<span class="diff-label diff-std">基礎〜標準</span></span>
-                    <span class="daimon-detail">正負の数、根号、統計、2次方程式等。教科書レベルを確実にこなすスピードが重要。</span>
-                </li>
-                <li class="daimon-item">
-                    <span class="daimon-title">大問3：確率・規則性<span class="diff-label diff-hard">標準〜難</span></span>
-                    <span class="daimon-detail">3つの箱の確率とカードの規則性。文字(n)を用いた論理的な記述力が試されます。</span>
-                </li>
-                <li class="daimon-item">
-                    <span class="daimon-title">大問4：方程式の応用<span class="diff-label diff-std">標準</span></span>
-                    <span class="daimon-detail">自動販売機の売上に関する連立方程式。条件整理と正確な立式能力が鍵。</span>
-                </li>
-                <li class="daimon-item">
-                    <span class="daimon-title">大問5・6：平面図形と関数<span class="diff-label diff-hard">やや難</span></span>
-                    <span class="daimon-detail">円周角の証明と2次関数の交点。証明の完答能力とグラフ把握の応用力が問われます。</span>
-                </li>
+                <li class="daimon-item"><span class="daimon-title">大問1・2：小問集合<span class="diff-label diff-std">基礎〜標準</span></span><span class="daimon-detail">正負の数、根号、統計、2次方程式等。スピードが重要。</span></li>
+                <li class="daimon-item"><span class="daimon-title">大問3：確率・規則性<span class="diff-label diff-hard">標準〜難</span></span><span class="daimon-detail">文字(n)を用いた論理的な記述力が試されます。</span></li>
+                <li class="daimon-item"><span class="daimon-title">大問4：方程式の応用<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">連立方程式の立式能力が鍵。</span></li>
+                <li class="daimon-item"><span class="daimon-title">大問5・6：平面図形と関数<span class="diff-label diff-hard">やや難</span></span><span class="daimon-detail">証明の完答能力とグラフ把握の応用力。</span></li>
             </ul>
         </div>
 
         <div class="subject-block">
-            <div class="subject-header">
-                <span class="subject-name">英語</span>
-                <span class="subject-time">11:20 〜 12:10</span>
-            </div>
+            <div class="subject-header"><span class="subject-name">英語</span><span class="subject-time">11:20 〜 12:10</span></div>
             <ul class="daimon-list">
-                <li class="daimon-item">
-                    <span class="daimon-title">リスニング<span class="diff-label diff-std">標準</span></span>
-                    <span class="daimon-detail">AIのメリット・デメリット等の現代的トピック。必要な情報を聞き取る語彙力が重要。</span>
-                </li>
-                <li class="daimon-item">
-                    <span class="daimon-title">大問2：語彙・文法<span class="diff-label diff-std">基礎〜標準</span></span>
-                    <span class="daimon-detail">不定詞・動名詞、代動詞(did)等。基本文法事項の定着が問われます。</span>
-                </li>
-                <li class="daimon-item">
-                    <span class="daimon-title">読解・英作文<span class="diff-label diff-std">標準</span></span>
-                    <span class="daimon-detail">イラストや状況説明に基づく英作文。文脈に合う適切な表現を選択する力が試されます。</span>
-                </li>
+                <li class="daimon-item"><span class="daimon-title">リスニング<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">AI等の現代的トピック。必要な情報を聞き取る語彙力。</span></li>
+                <li class="daimon-item"><span class="daimon-title">大問2：語彙・文法<span class="diff-label diff-std">基礎〜標準</span></span><span class="daimon-detail">不定詞・動名詞、代動詞(did)等。基本文法の定着。</span></li>
+                <li class="daimon-item"><span class="daimon-title">読解・英作文<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">イラストに基づく英作文。文脈に合う表現力。</span></li>
             </ul>
         </div>
 
         <div class="subject-block">
-            <div class="subject-header">
-                <span class="subject-name">理科</span>
-                <span class="subject-time">13:10 〜 14:00</span>
-            </div>
+            <div class="subject-header"><span class="subject-name">理科</span><span class="subject-time">13:10 〜 14:00</span></div>
             <ul class="daimon-list">
-                <li class="daimon-item">
-                    <span class="daimon-title">生物（植物・生態系）<span class="diff-label diff-std">標準</span></span>
-                    <span class="daimon-detail">アジサイの蒸散実験、分解者の働き、炭素循環。対照実験の思考力と数的処理が必要です。</span>
-                </li>
-                <li class="daimon-item">
-                    <span class="daimon-title">地学（気象・天体）<span class="diff-label diff-std">標準</span></span>
-                    <span class="daimon-detail">天気図読解と前線通過の気温変化。観測データと図表を照らし合わせる分析力が重要。</span>
-                </li>
+                <li class="daimon-item"><span class="daimon-title">生物・地学<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">蒸散実験、炭素循環、天気図読解、天体観察。資料分析力が重要。</span></li>
             </ul>
         </div>
 
         <div class="subject-block" style="border:none;">
-            <div class="subject-header">
-                <span class="subject-name">社会</span>
-                <span class="subject-time">14:20 〜 15:10</span>
-            </div>
+            <div class="subject-header"><span class="subject-name">社会</span><span class="subject-time">14:20 〜 15:10</span></div>
             <ul class="daimon-list">
-                <li class="daimon-item">
-                    <span class="daimon-title">世界・日本地理<span class="diff-label diff-std">標準</span></span>
-                    <span class="daimon-detail">雨温図の判別、関東ローム層、製造品出荷額。統計データからの推論力が得点源。</span>
-                </li>
-                <li class="daimon-item">
-                    <span class="daimon-title">公民分野<span class="diff-label diff-std">標準</span></span>
-                    <span class="daimon-detail">立法過程、一票の格差、法の下の平等。専門用語を正確に記述する力が求められます。</span>
-                </li>
+                <li class="daimon-item"><span class="daimon-title">地理・公民<span class="diff-label diff-std">標準</span></span><span class="daimon-detail">統計データからの推論、裁判員制度、立法過程。専門用語の正確な記述。</span></li>
             </ul>
         </div>
 
         <div class="overall-summary">
             【全体的な傾向】<br>
-            全教科を通して、単なる知識の暗記だけでなく、<b>「資料（グラフ・表）の読み取り」と「根拠を説明する記述力」</b>が重視されています。難易度は教科書の内容を軸にした標準的なレベルですが、試験時間内に正確な計算や論述を行う<b>処理能力の差が結果に直結する</b>構成です。
+            単なる知識の暗記だけでなく、<b>「資料の読み取り」と「根拠を説明する記述力」</b>が重視されています。
         </div>
-
     </div>
 
-    <h2>県中地区 公立高校普通科 偏差値一覧</h2>
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>高校名（公式HP）</th><th>偏差値</th><th>目標点</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td><a href="https://asaka-h.fcs.ed.jp/" target="_blank" class="school-link">安積</a></td><td>67</td><td>215点</td></tr>
-                <tr><td><a href="https://asakareimei-h.fcs.ed.jp/" target="_blank" class="school-link">安積黎明</a></td><td>64</td><td>195点</td></tr>
-                <tr><td><a href="https://koriyama-h.fcs.ed.jp/" target="_blank" class="school-link">郡山</a></td><td>61</td><td>180点</td></tr>
-                <tr><td><a href="https://koriyamahigashi-h.fcs.ed.jp/" target="_blank" class="school-link">郡山東</a></td><td>59</td><td>170点</td></tr>
-                <tr><td><a href="https://sukagawatoyo-h.fcs.ed.jp/" target="_blank" class="school-link">須賀川桐陽</a></td><td>55</td><td>155点</td></tr>
-                <tr><td><a href="https://sukagawa-h.fcs.ed.jp/" target="_blank" class="school-link">須賀川創英館</a></td><td>50</td><td>135点</td></tr>
-            </tbody>
-        </table>
-    </div>
+    <a href="hensachi.html" class="page-link-button">
+        県中地区 高校偏差値一覧を見る
+    </a>
 
     <div class="box">
         <h3 style="text-align: center; border: none; margin-top: 0;">内申点シミュレーター</h3>
-        <div class="input-group"><label>中学1年</label><input type="number" id="y1" min="9" max="45" placeholder="例: 45"></div>
-        <div class="input-group"><label>中学2年</label><input type="number" id="y2" min="9" max="45" placeholder="例: 45"></div>
-        <div class="input-group"><label>中学3年</label><input type="number" id="y3" min="9" max="45" placeholder="例: 45"></div>
+        <div class="input-group"><label>中学1年</label><input type="number" id="y1" min="9" max="45"></div>
+        <div class="input-group"><label>中学2年</label><input type="number" id="y2" min="9" max="45"></div>
+        <div class="input-group"><label>中学3年</label><input type="number" id="y3" min="9" max="45"></div>
         <button onclick="calculate()">内申点を算出する</button>
-        <div id="res" class="result">ここに結果が表示されます</div>
+        <div id="res" class="result">結果はこちらに表示されます</div>
     </div>
 
     <footer>
