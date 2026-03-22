@@ -59,81 +59,88 @@
             <div class="input-group"><label>3年評定</label><input type="number" id="y3" max="45"></div>
             <button onclick="calculate()">内申合計を算出</button>
             <div id="res" class="result">結果はこちら</div>
-        </div>
+ 
         <div style="margin: 40px 0; border: 2px solid #1a73e8; border-radius: 12px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
             <div style="background: #1a73e8; color: #fff; padding: 12px; text-align: center; font-weight: bold;">
-                合格可能性判定シミュレーター
+                偏差値予想シミュレーター
             </div>
             
             <div style="padding: 20px;">
                 <p style="font-size: 0.85em; color: #666; margin-bottom: 20px; text-align: center;">
-                    内申点と当日点から、志望校への目安を判定します。
+                    各教科の得点（50点満点）を入力してください。
                 </p>
                 
-                <div style="margin-bottom: 15px;">
-                    <label style="font-size: 0.85em; font-weight: bold; color: #333;">① 内申点 (195点満点):</label>
-                    <input type="number" id="naishin_top" placeholder="例: 150" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                    <div>
+                        <label style="font-size: 0.8em; font-weight: bold;">国語</label>
+                        <input type="number" id="score_kokugo" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8em; font-weight: bold;">数学</label>
+                        <input type="number" id="score_sugaku" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8em; font-weight: bold;">英語</label>
+                        <input type="number" id="score_eigo" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8em; font-weight: bold;">理科</label>
+                        <input type="number" id="score_rika" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+                    </div>
+                    <div style="grid-column: span 2;">
+                        <label style="font-size: 0.8em; font-weight: bold;">社会</label>
+                        <input type="number" id="score_shakai" placeholder="0" min="0" max="50" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+                    </div>
                 </div>
                 
-                <div style="margin-bottom: 20px;">
-                    <label style="font-size: 0.85em; font-weight: bold; color: #333;">② 当日予想点 (250点満点):</label>
-                    <input type="number" id="toujitsu_top" placeholder="例: 160" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;">
-                </div>
-                
-                <button onclick="calculateRankTop()" style="width: 100%; background: #1a73e8; color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1em; transition: 0.2s;">
+                <button onclick="calculateDevTop()" style="width: 100%; background: #1a73e8; color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1em;">
                     判定を実行する
                 </button>
 
-                <button onclick="clearFormTop()" style="width: 100%; background: #fff; color: #666; border: 1px solid #ccc; padding: 10px; margin-top: 10px; border-radius: 6px; font-weight: normal; cursor: pointer; font-size: 0.9em;">
-                    入力内容をリセット
+                <button onclick="clearDevTop()" style="width: 100%; background: #fff; color: #666; border: 1px solid #ccc; padding: 10px; margin-top: 10px; border-radius: 6px; font-weight: normal; cursor: pointer; font-size: 0.9em;">
+                    入力をクリア
                 </button>
                 
-                <div id="resultAreaTop" style="margin-top: 20px; display: none; padding: 15px; border-radius: 8px; text-align: center; border: 1px dashed #1a73e8;">
-                    <div id="resultDevTop" style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;"></div>
-                    <div id="resultMsgTop" style="font-size: 0.9em; line-height: 1.5; color: #333;"></div>
-                    <a href="taisaku.html" style="display: inline-block; margin-top: 15px; font-size: 0.85em; color: #1a73e8; font-weight: bold; text-decoration: none;">
-                        → 詳しい入試分析・対策を見る
+                <div id="resultAreaTop" style="margin-top: 20px; display: none; padding: 15px; border-radius: 8px; text-align: center; border: 1px dashed #1a73e8; background-color: #f0f7ff;">
+                    <div id="resultTotalTop" style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;"></div>
+                    <div id="resultDevTop" style="font-size: 1.2em; font-weight: bold; color: #d32f2f;"></div>
+                    <a href="taisaku.html" style="display: inline-block; margin-top: 12px; font-size: 0.8em; color: #1a73e8; text-decoration: none;">
+                        → 入試分析・平均点推移を見る
                     </a>
                 </div>
             </div>
         </div>
 
         <script>
-            function calculateRankTop() {
-                const n = parseFloat(document.getElementById('naishin_top').value);
-                const t = parseFloat(document.getElementById('toujitsu_top').value);
+            function calculateDevTop() {
+                const s1 = parseFloat(document.getElementById('score_kokugo').value) || 0;
+                const s2 = parseFloat(document.getElementById('score_sugaku').value) || 0;
+                const s3 = parseFloat(document.getElementById('score_eigo').value) || 0;
+                const s4 = parseFloat(document.getElementById('score_rika').value) || 0;
+                const s5 = parseFloat(document.getElementById('score_shakai').value) || 0;
+                
+                const total = s1 + s2 + s3 + s4 + s5;
+                // 過去5年平均128、標準偏差40を想定した簡易計算
+                const deviation = Math.round(((total - 128) / 40 * 10 + 50) * 10) / 10;
+                
                 const resArea = document.getElementById('resultAreaTop');
-                const resDev = document.getElementById('resultDevTop');
-                const resMsg = document.getElementById('resultMsgTop');
-                
-                if (isNaN(n) || isNaN(t)) {
-                    alert("数値を入力してください");
-                    return;
-                }
-
-                const deviation = Math.round(((t - 128) / 40 * 10 + 50) * 10) / 10;
-                
                 resArea.style.display = 'block';
-                resArea.style.backgroundColor = '#f0f7ff';
-                resDev.innerHTML = "予想偏差値: <span style='font-size: 1.4em; color: #d32f2f;'>" + deviation + "</span>";
+                document.getElementById('resultTotalTop').innerText = "5教科合計: " + total + " 点";
+                document.getElementById('resultDevTop').innerText = "予想偏差値: " + deviation;
                 
-                let msg = "";
-                if (deviation >= 65) { msg = "【安積・福島】合格圏内。圧倒的な実力です！"; }
-                else if (deviation >= 60) { msg = "【安積黎明・橘・郡山・磐城】合格のチャンス大。"; }
-                else if (deviation >= 55) { msg = "【郡山東・須賀川桐陽・会津学鳳】手堅い実力です。"; }
-                else if (deviation >= 50) { msg = "【福島西・白河旭・いわき光洋】平均以上の力があります。"; }
-                else { msg = "まずは基礎の徹底を。伸びしろは十分にあります！"; }
-                resMsg.innerText = msg;
                 resArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
 
-            // クリア機能のスクリプト（追加箇所）
-            function clearFormTop() {
-                document.getElementById('naishin_top').value = "";
-                document.getElementById('toujitsu_top').value = "";
+            function clearDevTop() {
+                document.getElementById('score_kokugo').value = "";
+                document.getElementById('score_sugaku').value = "";
+                document.getElementById('score_eigo').value = "";
+                document.getElementById('score_rika').value = "";
+                document.getElementById('score_shakai').value = "";
                 document.getElementById('resultAreaTop').style.display = "none";
             }
         </script>
+
 
         <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
     </div>
