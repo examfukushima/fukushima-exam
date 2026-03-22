@@ -6,31 +6,33 @@
     <title>入試分析・対策 - 福島県高校入試対策</title>
     <style>
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
+        
         header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
         .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
+        
         .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
         .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
         .menu-bg.active { display: block; }
+        
         .container { padding: 20px; }
 
-        /* 分析カード共通 */
-        .analysis-card { background: #fff; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 5px solid #000; }
-        .analysis-card h2 { margin-top: 0; font-size: 1.3em; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
-        .analysis-card h3 { font-size: 1.1em; margin-bottom: 10px; display: flex; align-items: center; }
-        .tag { color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-right: 10px; font-weight: bold; }
+        /* アコーディオン形式の分析セクション */
+        .analysis-section { margin-top: 10px; }
+        .ac-card { background: #fff; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #eee; }
+        .ac-header { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; background: #fff; outline: none; }
+        .ac-header::-webkit-details-marker { display: none; }
+        .ac-title { font-weight: bold; font-size: 1.05em; color: #333; }
+        .ac-icon { font-size: 1.2em; transition: 0.3s; color: #999; font-family: monospace; }
+        .ac-card[open] .ac-icon { transform: rotate(45deg); }
         
-        /* テーブルスタイル */
-        table { width: 100%; border-collapse: collapse; font-size: 0.85em; margin: 15px 0; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background: #f9f9f9; }
-
-        .point-box { background: #fdfdfd; padding: 15px; border-radius: 6px; border: 1px solid #eee; margin-top: 15px; }
-        .point-box h4 { margin-top: 0; font-size: 0.95em; color: #333; }
-        .point-box ul { font-size: 0.85em; padding-left: 20px; margin-bottom: 0; }
+        .ac-body { padding: 15px 25px; border-top: 1px solid #f5f5f5; font-size: 0.95em; color: #444; background: #fafafa; }
+        .ac-body p { margin-bottom: 15px; line-height: 1.8; }
+        .ac-body strong { color: #000; border-bottom: 1px solid #ddd; }
+        .point-box { background: #fff; border: 1px dashed #ccc; padding: 12px; margin-top: 10px; font-size: 0.9em; }
 
         footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
     </style>
@@ -52,66 +54,109 @@
     </nav>
 
     <div class="container">
-        <div class="analysis-card" style="border-left-color: #1a73e8;">
-            <h2><span class="tag" style="background: #1a73e8;">英語</span>入試分析</h2>
-            <p style="font-size: 0.9em;">長文読解の配点が非常に高く、速読力と内容把握能力が求められます。リスニングは配点の約25%を占めるため、日々の積み重ねが重要です。</p>
+        <h2 style="text-align: center; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.05em;">令和8年度 入試詳細分析</h2>
+        <p style="font-size: 0.85em; color: #666; margin-bottom: 25px; text-align: center;">各教科をタップすると詳細な分析が表示されます。</p>
+
+        <div class="analysis-section">
+            <details class="ac-card">
+                <summary class="ac-header" style="border-left: 5px solid #333;">
+                    <span class="ac-title">【国語】論理的思考と語彙の正確性</span>
+                    <span class="ac-icon">＋</span>
+                </summary>
+                <div class="ac-body">
+                    <p><strong>第一問：知識（漢字・故事成語）</strong><br>
+                    漢字の読み（進歩、把握等）と書き（散策、効率等）。故事成語の用法（5問）は、文脈の中で正しく使える力が問われています。</p>
+                    <p><strong>第二問：論理的文章（説明文）</strong><br>
+                    テーマは「物語と言葉、イメージの再現」。第10段落の役割（文章の転換点）を問う問題など、文章構造の俯瞰力が不可欠です。</p>
+                    <p><strong>第三問：文学的文章（小説・随筆）</strong><br>
+                    場面の移り変わりに連動した登場人物の心情変化を正確に読み取ります。</p>
+                    <p><strong>第四問：古典（古文）</strong><br>
+                    注釈を活用した内容把握。歴史的仮名遣いなどの基礎知識が必須です。</p>
+                    <p><strong>第五問：表現（作文）</strong><br>
+                    200字程度の条件付き作文。自分の意見を論理的な構成でまとめる力が試されます。</p>
+                </div>
+            </details>
+
+            <details class="ac-card">
+                <summary class="ac-header" style="border-left: 5px solid #d32f2f;">
+                    <span class="ac-title">【数学】応用力と記述の完成度</span>
+                    <span class="ac-icon">＋</span>
+                </summary>
+                <div class="ac-body">
+                    <p><strong>第1問：計算・基礎小問</strong><br>
+                    正負、分数、平方根（$\sqrt{15} \times \sqrt{6}$）の計算。絶対値（2以下）の個数を問う定義問題が出題。</p>
+                    <p><strong>第2問：小問集合</strong><br>
+                    3桁の自然数の文字式（$100a+40+b$）、1次関数の変化の割合、垂直二等分線の作図など幅広い基礎力が必要。</p>
+                    <p><strong>第3問：データの活用</strong><br>
+                    箱ひげ図や中央値（メジアン）の読み取り。資料の傾向を正確に分析する力が重要です。</p>
+                    <p><strong>第4問：平面図形（証明・計量）</strong><br>
+                    円周角の性質（90度）を利用した直角三角形の合同証明。相似や面積比への発展も視野に。</p>
+                    <p><strong>第5問：方程式（文章題）</strong><br>
+                    数量関係を整理し、連立方程式や2次方程式を立てて解くプロセス重視の記述問題。</p>
+                    <p><strong>第6問：関数 $y=ax^2$</strong><br>
+                    放物線と直線の交点。等積変形や面積二等分などの応用。点A(-6, 12)からの比例定数特定が鍵。</p>
+                    <p><strong>第7問：空間図形（最終問題）</strong><br>
+                    円柱・円錐・球の計量や、三平方の定理を用いた空間内の最短距離。最も難易度が高い大問です。</p>
+                </div>
+            </details>
+
+            <details class="ac-card">
+                <summary class="ac-header" style="border-left: 5px solid #1a73e8;">
+                    <span class="ac-title">【英語】リスニング力と実用読解</span>
+                    <span class="ac-icon">＋</span>
+                </summary>
+                <div class="ac-body">
+                    <p><strong>第1問：リスニング（配点大）</strong><br>
+                    放送2では「AI（人工知能）」をテーマにした英文が出題。内容に合う英語1語（effective等）を正しく綴る記述力も求められています。</p>
+                    <p><strong>第2問：文法・語順整序</strong><br>
+                    対話文の穴埋めや並べ替え。基本的な文法事項（不定詞、動名詞、比較など）の定着が必須。</p>
+                    <p><strong>第3問：実用的な英文（資料読解）</strong><br>
+                    掲示板、メール、パンフレットから必要な情報を探し出す「情報検索能力」が試されます。</p>
+                    <p><strong>第4・5問：長文読解・自由英作文</strong><br>
+                    物語の展開把握と、社会的なテーマの論理読解。自分の考えを20語程度で表現する自由英作文が含まれます。</p>
+                </div>
+            </details>
+
+            <details class="ac-card">
+                <summary class="ac-header" style="border-left: 5px solid #34a853;">
+                    <span class="ac-title">【理科】実験データの分析と考察</span>
+                    <span class="ac-icon">＋</span>
+                </summary>
+                <div class="ac-body">
+                    <p><strong>第1問：生物（植物の蒸散）</strong><br>
+                    アジサイを用いた吸水量実験。ワセリンの塗布条件から、葉の表裏や茎の蒸散量を計算する定番かつ重要な問題。</p>
+                    <p><strong>第2問：地学（地層・天体）</strong><br>
+                    柱状図の対比や地層の重なり、または天体の動きに関するデータの考察問題。</p>
+                    <p><strong>第3問：化学（物質の変化）</strong><br>
+                    化学変化と質量（比の計算）、イオン、中和反応。化学反応式を正確に書く練習が必要です。</p>
+                    <p><strong>第4問：物理（光・レンズ）</strong><br>
+                    鏡P・Qを用いた虚像の見え方（視界範囲）や光の道筋の作図が出題。</p>
+                    <p><strong>第5問：総合問題</strong><br>
+                    電流、人体、エネルギーなど、大問1〜4以外の全範囲から出題される小問集合。</p>
+                </div>
+            </details>
+
+            <details class="ac-card">
+                <summary class="ac-header" style="border-left: 5px solid #f9ab00;">
+                    <span class="ac-title">【社会】資料活用と現代社会への関心</span>
+                    <span class="ac-icon">＋</span>
+                </summary>
+                <div class="ac-body">
+                    <p><strong>第1問：世界地理</strong><br>
+                    州の特定。人口密度とGDPの変化（中国、インド、アメリカ等）を表から見抜く同定問題。</p>
+                    <p><strong>第2問：日本地理</strong><br>
+                    地形図の読み取り、日本の諸地域の産業や環境課題の把握力が問われます。</p>
+                    <p><strong>第3・4問：歴史（古代〜現代）</strong><br>
+                    古代から近世、近代から現代までの政治・外交・社会の流れを体系的に整理する必要があります。</p>
+                    <p><strong>第5問：公民（現代の政治）</strong><br>
+                    一票の格差（「法の下の平等」）、裁判員制度（刑事第一審のみ）、国会の委員会審議プロセスなど、時事的な知識が重要です。</p>
+                </div>
+            </details>
         </div>
 
-        <div class="analysis-card" style="border-left-color: #d32f2f;">
-            <h2><span class="tag" style="background: #d32f2f;">数学</span>入試分析</h2>
-            <p style="font-size: 0.9em;">大問1の計算問題を確実に全問正解することが合格への第一歩です。後半の関数や図形の証明問題は、記述形式での解答練習が必須となります。</p>
-        </div>
-
-        <div class="analysis-card" style="border-left-color: #34a853;">
-            <h2><span class="tag" style="background: #34a853;">理科</span>入試分析と対策</h2>
-            <div style="margin-bottom: 20px;">
-                <h4 style="border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 1em;">【全体の傾向】</h4>
-                <p style="font-size: 0.9em;">
-                    大問5構成で、第1問が小問集合、第2〜5問が物理・化学・生物・地学の各分野から出題されます。
-                    単なる用語暗記ではなく、<strong>「なぜそうなるのか」というプロセスや実験結果の考察</strong>を問う記述問題が合否を分けます。
-                </p>
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>分野</th>
-                        <th>頻出単元・具体例</th>
-                        <th>対策ポイント</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight: bold; width: 60px;">物理</td>
-                        <td>電流と磁界、力と運動、光・レンズ、仕事</td>
-                        <td>「オームの法則」や「仕事の原理」の計算練習を徹底。単位の変換ミス（$g$と$kg$など）に注意。</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">化学</td>
-                        <td>化学変化と質量、イオン、水溶液、中和</td>
-                        <td>化学反応式は必須。質量保存の法則に基づく「比の計算」は、図や表から数値を正しく抽出する練習を。</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">生物</td>
-                        <td>植物の生活、人体（循環・消化）、生殖、遺伝</td>
-                        <td>実験の目的（対照実験）を説明する記述力を磨く。「〜を一定にするため」などの定型表現を覚えること。</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bold;">地学</td>
-                        <td>天気の変化（湿度）、地震の伝わり方、天体</td>
-                        <td>湿度の計算や震源距離の計算など、地学は計算ミスが命取り。天体の見え方は図を自分で書く練習が有効。</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="point-box" style="background: #f0f9f1; border-color: #cde7d0;">
-                <h4 style="color: #1e8449;">💡 理科攻略の3つのコツ</h4>
-                <ul>
-                    <li><strong>記述問題の「型」を作る：</strong>理由を問われたら「〜だから」「〜のため」と文末まで正しく書く練習を。</li>
-                    <li><strong>大問1（20点分）を死守：</strong>各分野の基本用語だけで構成される小問集合で、取りこぼしをゼロにする。</li>
-                    <li><strong>図表・グラフの読み込み：</strong>初見の実験データでも、縦軸と横軸が何を示しているかを瞬時に判断する癖をつける。</li>
-                </ul>
-            </div>
+        <div class="point-box">
+            <p style="margin:0; font-weight:bold; color:#d32f2f;">塾長アドバイス</p>
+            <p style="margin:5px 0 0; font-size:0.9em;">福島県の入試は「なぜそうなるのか」という根拠を書かせる問題が増えています。公式の暗記だけでなく、図解や記述のプロセスを大切にしましょう。</p>
         </div>
 
         <footer>
