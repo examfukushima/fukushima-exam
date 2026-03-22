@@ -2,17 +2,18 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>入試分析・対策 - 福島県高校入試対策</title>
     <style>
+        /* 基本スタイル（サイト全体で統一） */
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
         
-        header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
-        .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
+        header { background: #000; color: #fff; padding: 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
+        .menu-btn { cursor: pointer; background: none; border: none; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
-        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
+        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.2em; }
         
-        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
+        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
         .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
@@ -22,8 +23,8 @@
 
         /* アコーディオン形式の分析セクション */
         .analysis-section { margin-top: 10px; }
-        .ac-card { background: #fff; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #eee; }
-        .ac-header { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; background: #fff; outline: none; }
+        .ac-card { background: #fff; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid #ddd; }
+        .ac-header { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; outline: none; }
         .ac-header::-webkit-details-marker { display: none; }
         .ac-title { font-weight: bold; font-size: 1.05em; color: #333; }
         .ac-icon { font-size: 1.2em; transition: 0.3s; color: #999; font-family: monospace; }
@@ -33,25 +34,11 @@
         .ac-body p { margin-bottom: 15px; line-height: 1.8; }
         .ac-body strong { color: #000; border-bottom: 1px solid #ddd; }
 
-        footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
+        footer { margin-top: 60px; padding: 30px 0; border-top: 1px solid #eee; text-align: center; font-size: 0.8em; color: #888; }
     </style>
+    <script src="menu.js"></script>
 </head>
 <body>
-    <header>
-        <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-        <div class="header-title">福島県高校入試対策</div>
-        <div style="width: 28px;"></div>
-    </header>
-
-    <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
-    <nav class="nav-overlay" id="navOverlay">
-        <a href="index.html">トップページ</a>
-        <a href="taisaku.html">入試分析・対策</a>
-        <a href="kakomon.html">過去問ライブラリ</a>
-        <a href="hensachi.html">偏差値一覧</a>
-        <a href="keijiban.html">質問掲示板</a>
-    </nav>
-
     <div class="container">
         <h2 style="text-align: center; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.05em;">令和8年度 入試詳細分析</h2>
         <p style="font-size: 0.85em; color: #666; margin-bottom: 25px; text-align: center;">各教科をタップすると詳細な分析が表示されます。</p>
@@ -63,16 +50,9 @@
                     <span class="ac-icon">＋</span>
                 </summary>
                 <div class="ac-body">
-                    <p><strong>第一問：知識（漢字・故事成語）</strong><br>
-                    漢字の読み（進歩、把握等）と書き（散策、効率等）。故事成語の用法（5問）は、文脈の中で正しく使える力が問われています。</p>
-                    <p><strong>第二問：論理的文章（説明文）</strong><br>
-                    テーマは「物語と言葉、イメージの再現」。第10段落の役割（文章の転換点）を問う問題など、文章構造の俯瞰力が不可欠です。</p>
-                    <p><strong>第三問：文学的文章（小説・随筆）</strong><br>
-                    場面の移り変わりに連動した登場人物の心情変化を正確に読み取ります。</p>
-                    <p><strong>第四問：古典（古文）</strong><br>
-                    注釈を活用した内容把握。歴史的仮名遣いなどの基礎知識が必須です。</p>
-                    <p><strong>第五問：表現（作文）</strong><br>
-                    200字程度の条件付き作文。自分の意見を論理的な構成でまとめる力が試されます。</p>
+                    <p><strong>第一問：知識（漢字・故事成語）</strong><br>漢字の読み書きに加え、故事成語の用法など文脈判断力が問われます。</p>
+                    <p><strong>第二問：論理的文章</strong><br>文章構造を俯瞰し、段落ごとの役割を把握する力が不可欠です。</p>
+                    <p><strong>第五問：表現（作文）</strong><br>200字程度の条件付き作文。論理的な構成力が試されます。</p>
                 </div>
             </details>
 
@@ -82,20 +62,9 @@
                     <span class="ac-icon">＋</span>
                 </summary>
                 <div class="ac-body">
-                    <p><strong>第1問：計算・基礎小問</strong><br>
-                    正負、分数、平方根の計算。絶対値（2以下）の個数を問う定義問題が出題。</p>
-                    <p><strong>第2問：小問集合</strong><br>
-                    3桁の自然数の文字式（100a+40+b）、1次関数の変化の割合、垂直二等分線の作図など幅広い基礎力が必要。</p>
-                    <p><strong>第3問：データの活用</strong><br>
-                    箱ひげ図や中央値（メジアン）の読み取り。資料の傾向を正確に分析する力が重要です。</p>
-                    <p><strong>第4問：平面図形（証明・計量）</strong><br>
-                    円周角の性質（90度）を利用した直角三角形の合同証明。相似や面積比への発展も視野に。</p>
-                    <p><strong>第5問：方程式（文章題）</strong><br>
-                    数量関係を整理し、連立方程式や2次方程式を立てて解くプロセス重視の記述問題。</p>
-                    <p><strong>第6問：関数</strong><br>
-                    放物線と直線の交点。等積変形や面積二等分などの応用。比例定数の特定が鍵となります。</p>
-                    <p><strong>第7問：空間図形（最終問題）</strong><br>
-                    円柱・円錐・球の計量や、三平方の定理を用いた空間内の最短距離。最も難易度が高い大問です。</p>
+                    <p><strong>第4問：平面図形（証明）</strong><br>円周角や相似を利用した合同証明。論理的な記述が求められます。</p>
+                    <p><strong>第6問：関数</strong><br>放物線と直線の交点、面積二等分など、比例定数の特定が鍵です。</p>
+                    <p><strong>第7問：空間図形</strong><br>三平方の定理を用いた計量。例年、最も難易度が高い大問です。</p>
                 </div>
             </details>
 
@@ -105,14 +74,8 @@
                     <span class="ac-icon">＋</span>
                 </summary>
                 <div class="ac-body">
-                    <p><strong>第1問：リスニング（配点大）</strong><br>
-                    放送2では「AI（人工知能）」をテーマにした英文が出題。内容に合う英語1語（effective等）を正しく綴る記述力も求められています。</p>
-                    <p><strong>第2問：文法・語順整序</strong><br>
-                    対話文の穴埋めや並べ替え。基本的な文法事項（不定詞、動名詞、比較など）の定着が必須。</p>
-                    <p><strong>第3問：実用的な英文（資料読解）</strong><br>
-                    掲示板、メール、パンフレットから必要な情報を探し出す「情報検索能力」が試されます。</p>
-                    <p><strong>第4・5問：長文読解・自由英作文</strong><br>
-                    物語の展開把握と、社会的なテーマの論理読解。自分の考えを20語程度で表現する自由英作文が含まれます。</p>
+                    <p><strong>第1問：リスニング</strong><br>AIなど時事的なテーマが出題。内容を英語で記述する力も必要です。</p>
+                    <p><strong>第3問：資料読解</strong><br>メールやチラシから必要な情報を素早く探し出す力が試されます。</p>
                 </div>
             </details>
 
@@ -122,33 +85,19 @@
                     <span class="ac-icon">＋</span>
                 </summary>
                 <div class="ac-body">
-                    <p><strong>第1問：生物（植物の蒸散）</strong><br>
-                    アジサイを用いた吸水量実験。ワセリンの塗布条件から、葉の表裏や茎の蒸散量を計算する定番かつ重要な問題。</p>
-                    <p><strong>第2問：地学（地層・天体）</strong><br>
-                    柱状図の対比や地層の重なり、または天体の動きに関するデータの考察問題。</p>
-                    <p><strong>第3問：化学（物質の変化）</strong><br>
-                    化学変化と質量（比の計算）、イオン、中和反応。化学反応式を正確に書く練習が必要です。</p>
-                    <p><strong>第4問：物理（光・レンズ）</strong><br>
-                    鏡P・Qを用いた虚像の見え方（視界範囲）や光の道筋の作図が出題。</p>
-                    <p><strong>第5問：総合問題</strong><br>
-                    電流、人体、エネルギーなど、大問1〜4以外の全範囲から出題される小問集合。</p>
+                    <p><strong>第1問：生物（蒸散）</strong><br>吸水量の計算問題など、実験条件の整理が重要です。</p>
+                    <p><strong>第4問：物理（光・レンズ）</strong><br>光の道筋の作図や、像の見え方に関する考察が出題されます。</p>
                 </div>
             </details>
 
             <details class="ac-card">
                 <summary class="ac-header" style="border-left: 5px solid #f9ab00;">
-                    <span class="ac-title">【社会】資料活用と現代社会への関心</span>
+                    <span class="ac-title">【社会】資料活用と現代社会の理解</span>
                     <span class="ac-icon">＋</span>
                 </summary>
                 <div class="ac-body">
-                    <p><strong>第1問：世界地理</strong><br>
-                    州の特定。人口密度とGDPの変化（中国、インド、アメリカ等）を表から見抜く同定問題。</p>
-                    <p><strong>第2問：日本地理</strong><br>
-                    地形図の読み取り、日本の諸地域の産業や環境課題の把握力が問われます。</p>
-                    <p><strong>第3・4問：歴史（古代〜現代）</strong><br>
-                    古代から近世、近代から現代までの政治・外交・社会の流れを体系的に整理する必要があります。</p>
-                    <p><strong>第5問：公民（現代の政治）</strong><br>
-                    一票の格差（法の下の平等）、裁判員制度（刑事第一審のみ）、国会の委員会審議プロセスなど、時事的な知識が重要です。</p>
+                    <p><strong>地理・歴史</strong><br>地形図の読み取りや、時代の流れを体系的に整理する必要があります。</p>
+                    <p><strong>第5問：公民</strong><br>一票の格差や裁判員制度など、時事的な知識が重視されます。</p>
                 </div>
             </details>
         </div>
@@ -157,12 +106,5 @@
             <p>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策</p>
         </footer>
     </div>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('navOverlay').classList.toggle('active');
-            document.getElementById('menuBg').classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
