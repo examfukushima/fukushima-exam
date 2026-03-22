@@ -2,150 +2,106 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>入試シミュレーター - 福島県高校入試対策</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>シミュレーター - 福島県高校入試対策</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.6; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
+        body { font-family: sans-serif; line-height: 1.6; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
         header { background: #000; color: #fff; padding: 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
-        .menu-btn { cursor: pointer; background: none; border: none; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; }
-        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; }
-        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.1em; }
-        .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; }
-        .nav-overlay.active { left: 0; }
-        .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
-        .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
-        .menu-bg.active { display: block; }
-
+        .header-title { flex-grow: 1; text-align: center; font-weight: bold; }
+        
         .container { padding: 20px; }
-        .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        h2 { font-size: 1.2em; border-left: 5px solid #d32f2f; padding-left: 10px; margin-bottom: 20px; }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin-bottom: 30px; }
+        h2 { font-size: 1.1em; border-left: 5px solid #d32f2f; padding-left: 10px; margin-bottom: 20px; }
         
-        .input-group { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
+        /* 入力時に拡大されないようフォントサイズを16pxに固定 */
+        input[type="number"], select { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            font-size: 16px; 
+            box-sizing: border-box; 
+            margin-bottom: 15px; 
+        }
+        
+        .calc-btn { width: 100%; padding: 15px; background: #000; color: #fff; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 16px; }
+        .res-box { display: none; margin-top: 20px; padding: 15px; background: #f0f0f0; text-align: center; border: 2px solid #000; }
+        .res-val { font-size: 2em; font-weight: bold; color: #d32f2f; }
+        
         .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .input-item label { display: block; font-size: 0.85em; font-weight: bold; margin-bottom: 5px; }
-        .input-item input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        
-        .calc-btn { width: 100%; padding: 15px; background: #d32f2f; color: #fff; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
-        
-        #result-area { display: none; margin-top: 30px; text-align: center; }
-        .result-summary { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; background: #000; color: #fff; padding: 15px; border-radius: 8px; }
-        .summary-item span { display: block; font-size: 0.7em; }
-        .summary-item strong { font-size: 1.4em; }
-        
-        .chart-container { position: relative; margin: 20px auto; height: 300px; width: 300px; }
-        footer { text-align: center; font-size: 0.8em; color: #666; margin-top: 50px; padding-bottom: 20px; }
+        .chart-container { width: 100%; max-width: 300px; margin: 20px auto; }
+        footer { text-align: center; font-size: 0.8em; padding: 40px 0; }
     </style>
 </head>
 <body>
-    <header>
-        <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-        <div class="header-title">福島県高校入試対策</div>
-        <div style="width: 28px;"></div>
-    </header>
-
-    <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
-    <nav class="nav-overlay" id="navOverlay">
-        <a href="index.html">トップページ</a>
-        <a href="taisaku.html">入試分析・対策</a>
-        <a href="kakomon.html">過去問ライブラリ</a>
-        <a href="simulator.html">シミュレーター</a>
-        <a href="hensachi.html">偏差値一覧</a>
-    </nav>
+    <header><div class="header-title">福島県高校入試対策</div></header>
 
     <div class="container">
         <div class="card">
-            <h2>合格判定・チャート診断</h2>
-            
-            <div class="input-group">
-                <label style="font-size: 0.9em; font-weight: bold;">1. 内申点（135点満点）</label>
-                <input type="number" id="n-score" placeholder="例: 108" style="width: 100%; padding: 10px; margin-top:5px; border:1px solid #ccc; border-radius:5px;">
+            <h2>偏差値予想シミュレーター</h2>
+            <div class="input-grid">
+                <div><label style="font-size:12px;">国語</label><input type="number" id="s1" placeholder="0-50"></div>
+                <div><label style="font-size:12px;">数学</label><input type="number" id="s2" placeholder="0-50"></div>
+                <div><label style="font-size:12px;">英語</label><input type="number" id="s3" placeholder="0-50"></div>
+                <div><label style="font-size:12px;">理科</label><input type="number" id="s4" placeholder="0-50"></div>
+                <div><label style="font-size:12px;">社会</label><input type="number" id="s5" placeholder="0-50"></div>
             </div>
-
-            <div class="input-group">
-                <label style="font-size: 0.9em; font-weight: bold; display: block; margin-bottom: 10px;">2. 教科別得点（各50点満点）</label>
-                <div class="input-grid">
-                    <div class="input-item"><label>国語</label><input type="number" id="s-kokugo" placeholder="0-50"></div>
-                    <div class="input-item"><label>数学</label><input type="number" id="s-sugaku" placeholder="0-50"></div>
-                    <div class="input-item"><label>英語</label><input type="number" id="s-eigo" placeholder="0-50"></div>
-                    <div class="input-item"><label>理科</label><input type="number" id="s-rika" placeholder="0-50"></div>
-                    <div class="input-item"><label>社会</label><input type="number" id="s-shakai" placeholder="0-50"></div>
-                </div>
-            </div>
-
-            <button class="calc-btn" onclick="calculateAll()">総合判定・分析を実行</button>
-
-            <div id="result-area">
-                <div class="result-summary">
-                    <div class="summary-item"><span>合計点</span><strong id="total-val">0</strong></div>
-                    <div class="summary-item"><span>予想偏差値</span><strong id="deviation-val">0</strong></div>
-                    <div class="summary-item"><span>判定</span><strong id="rank-val">--</strong></div>
-                </div>
-                
-                <div class="card">
-                    <h3 style="font-size: 1em; margin-bottom: 10px;">得点バランスチャート</h3>
-                    <div class="chart-container"><canvas id="radarChart"></canvas></div>
-                    <div id="advice-text" style="font-size: 0.85em; text-align: left; padding: 10px; background: #f9f9f9; border-radius: 5px;"></div>
-                </div>
+            <button class="calc-btn" style="background:#d32f2f;" onclick="calcHensachi()">偏差値を予想する</button>
+            <div id="h-res" class="res-box">
+                予想偏差値：<span class="res-val" id="h-val">0</span>
+                <div class="chart-container"><canvas id="radarChart"></canvas></div>
             </div>
         </div>
 
-        <footer>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策</footer>
+        <div class="card">
+            <h2>内申点計算シミュレーター</h2>
+            <p style="font-size:12px; color:#666;">各学年の9教科評定合計を入力（最大45）</p>
+            <label style="font-size:12px;">中1 合計</label><input type="number" id="n1" placeholder="45">
+            <label style="font-size:12px;">中2 合計</label><input type="number" id="n2" placeholder="45">
+            <label style="font-size:12px;">中3 合計</label><input type="number" id="n3" placeholder="45">
+            <button class="calc-btn" onclick="calcNaishin()">内申点を算出する</button>
+            <div id="n-res" class="res-box">
+                内申点合計：<span class="res-val" id="n-val">0</span> / 135
+            </div>
+        </div>
+
+        <footer>&copy; 2026 全国学習塾名鑑</footer>
     </div>
 
     <script>
         let myChart = null;
-        function toggleMenu() { document.getElementById('navOverlay').classList.toggle('active'); document.getElementById('menuBg').classList.toggle('active'); }
-
-        function calculateAll() {
-            const n = parseFloat(document.getElementById('n-score').value) || 0;
+        function calcHensachi() {
             const s = [
-                parseFloat(document.getElementById('s-kokugo').value) || 0,
-                parseFloat(document.getElementById('s-sugaku').value) || 0,
-                parseFloat(document.getElementById('s-eigo').value) || 0,
-                parseFloat(document.getElementById('s-rika').value) || 0,
-                parseFloat(document.getElementById('s-shakai').value) || 0
+                parseFloat(document.getElementById('s1').value)||0,
+                parseFloat(document.getElementById('s2').value)||0,
+                parseFloat(document.getElementById('s3').value)||0,
+                parseFloat(document.getElementById('s4').value)||0,
+                parseFloat(document.getElementById('s5').value)||0
             ];
-            const total = s.reduce((a, b) => a + b, 0);
-            const deviation = ((total - 125) / 5) + 50; // 簡易換算
-            const judgeScore = (n * 0.6) + (deviation * 2.5);
-
-            document.getElementById('total-val').innerText = total;
-            document.getElementById('deviation-val').innerText = deviation.toFixed(1);
+            const total = s.reduce((a,b)=>a+b,0);
+            const h = ((total - 125) / 5) + 50; 
+            document.getElementById('h-val').innerText = h.toFixed(1);
+            document.getElementById('h-res').style.display = 'block';
             
-            let rank = judgeScore >= 200 ? "A" : judgeScore >= 180 ? "B" : judgeScore >= 160 ? "C" : "D";
-            document.getElementById('rank-val').innerText = rank;
-            document.getElementById('result-area').style.display = 'block';
-
-            updateChart(s);
-            
-            // 簡単なアドバイス生成
-            const minScore = Math.min(...s);
-            const subjects = ['国語', '数学', '英語', '理科', '社会'];
-            const weakSubject = subjects[s.indexOf(minScore)];
-            document.getElementById('advice-text').innerText = `【分析】${weakSubject}の伸び代が大きいです。基礎を固めて合計点を底上げしましょう。`;
-        }
-
-        function updateChart(s) {
             const ctx = document.getElementById('radarChart').getContext('2d');
-            if (myChart) { myChart.destroy(); }
+            if(myChart) myChart.destroy();
             myChart = new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['国語', '数学', '英語', '理科', '社会'],
-                    datasets: [{
-                        data: s,
-                        backgroundColor: 'rgba(211, 47, 47, 0.2)',
-                        borderColor: '#d32f2f',
-                        borderWidth: 2,
-                        pointBackgroundColor: '#d32f2f'
-                    }]
+                    labels: ['国','数','英','理','社'],
+                    datasets: [{ data: s, backgroundColor: 'rgba(211,47,47,0.2)', borderColor: '#d32f2f', borderWidth: 2 }]
                 },
-                options: {
-                    scales: { r: { min: 0, max: 50, ticks: { display: false } } },
-                    plugins: { legend: { display: false } }
-                }
+                options: { scales: { r: { min: 0, max: 50, ticks: { display: false } } }, plugins: { legend: { display: false } } }
             });
+        }
+
+        function calcNaishin() {
+            const v1 = parseFloat(document.getElementById('n1').value)||0;
+            const v2 = parseFloat(document.getElementById('n2').value)||0;
+            const v3 = parseFloat(document.getElementById('n3').value)||0;
+            document.getElementById('n-val').innerText = v1 + v2 + v3;
+            document.getElementById('n-res').style.display = 'block';
         }
     </script>
 </body>
