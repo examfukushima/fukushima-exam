@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>福島県立高校入試対策</title>
+    <title>福島県高校入試対策</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
         
-        /* 他のページと共通のヘッダーデザイン */
         header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
         .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
         
-        /* サイドメニュー */
         .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
@@ -82,8 +81,13 @@
                 
                 <div id="resultDevArea" class="result-area" style="border-color: #1a73e8; background-color: #f0f7ff;">
                     <div id="resTotal" style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;"></div>
-                    <div id="resDev" style="font-size: 1.4em; font-weight: bold; color: #d32f2f;"></div>
-                    <a href="taisaku.html" style="display: inline-block; margin-top: 10px; font-size: 0.8em; color: #1a73e8;">→ 入試分析・平均点データを見る</a>
+                    <div id="resDev" style="font-size: 1.4em; font-weight: bold; color: #d32f2f; margin-bottom: 15px;"></div>
+                    
+                    <div style="max-width: 300px; margin: 0 auto; background: #fff; border-radius: 8px; padding: 10px;">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+
+                    <a href="taisaku.html" style="display: inline-block; margin-top: 15px; font-size: 0.8em; color: #1a73e8;">→ 入試分析・平均点データを見る</a>
                 </div>
             </div>
         </div>
@@ -109,47 +113,85 @@
         </div>
 
         <footer>
-            <p>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策室</p>
+            <p>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策</p>
         </footer>
     </div>
 
     <script>
+        // サイドメニュー開閉
         function toggleMenu() {
             document.getElementById('navOverlay').classList.toggle('active');
             document.getElementById('menuBg').classList.toggle('active');
         }
 
+        let myRadarChart = null;
+
+        // 偏差値計算とグラフ表示
         function calculateDev() {
-            const s = [
+            const scores = [
                 parseFloat(document.getElementById('score_kokugo').value) || 0,
                 parseFloat(document.getElementById('score_sugaku').value) || 0,
                 parseFloat(document.getElementById('score_eigo').value) || 0,
                 parseFloat(document.getElementById('score_rika').value) || 0,
                 parseFloat(document.getElementById('score_shakai').value) || 0
             ];
-            const total = s.reduce((a, b) => a + b, 0);
+            const total = scores.reduce((a, b) => a + b, 0);
             const dev = Math.round(((total - 128) / 40 * 10 + 50) * 10) / 10;
             
-            document.getElementById('resultDevArea').style.display = 'block';
+            const resultArea = document.getElementById('resultDevArea');
+            resultArea.style.display = 'block';
             document.getElementById('resTotal').innerText = "5教科合計: " + total + " 点";
             document.getElementById('resDev').innerText = "予想偏差値: " + dev;
-            document.getElementById('resultDevArea').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Chart.js 描画
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            if (myRadarChart) { myRadarChart.destroy(); }
+            myRadarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['国語', '数学', '英語', '理科', '社会'],
+                    datasets: [{
+                        label: '得点分布',
+                        data: scores,
+                        backgroundColor: 'rgba(26, 115, 232, 0.2)',
+                        borderColor: 'rgba(26, 115, 232, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(26, 115, 232, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 50,
+                            ticks: { display: false, stepSize: 10 },
+                            pointLabels: { font: { size: 12, weight: 'bold' } }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         function clearDev() {
             ['score_kokugo','score_sugaku','score_eigo','score_rika','score_shakai'].forEach(id => document.getElementById(id).value = "");
             document.getElementById('resultDevArea').style.display = 'none';
+            if (myRadarChart) { myRadarChart.destroy(); myRadarChart = null; }
         }
 
+        // 内申点計算
         function calculateNaishin() {
             const n1 = parseFloat(document.getElementById('naishin_1').value) || 0;
             const n2 = parseFloat(document.getElementById('naishin_2').value) || 0;
             const n3 = parseFloat(document.getElementById('naishin_3').value) || 0;
             const total = n1 + n2 + n3;
             
-            document.getElementById('resultNaishinArea').style.display = 'block';
+            const resultArea = document.getElementById('resultNaishinArea');
+            resultArea.style.display = 'block';
             document.getElementById('resNaishinTotal').innerText = total + " / 135";
-            document.getElementById('resultNaishinArea').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            resultArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         function clearNaishin() {
