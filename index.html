@@ -6,114 +6,64 @@
     <title>福島県高校入試対策サイト</title>
     <style>
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fff; }
-        
-        /* ヘッダー固定設定 */
         header { background: #000; color: #fff; padding: 12px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 30px; }
-        
-        /* 左端：メニューボタン */
         .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 24px; height: 18px; flex-shrink: 0; }
         .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
-
-        /* 中央：サイト名 */
         .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 0.95em; letter-spacing: 0.05em; }
-
-        /* 左から半分出るサイドメニュー */
         .nav-overlay { position: fixed; top: 0; left: -100%; width: 60%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
-        .nav-overlay a:hover { background: #333; }
-        
-        /* メニュー背景の暗幕 */
         .menu-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 1500; }
         .menu-bg.active { display: block; }
-
         .container { padding: 25px 20px; }
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.3em; margin-bottom: 30px; }
         h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 40px; font-size: 1.1em; background: #f4f4f4; padding: 8px 10px; }
-        
-        .table-container { overflow-x: auto; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; border: 2px solid #000; }
-        th, td { border: 1px solid #000; padding: 10px 5px; text-align: center; font-size: 0.85em; }
-        th { background-color: #000; color: #fff; }
-        .download-link { color: #000; text-decoration: none; font-weight: bold; display: inline-block; padding: 4px 8px; border: 1px solid #000; font-size: 0.9em; margin: 2px; }
-
         .analysis-container { margin-top: 20px; border: 1px solid #000; padding: 15px; background: #fdfdfd; }
         .subject-block { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
         .subject-header { display: flex; align-items: center; margin-bottom: 8px; }
         .subject-name { background: #000; color: #fff; padding: 2px 10px; font-weight: bold; margin-right: 10px; font-size: 0.9em; }
-        .diff-label { font-size: 0.75em; padding: 1px 4px; border: 1px solid #000; margin-left: 5px; }
-
         .box { border: 2px solid #000; padding: 25px; margin: 40px 0; background: #fff; }
         .input-group { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
         .input-group input { width: 70px; padding: 8px; border: 1px solid #000; text-align: center; }
         button { padding: 15px; background: #000; color: #fff; border: none; width: 100%; font-weight: bold; cursor: pointer; }
         .result { font-weight: bold; text-align: center; border: 2px solid #000; padding: 15px; margin-top: 20px; background: #f9f9f9; }
-        
-        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.75em; color: #666; }
+        footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.75em; }
     </style>
 </head>
 <body>
-
     <header>
-        <button class="menu-btn" onclick="toggleMenu()" aria-label="メニュー">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
         <div class="header-title">福島県高校入試対策</div>
-        <div style="width: 24px;"></div> </header>
-
+        <div style="width: 24px;"></div>
+    </header>
     <div class="menu-bg" id="menuBg" onclick="toggleMenu()"></div>
-
     <nav class="nav-overlay" id="navOverlay">
-        <a href="index.html" onclick="toggleMenu()">トップ・過去問</a>
+        <a href="index.html" onclick="toggleMenu()">トップ・入試分析</a>
+        <a href="kakomon.html" onclick="toggleMenu()">過去問ライブラリ</a>
         <a href="hensachi.html" onclick="toggleMenu()">偏差値一覧</a>
     </nav>
-
     <div class="container">
-        <h1>2026年度 入試分析・過去問</h1>
-        
-        <h2 id="kakomon">過去問ライブラリ</h2>
-        <div class="table-container">
-            <table>
-                <thead><tr><th>年度</th><th>国語</th><th>数学</th><th>英語</th><th>理科</th><th>社会</th></tr></thead>
-                <tbody>
-                    <tr>
-                        <td><strong>2026</strong></td>
-                        <td><a href="mondai-kokugo2026.pdf" class="download-link">問</a><a href="kaito-kokugo2026.pdf" class="download-link">解</a></td>
-                        <td><a href="mondai-sugaku2026.pdf" class="download-link">問</a><a href="kaito-sugaku2026.pdf" class="download-link">解</a></td>
-                        <td><a href="mondai-eigo2026.pdf" class="download-link">問</a><a href="kaito-eigo2026.pdf" class="download-link">解</a></td>
-                        <td><a href="mondai-rika2026.pdf" class="download-link">問</a><a href="kaito-rika2026.pdf" class="download-link">解</a></td>
-                        <td><a href="mondai-shakai2026.pdf" class="download-link">問</a><a href="kaito-shakai2026.pdf" class="download-link">解</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h2 id="analysis">出題分析（ピックアップ）</h2>
+        <h1>2026年度 入試傾向と対策</h1>
         <div class="analysis-container">
             <div class="subject-block">
-                <div class="subject-header"><span class="subject-name">数学</span><strong>大問3：確率・規則性</strong><span class="diff-label">標準〜難</span></div>
-                <p style="font-size: 0.85em; margin: 5px 0;">文字(n)を用いた論理的な記述力が試されます。部分点を確実に狙う練習を。</p>
+                <div class="subject-header"><span class="subject-name">数学</span><strong>関数と図形の融合</strong></div>
+                <p style="font-size: 0.85em;">2次関数と図形証明の完答が上位校合格の鍵となります。早めの記述対策を。</p>
             </div>
             <div class="subject-block" style="border:none; margin-bottom:0;">
-                <div class="subject-header"><span class="subject-name">英語</span><strong>リスニング</strong><span class="diff-label">標準</span></div>
-                <p style="font-size: 0.85em; margin: 5px 0;">AI等の現代的トピックが出題。放送前の設問確認が勝敗を分けます。</p>
+                <div class="subject-header"><span class="subject-name">国語</span><strong>記述・論理読解</strong></div>
+                <p style="font-size: 0.85em;">古典や詩の鑑賞など、文章から意図を正確に抽出する力が問われています。</p>
             </div>
         </div>
-
-        <h2 id="sim">内申点シミュレーター</h2>
+        <h2>内申点シミュレーター</h2>
         <div class="box">
-            <div class="input-group"><label>1年評定(45点満点)</label><input type="number" id="y1"></div>
-            <div class="input-group"><label>2年評定(45点満点)</label><input type="number" id="y2"></div>
-            <div class="input-group"><label>3年評定(45点満点)</label><input type="number" id="y3"></div>
-            <button onclick="calculate()">内申点を算出する</button>
-            <div id="res" class="result">ここに結果が表示されます</div>
+            <div class="input-group"><label>1年評定</label><input type="number" id="y1"></div>
+            <div class="input-group"><label>2年評定</label><input type="number" id="y2"></div>
+            <div class="input-group"><label>3年評定</label><input type="number" id="y3"></div>
+            <button onclick="calculate()">内申合計を算出</button>
+            <div id="res" class="result">結果はこちら</div>
         </div>
-
-        <footer>
-            <p>&copy; 2026 全国学習塾名鑑</p>
-        </footer>
+        <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
     </div>
-
     <script>
         function toggleMenu() {
             document.getElementById('navOverlay').classList.toggle('active');
@@ -124,8 +74,7 @@
             const v2 = document.getElementById('y2').value;
             const v3 = document.getElementById('y3').value;
             if(!v1 || !v2 || !v3) return;
-            const total = parseInt(v1) + parseInt(v2) + parseInt(v3);
-            document.getElementById('res').innerHTML = "あなたの内申合計: " + total + " / 135";
+            document.getElementById('res').innerHTML = "内申合計: " + (parseInt(v1) + parseInt(v2) + parseInt(v3)) + " / 135";
         }
     </script>
 </body>
