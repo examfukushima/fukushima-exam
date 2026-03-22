@@ -10,25 +10,25 @@
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
         h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 40px; font-size: 1.1em; background: #f4f4f4; padding: 5px 10px; }
         
-        /* シミュレーター */
-        .box { border: 1px solid #000; padding: 25px; margin: 20px 0; background-color: #fff; }
-        .input-group { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
-        .input-group label { font-weight: bold; flex: 1; }
-        .input-group input { width: 80px; padding: 10px; border: 1px solid #000; text-align: center; font-size: 1.1em; }
-        button { margin-top: 10px; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1em; }
-        .result { font-weight: bold; font-size: 1.3em; margin-top: 20px; color: #000; text-align: center; border: 2px solid #000; padding: 15px; background-color: #f9f9f9; }
-        
         /* 偏差値一覧表 */
         .table-container { overflow-x: auto; margin-top: 20px; }
         table { width: 100%; border-collapse: collapse; border: 2px solid #000; }
-        th, td { border: 1px solid #000; padding: 12px 8px; text-align: center; font-size: 0.9em; }
+        th, td { border: 1px solid #000; padding: 12px 8px; text-align: center; font-size: 0.85em; }
         th { background-color: #000; color: #fff; }
         tr:nth-child(even) { background-color: #f9f9f9; }
-        
-        /* リンクの装飾（モノクロに合わせる） */
         td a { color: #000; text-decoration: underline; font-weight: bold; }
-        td a:hover { background-color: #eee; }
+        
+        /* シミュレーター */
+        .box { border: 1px solid #000; padding: 25px; margin: 30px 0; background-color: #fff; }
+        .input-group { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
+        .input-group label { font-weight: bold; flex: 1; }
+        .input-group input { width: 80px; padding: 10px; border: 1px solid #000; text-align: center; font-size: 1.1em; }
+        /* 入力し忘れ防止のプレースホルダー色 */
+        input::placeholder { color: #ccc; font-size: 0.8em; }
 
+        button { margin-top: 10px; padding: 15px; background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1em; }
+        .result { font-weight: bold; font-size: 1.3em; margin-top: 20px; color: #000; text-align: center; border: 2px solid #000; padding: 15px; background-color: #f9f9f9; }
+        
         footer { margin-top: 60px; padding: 20px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #000; }
     </style>
 </head>
@@ -36,60 +36,56 @@
 
     <h1>福島県高校入試対策サイト</h1>
 
-    <div class="box">
-        <h3 style="text-align: center; margin-top: 0;">内申点シミュレーター</h3>
-        <div class="input-group"><label for="y1">中学1年 合計</label><input type="number" id="y1" min="9" max="45" value="45"></div>
-        <div class="input-group"><label for="y2">中学2年 合計</label><input type="number" id="y2" min="9" max="45" value="45"></div>
-        <div class="input-group"><label for="y3">中学3年 合計</label><input type="number" id="y3" min="9" max="45" value="45"></div>
-        <button onclick="calculate()">内申点を算出する</button>
-        <div id="res" class="result">ここに結果が表示されます</div>
-    </div>
-
-    <h2>主要校 偏差値・目標点一覧（県中エリア）</h2>
+    <h2>県中地区 公立高校普通科一覧</h2>
     <div class="table-container">
         <table>
             <thead>
                 <tr>
-                    <th>高校名（公式HPへ）</th>
+                    <th>高校名（公式HP）</th>
+                    <th>学科</th>
                     <th>偏差値</th>
                     <th>目標点</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a href="https://asaka-h.fcs.ed.jp/" target="_blank">安積</a></td>
-                    <td>66-68</td>
-                    <td>215点</td>
-                </tr>
-                <tr>
-                    <td><a href="https://asakareimei-h.fcs.ed.jp/" target="_blank">安積黎明</a></td>
-                    <td>63-65</td>
-                    <td>195点</td>
-                </tr>
-                <tr>
-                    <td><a href="https://koriyama-h.fcs.ed.jp/" target="_blank">郡山</a></td>
-                    <td>60-62</td>
-                    <td>180点</td>
-                </tr>
-                <tr>
-                    <td><a href="https://koriyamahigashi-h.fcs.ed.jp/" target="_blank">郡山東</a></td>
-                    <td>58-60</td>
-                    <td>170点</td>
-                </tr>
-                <tr>
-                    <td><a href="https://sukagawatoyo-h.fcs.ed.jp/" target="_blank">須賀川桐陽</a></td>
-                    <td>54-56</td>
-                    <td>155点</td>
-                </tr>
-                <tr>
-                    <td><a href="https://koriyama-ch.fcs.ed.jp/" target="_blank">郡山商業</a></td>
-                    <td>52-54</td>
-                    <td>145点</td>
-                </tr>
+                <tr><td><a href="https://asaka-h.fcs.ed.jp/" target="_blank">安積</a></td><td>普通</td><td>67</td><td>215</td></tr>
+                <tr><td><a href="https://asakareimei-h.fcs.ed.jp/" target="_blank">安積黎明</a></td><td>普通</td><td>64</td><td>195</td></tr>
+                <tr><td><a href="https://koriyama-h.fcs.ed.jp/" target="_blank">郡山</a></td><td>普通</td><td>61</td><td>180</td></tr>
+                <tr><td><a href="https://koriyamahigashi-h.fcs.ed.jp/" target="_blank">郡山東</a></td><td>普通</td><td>59</td><td>170</td></tr>
+                <tr><td><a href="https://sukagawatoyo-h.fcs.ed.jp/" target="_blank">須賀川桐陽</a></td><td>普通</td><td>55</td><td>155</td></tr>
+                <tr><td><a href="https://koriyamakita-h.fcs.ed.jp/" target="_blank">郡山北工業</a></td><td>普通</td><td>51</td><td>140</td></tr>
+                <tr><td><a href="https://sukagawa-h.fcs.ed.jp/" target="_blank">須賀川創英館</a></td><td>普通</td><td>50</td><td>135</td></tr>
+                <tr><td><a href="https://asakagaka-h.fcs.ed.jp/" target="_blank">あさか開成</a></td><td>普通</td><td>49</td><td>130</td></tr>
+                <tr><td><a href="https://tamura-h.fcs.ed.jp/" target="_blank">田村</a></td><td>普通</td><td>47</td><td>120</td></tr>
+                <tr><td><a href="https://konan-h.fcs.ed.jp/" target="_blank">湖南</a></td><td>普通</td><td>38</td><td>75</td></tr>
+                <tr><td><a href="https://miharu-h.fcs.ed.jp/" target="_blank">船引</a></td><td>普通</td><td>37</td><td>70</td></tr>
+                <tr><td><a href="https://ononmachi-h.fcs.ed.jp/" target="_blank">小野</a></td><td>普通</td><td>36</td><td>65</td></tr>
             </tbody>
         </table>
     </div>
-    <p style="font-size: 0.8em; margin-top: 10px;">※高校名をクリックすると各校の公式HPが開きます。</p>
+    <p style="font-size: 0.75em; margin-top: 10px;">※偏差値は新教研テストのB判定基準、目標点は250点満点換算の目安です。</p>
+
+    <div class="box">
+        <h3 style="text-align: center; margin-top: 0;">内申点シミュレーター</h3>
+        <p style="font-size: 0.8em; margin-bottom: 20px; text-align: center;">9教科合計（45点満点）を入力してください。</p>
+        
+        <div class="input-group">
+            <label>中学1年</label>
+            <input type="number" id="y1" min="9" max="45" placeholder="例: 45">
+        </div>
+        <div class="input-group">
+            <label>中学2年</label>
+            <input type="number" id="y2" min="9" max="45" placeholder="例: 45">
+        </div>
+        <div class="input-group">
+            <label>中学3年</label>
+            <input type="number" id="y3" min="9" max="45" placeholder="例: 45">
+        </div>
+        
+        <button onclick="calculate()">内申点を算出する</button>
+        
+        <div id="res" class="result">ここに結果が表示されます</div>
+    </div>
 
     <footer>
         <p>&copy; 2026 全国学習塾名鑑</p>
@@ -97,10 +93,16 @@
 
     <script>
         function calculate() {
-            const y1 = parseInt(document.getElementById('y1').value) || 0;
-            const y2 = parseInt(document.getElementById('y2').value) || 0;
-            const y3 = parseInt(document.getElementById('y3').value) || 0;
-            const total = y1 + y2 + y3;
+            const v1 = document.getElementById('y1').value;
+            const v2 = document.getElementById('y2').value;
+            const v3 = document.getElementById('y3').value;
+
+            if (v1 === "" || v2 === "" || v3 === "") {
+                alert("すべての学年の数値を入力してください。");
+                return;
+            }
+
+            const total = parseInt(v1) + parseInt(v2) + parseInt(v3);
             document.getElementById('res').innerHTML = "あなたの内申点合計<br>" + total + " / 135点";
         }
     </script>
