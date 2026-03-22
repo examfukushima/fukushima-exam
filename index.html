@@ -60,6 +60,79 @@
             <button onclick="calculate()">内申合計を算出</button>
             <div id="res" class="result">結果はこちら</div>
         </div>
+                <div style="margin: 40px 0; border: 2px solid #1a73e8; border-radius: 12px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <div style="background: #1a73e8; color: #fff; padding: 12px; text-align: center; font-weight: bold;">
+                合格可能性判定シミュレーター
+            </div>
+            
+            <div style="padding: 20px;">
+                <p style="font-size: 0.85em; color: #666; margin-bottom: 20px; text-align: center;">
+                    内申点と当日点から、志望校への目安を判定します。
+                </p>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="font-size: 0.85em; font-weight: bold; color: #333;">① 内申点 (195点満点):</label>
+                    <input type="number" id="naishin_top" placeholder="例: 150" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 0.85em; font-weight: bold; color: #333;">② 当日予想点 (250点満点):</label>
+                    <input type="number" id="toujitsu_top" placeholder="例: 160" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px;">
+                </div>
+                
+                <button onclick="calculateRankTop()" style="width: 100%; background: #1a73e8; color: #fff; border: none; padding: 14px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1em; transition: 0.2s;">
+                    判定を実行する
+                </button>
+                
+                <div id="resultAreaTop" style="margin-top: 20px; display: none; padding: 15px; border-radius: 8px; text-align: center; border: 1px dashed #1a73e8;">
+                    <div id="resultDevTop" style="font-size: 1.1em; font-weight: bold; margin-bottom: 8px;"></div>
+                    <div id="resultMsgTop" style="font-size: 0.9em; line-height: 1.5; color: #333;"></div>
+                    <a href="taisaku.html" style="display: inline-block; margin-top: 15px; font-size: 0.85em; color: #1a73e8; font-weight: bold; text-decoration: none;">
+                        → 詳しい入試分析・対策を見る
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function calculateRankTop() {
+                const n = parseFloat(document.getElementById('naishin_top').value);
+                const t = parseFloat(document.getElementById('toujitsu_top').value);
+                const resArea = document.getElementById('resultAreaTop');
+                const resDev = document.getElementById('resultDevTop');
+                const resMsg = document.getElementById('resultMsgTop');
+                
+                if (isNaN(n) || isNaN(t)) {
+                    alert("数値を入力してください");
+                    return;
+                }
+
+                // 簡易偏差値計算（当日点ベース）
+                const deviation = Math.round(((t - 128) / 40 * 10 + 50) * 10) / 10;
+                
+                resArea.style.display = 'block';
+                resArea.style.backgroundColor = '#f0f7ff';
+                resDev.innerHTML = "予想偏差値: <span style='font-size: 1.4em; color: #d32f2f;'>" + deviation + "</span>";
+                
+                let msg = "";
+                if (deviation >= 65) {
+                    msg = "【安積・福島】合格圏内。圧倒的な実力です！";
+                } else if (deviation >= 60) {
+                    msg = "【安積黎明・橘・郡山・磐城】合格のチャンス大。";
+                } else if (deviation >= 55) {
+                    msg = "【郡山東・須賀川桐陽・会津学鳳】手堅い実力です。";
+                } else if (deviation >= 50) {
+                    msg = "【福島西・白河旭・いわき光洋】平均以上の力があります。";
+                } else {
+                    msg = "まずは基礎の徹底を。伸びしろは十分にあります！";
+                }
+                resMsg.innerText = msg;
+                
+                // 判定後に結果位置までスムーズにスクロール
+                resArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        </script>
+
         <footer><p>&copy; 2026 全国学習塾名鑑</p></footer>
     </div>
     <script>
