@@ -8,6 +8,7 @@
         body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.8; color: #000; max-width: 650px; margin: 0 auto; padding: 20px; background-color: #fff; }
         h1 { border-bottom: 3px solid #000; padding-bottom: 10px; text-align: center; font-size: 1.4em; margin-bottom: 30px; }
         h2 { border-left: 5px solid #000; padding-left: 10px; margin-top: 40px; font-size: 1.1em; background: #f4f4f4; padding: 5px 10px; }
+        h3 { font-size: 1em; border-bottom: 1px solid #000; display: inline-block; margin-top: 20px; }
         
         .table-container { overflow-x: auto; margin-top: 20px; }
         table { width: 100%; border-collapse: collapse; border: 2px solid #000; margin-bottom: 10px; }
@@ -15,14 +16,14 @@
         th { background-color: #000; color: #fff; }
         tr:nth-child(even) { background-color: #f9f9f9; }
         
-        /* リンクボタンのスタイル */
         .download-link { color: #000; text-decoration: none; font-weight: bold; display: inline-block; padding: 4px 8px; margin: 2px; border: 1px solid #000; font-size: 0.9em; }
         .download-link:hover { background-color: #eee; }
         .q-tag { color: #d32f2f; }
         .a-tag { color: #1976d2; }
 
-        /* 高校名リンク */
-        td a.school-link { color: #000; text-decoration: underline; font-weight: bold; }
+        .analysis-box { font-size: 0.9em; padding: 15px; border: 1px double #000; margin-top: 10px; }
+        .analysis-item { margin-bottom: 15px; }
+        .analysis-item strong { display: block; border-bottom: 1px dotted #ccc; margin-bottom: 5px; }
 
         .box { border: 1px solid #000; padding: 25px; margin: 30px 0; background-color: #fff; }
         .input-group { margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
@@ -79,6 +80,30 @@
         </table>
     </div>
 
+    <h2>2026年度 出題分析と対策</h2>
+    <div class="analysis-box">
+        <div class="analysis-item">
+            <strong>【国語】記述量の増加と論理的読解</strong>
+            文学的文章では心情の変化を多角的に捉える問題が目立つ。論理的文章では、筆者の主張を制限字数内で的確にまとめる力が必要。
+        </div>
+        <div class="analysis-item">
+            <strong>【数学】思考力を問う融合問題</strong>
+            関数と図形の融合問題が勝負の分かれ目。基礎的な計算力は大前提として、初見の問題に対して「既知の解法」をどう組み合わせるかが鍵。
+        </div>
+        <div class="analysis-item">
+            <strong>【英語】リスニングと英作文の比重</strong>
+            リスニングの配点が高く、正確な聞き取り能力が不可欠。条件英作文では、自分の意見を簡潔かつ正しい文法で伝える練習が必須。
+        </div>
+        <div class="analysis-item">
+            <strong>【理科】実験データからの考察</strong>
+            単純な用語暗記では対応できない、実験結果のグラフや表を読み取る問題が中心。記述問題では「なぜその結果になるか」のプロセスを問われる。
+        </div>
+        <div class="analysis-item">
+            <strong>【社会】資料読解と多角的視点</strong>
+            歴史・地理ともに複数の資料を比較・分析させる問題が頻出。公民分野では時事的な内容を含めた現代社会の課題についての理解が求められる。
+        </div>
+    </div>
+
     <h2>県中地区 公立高校普通科 偏差値一覧</h2>
     <div class="table-container">
         <table>
@@ -90,21 +115,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td><a href="https://asaka-h.fcs.ed.jp/" target="_blank" class="school-link">安積</a></td><td>67</td><td>215点</td></tr>
-                <tr><td><a href="https://asakareimei-h.fcs.ed.jp/" target="_blank" class="school-link">安積黎明</a></td><td>64</td><td>195点</td></tr>
-                <tr><td><a href="https://koriyama-h.fcs.ed.jp/" target="_blank" class="school-link">郡山</a></td><td>61</td><td>180点</td></tr>
-                <tr><td><a href="https://koriyamahigashi-h.fcs.ed.jp/" target="_blank" class="school-link">郡山東</a></td><td>59</td><td>170点</td></tr>
-                <tr><td><a href="https://sukagawatoyo-h.fcs.ed.jp/" target="_blank" class="school-link">須賀川桐陽</a></td><td>55</td><td>155点</td></tr>
-                <tr><td><a href="https://sukagawa-h.fcs.ed.jp/" target="_blank" class="school-link">須賀川創英館</a></td><td>50</td><td>135点</td></tr>
-                <tr><td><a href="https://asakagaka-h.fcs.ed.jp/" target="_blank" class="school-link">あさか開成</a></td><td>49</td><td>130点</td></tr>
-                <tr><td><a href="https://tamura-h.fcs.ed.jp/" target="_blank" class="school-link">田村</a></td><td>47</td><td>120点</td></tr>
-                <tr><td><a href="https://miharu-h.fcs.ed.jp/" target="_blank" class="school-link">船引</a></td><td>37</td><td>70点</td></tr>
+                <tr><td><a href="https://asaka-h.fcs.ed.jp/" target="_blank">安積</a></td><td>67</td><td>215点</td></tr>
+                <tr><td><a href="https://asakareimei-h.fcs.ed.jp/" target="_blank">安積黎明</a></td><td>64</td><td>195点</td></tr>
+                <tr><td><a href="https://koriyama-h.fcs.ed.jp/" target="_blank">郡山</a></td><td>61</td><td>180点</td></tr>
+                <tr><td><a href="https://koriyamahigashi-h.fcs.ed.jp/" target="_blank">郡山東</a></td><td>59</td><td>170点</td></tr>
+                <tr><td><a href="https://sukagawatoyo-h.fcs.ed.jp/" target="_blank">須賀川桐陽</a></td><td>55</td><td>155点</td></tr>
+                <tr><td><a href="https://sukagawa-h.fcs.ed.jp/" target="_blank">須賀川創英館</a></td><td>50</td><td>135点</td></tr>
             </tbody>
         </table>
     </div>
 
     <div class="box">
-        <h3 style="text-align: center; margin-top: 0;">内申点シミュレーター</h3>
+        <h3 style="text-align: center; border: none;">内申点シミュレーター</h3>
         <div class="input-group"><label>中学1年</label><input type="number" id="y1" min="9" max="45" placeholder="例: 45"></div>
         <div class="input-group"><label>中学2年</label><input type="number" id="y2" min="9" max="45" placeholder="例: 45"></div>
         <div class="input-group"><label>中学3年</label><input type="number" id="y3" min="9" max="45" placeholder="例: 45"></div>
