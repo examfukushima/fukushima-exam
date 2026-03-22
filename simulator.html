@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>合格判定シミュレーター - 福島県高校入試対策</title>
+    <title>入試シミュレーター - 福島県高校入試対策</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.7; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
-        header { background: #000; color: #fff; padding: 15px 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
-        .menu-btn { cursor: pointer; background: none; border: none; padding: 0; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; flex-shrink: 0; }
-        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; transition: 0.3s; }
-        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.25em; letter-spacing: 0.08em; white-space: nowrap; }
-        
+        body { font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.6; color: #000; max-width: 700px; margin: 0 auto; padding: 0; background-color: #fcfcfc; }
+        header { background: #000; color: #fff; padding: 15px; display: flex; align-items: center; position: sticky; top: 0; z-index: 1000; height: 45px; }
+        .menu-btn { cursor: pointer; background: none; border: none; display: flex; flex-direction: column; justify-content: space-around; width: 28px; height: 20px; }
+        .menu-btn span { display: block; width: 100%; height: 2px; background: #fff; }
+        .header-title { flex-grow: 1; text-align: center; font-weight: bold; font-size: 1.1em; }
         .nav-overlay { position: fixed; top: 0; left: -100%; width: 70%; height: 100%; background: #1a1a1a; transition: 0.4s; z-index: 2000; display: flex; flex-direction: column; padding-top: 60px; }
         .nav-overlay.active { left: 0; }
         .nav-overlay a { color: #fff; text-decoration: none; font-size: 1.1em; padding: 20px 30px; border-bottom: 1px solid #333; font-weight: bold; }
@@ -18,18 +18,23 @@
         .menu-bg.active { display: block; }
 
         .container { padding: 20px; }
-        .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 20px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        h2 { font-size: 1.2em; border-left: 5px solid #d32f2f; padding-left: 10px; margin-bottom: 20px; }
         
-        h2 { font-size: 1.3em; border-left: 5px solid #000; padding-left: 10px; margin-bottom: 20px; }
-        label { display: block; font-weight: bold; font-size: 0.9em; margin-bottom: 8px; }
-        input { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; font-size: 1em; box-sizing: border-box; }
+        .input-group { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
+        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .input-item label { display: block; font-size: 0.85em; font-weight: bold; margin-bottom: 5px; }
+        .input-item input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
         
-        .calc-btn { width: 100%; padding: 18px; background: #d32f2f; color: #fff; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
-        #result-display { display: none; margin-top: 30px; padding: 20px; background: #f0f0f0; border-radius: 8px; text-align: center; border: 2px solid #000; }
-        .rank-badge { font-size: 3.5em; font-weight: bold; color: #d32f2f; line-height: 1; margin-bottom: 10px; }
-        .advice-text { font-size: 0.9em; text-align: left; background: #fff; padding: 15px; border-radius: 5px; margin-top: 15px; border: 1px dashed #aaa; }
-
-        footer { margin-top: 40px; padding: 30px 0; border-top: 1px solid #000; text-align: center; font-size: 0.8em; color: #666; }
+        .calc-btn { width: 100%; padding: 15px; background: #d32f2f; color: #fff; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
+        
+        #result-area { display: none; margin-top: 30px; text-align: center; }
+        .result-summary { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 20px; background: #000; color: #fff; padding: 15px; border-radius: 8px; }
+        .summary-item span { display: block; font-size: 0.7em; }
+        .summary-item strong { font-size: 1.4em; }
+        
+        .chart-container { position: relative; margin: 20px auto; height: 300px; width: 300px; }
+        footer { text-align: center; font-size: 0.8em; color: #666; margin-top: 50px; padding-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -44,56 +49,103 @@
         <a href="index.html">トップページ</a>
         <a href="taisaku.html">入試分析・対策</a>
         <a href="kakomon.html">過去問ライブラリ</a>
-        <a href="simulator.html">合格判定シミュレーター</a>
+        <a href="simulator.html">シミュレーター</a>
         <a href="hensachi.html">偏差値一覧</a>
     </nav>
 
     <div class="container">
         <div class="card">
-            <h2>合格判定シミュレーター</h2>
-            <p style="font-size: 0.85em; color: #666; margin-bottom: 25px;">調査書点（135点満点）と偏差値を基に判定します。</p>
+            <h2>合格判定・チャート診断</h2>
+            
+            <div class="input-group">
+                <label style="font-size: 0.9em; font-weight: bold;">1. 内申点（135点満点）</label>
+                <input type="number" id="n-score" placeholder="例: 108" style="width: 100%; padding: 10px; margin-top:5px; border:1px solid #ccc; border-radius:5px;">
+            </div>
 
-            <label>1. 内申点（中1〜中3の評定合計）</label>
-            <input type="number" id="naishin" placeholder="例: 108" min="0" max="135">
+            <div class="input-group">
+                <label style="font-size: 0.9em; font-weight: bold; display: block; margin-bottom: 10px;">2. 教科別得点（各50点満点）</label>
+                <div class="input-grid">
+                    <div class="input-item"><label>国語</label><input type="number" id="s-kokugo" placeholder="0-50"></div>
+                    <div class="input-item"><label>数学</label><input type="number" id="s-sugaku" placeholder="0-50"></div>
+                    <div class="input-item"><label>英語</label><input type="number" id="s-eigo" placeholder="0-50"></div>
+                    <div class="input-item"><label>理科</label><input type="number" id="s-rika" placeholder="0-50"></div>
+                    <div class="input-item"><label>社会</label><input type="number" id="s-shakai" placeholder="0-50"></div>
+                </div>
+            </div>
 
-            <label>2. 現在の偏差値（模試など）</label>
-            <input type="number" id="hensachi" placeholder="例: 55" min="0" max="80">
+            <button class="calc-btn" onclick="calculateAll()">総合判定・分析を実行</button>
 
-            <button class="calc-btn" onclick="runSimulation()">判定を実行する</button>
-
-            <div id="result-display">
-                <div style="font-size: 0.9em; font-weight: bold;">判定ランク</div>
-                <div class="rank-badge" id="rank-out">--</div>
-                <div id="status-out" style="font-weight: bold; font-size: 1.1em; margin-bottom: 15px;"></div>
-                <div class="advice-text" id="advice-out"></div>
+            <div id="result-area">
+                <div class="result-summary">
+                    <div class="summary-item"><span>合計点</span><strong id="total-val">0</strong></div>
+                    <div class="summary-item"><span>予想偏差値</span><strong id="deviation-val">0</strong></div>
+                    <div class="summary-item"><span>判定</span><strong id="rank-val">--</strong></div>
+                </div>
+                
+                <div class="card">
+                    <h3 style="font-size: 1em; margin-bottom: 10px;">得点バランスチャート</h3>
+                    <div class="chart-container"><canvas id="radarChart"></canvas></div>
+                    <div id="advice-text" style="font-size: 0.85em; text-align: left; padding: 10px; background: #f9f9f9; border-radius: 5px;"></div>
+                </div>
             </div>
         </div>
 
-        <footer>
-            <p>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策</p>
-        </footer>
+        <footer>&copy; 2026 全国学習塾名鑑 / 福島県高校入試対策</footer>
     </div>
 
     <script>
-        function toggleMenu() {
-            document.getElementById('navOverlay').classList.toggle('active');
-            document.getElementById('menuBg').classList.toggle('active');
+        let myChart = null;
+        function toggleMenu() { document.getElementById('navOverlay').classList.toggle('active'); document.getElementById('menuBg').classList.toggle('active'); }
+
+        function calculateAll() {
+            const n = parseFloat(document.getElementById('n-score').value) || 0;
+            const s = [
+                parseFloat(document.getElementById('s-kokugo').value) || 0,
+                parseFloat(document.getElementById('s-sugaku').value) || 0,
+                parseFloat(document.getElementById('s-eigo').value) || 0,
+                parseFloat(document.getElementById('s-rika').value) || 0,
+                parseFloat(document.getElementById('s-shakai').value) || 0
+            ];
+            const total = s.reduce((a, b) => a + b, 0);
+            const deviation = ((total - 125) / 5) + 50; // 簡易換算
+            const judgeScore = (n * 0.6) + (deviation * 2.5);
+
+            document.getElementById('total-val').innerText = total;
+            document.getElementById('deviation-val').innerText = deviation.toFixed(1);
+            
+            let rank = judgeScore >= 200 ? "A" : judgeScore >= 180 ? "B" : judgeScore >= 160 ? "C" : "D";
+            document.getElementById('rank-val').innerText = rank;
+            document.getElementById('result-area').style.display = 'block';
+
+            updateChart(s);
+            
+            // 簡単なアドバイス生成
+            const minScore = Math.min(...s);
+            const subjects = ['国語', '数学', '英語', '理科', '社会'];
+            const weakSubject = subjects[s.indexOf(minScore)];
+            document.getElementById('advice-text').innerText = `【分析】${weakSubject}の伸び代が大きいです。基礎を固めて合計点を底上げしましょう。`;
         }
-        function runSimulation() {
-            const n = parseFloat(document.getElementById('naishin').value);
-            const h = parseFloat(document.getElementById('hensachi').value);
-            const display = document.getElementById('result-display');
-            if (isNaN(n) || isNaN(h)) { alert("数値を入力してください"); return; }
-            display.style.display = 'block';
-            const score = (n * 0.6) + (h * 2.5);
-            let rank = ""; let status = ""; let advice = "";
-            if (score >= 210) { rank = "A"; status = "合格圏内"; advice = "非常に良好です。数学の空間図形や理科の計算問題など、応用力の維持に努めましょう。"; }
-            else if (score >= 185) { rank = "B"; status = "合格可能圏"; advice = "合格の可能性が高いです。英語の作文や社会の記述で部分点を確実に取る練習を。"; }
-            else if (score >= 160) { rank = "C"; status = "ボーダーライン"; advice = "基礎の徹底が必要です。計算ミスや漢字の書き取りなど、確実に取れる問題を落とさないように。"; }
-            else { rank = "D"; status = "努力が必要"; advice = "教科別の分析ページを確認し、まずは基礎問題を完璧にすることから始めましょう。"; }
-            document.getElementById('rank-out').innerText = rank;
-            document.getElementById('status-out').innerText = status;
-            document.getElementById('advice-out').innerText = advice;
+
+        function updateChart(s) {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            if (myChart) { myChart.destroy(); }
+            myChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['国語', '数学', '英語', '理科', '社会'],
+                    datasets: [{
+                        data: s,
+                        backgroundColor: 'rgba(211, 47, 47, 0.2)',
+                        borderColor: '#d32f2f',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#d32f2f'
+                    }]
+                },
+                options: {
+                    scales: { r: { min: 0, max: 50, ticks: { display: false } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
         }
     </script>
 </body>
